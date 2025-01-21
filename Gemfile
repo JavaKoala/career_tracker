@@ -45,6 +45,7 @@ group :development, :test do
   gem 'factory_bot_rails'
 
   # Use Robcop for linting
+  gem 'rubocop-factory_bot', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
   gem 'rubocop-rspec_rails', require: false
