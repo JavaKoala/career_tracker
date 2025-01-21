@@ -43,6 +43,11 @@ group :development, :test do
 
   # Use Robcop for linting
   gem 'rubocop-rails', require: false
+  gem 'rubocop-rspec', require: false
+  gem 'rubocop-rspec_rails', require: false
+
+  # Use RSpec for testing
+  gem 'rspec-rails', '~> 7.1'
 end
 
 group :development do
