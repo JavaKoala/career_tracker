@@ -41,6 +41,9 @@ group :development, :test do
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
   gem 'brakeman', require: false
 
+  # Use FactoryBot for fixtures
+  gem 'factory_bot_rails'
+
   # Use Robcop for linting
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
