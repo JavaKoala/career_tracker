@@ -10,5 +10,8 @@ Style/FrozenStringLiteralComment:
 Style/Documentation:
   Enabled: false
 
+RSpecRails/InferredSpecType:
+  Enabled: false
+
 AllCops:
     NewCops: enable
