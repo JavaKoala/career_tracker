@@ -23,5 +23,9 @@ RSpec/MultipleExpectations:
   Exclude:
     - "spec/system/*"
 
+Metrics/MethodLength:
+  Exclude:
+    - "db/migrate/*"
+
 AllCops:
     NewCops: enable
