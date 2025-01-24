@@ -28,4 +28,12 @@
 #       enabled: "ON"
 
 en:
+  career_tracker: "Career Tracker"
+  enter_email: "Enter your email address"
+  enter_password: "Enter your password"
   hello: "Hello world"
+  sign_in: "Sign in"
+  sign_out: "Sign out"
+  try_again_later: "Try again later."
+  try_another_password: "Try another email address or password."
+

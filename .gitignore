@@ -38,3 +38,9 @@
 
 # Ignore database.yml
 /config/database.yml
+
+# Ignore .DS_Store
+*.DS_Store
+
+# Ignore coverage
+/spec/coverage
