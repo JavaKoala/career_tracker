@@ -3,6 +3,8 @@ require:
   - rubocop-rspec
   - rubocop-rspec_rails
   - rubocop-factory_bot
+  - rubocop-capybara
+  - rubocop-performance
 
 Style/FrozenStringLiteralComment:
   Enabled: false
@@ -12,6 +14,14 @@ Style/Documentation:
 
 RSpecRails/InferredSpecType:
   Enabled: false
+
+RSpec/ExampleLength:
+  Exclude:
+    - "spec/system/*"
+
+RSpec/MultipleExpectations:
+  Exclude:
+    - "spec/system/*"
 
 AllCops:
     NewCops: enable
