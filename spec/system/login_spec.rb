@@ -21,7 +21,7 @@ RSpec.describe 'Login', type: :system do
   it 'does not allow a user to login with incorrect password' do
     user = create(:user)
 
-    visit '/session/new'
+    visit '/'
 
     fill_in 'Enter your email address', with: user.email_address
     fill_in 'Enter your password', with: 'wrong'
