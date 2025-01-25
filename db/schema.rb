@@ -11,18 +11,6 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[8.0].define(version: 2025_01_24_222028) do
-  create_table "applications", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.date "applied"
-    t.date "accepted"
-    t.boolean "active", default: true, null: false
-    t.bigint "user_id", null: false
-    t.bigint "position_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["position_id"], name: "index_applications_on_position_id"
-    t.index ["user_id"], name: "index_applications_on_user_id"
-  end
-
   create_table "companies", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.string "friendly_name"
@@ -36,6 +24,18 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_24_222028) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "job_applications", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.date "applied"
+    t.date "accepted"
+    t.boolean "active", default: true, null: false
+    t.bigint "user_id", null: false
+    t.bigint "position_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["position_id"], name: "index_job_applications_on_position_id"
+    t.index ["user_id"], name: "index_job_applications_on_user_id"
   end
 
   create_table "positions", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -66,8 +66,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_24_222028) do
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
   end
 
-  add_foreign_key "applications", "positions"
-  add_foreign_key "applications", "users"
+  add_foreign_key "job_applications", "positions"
+  add_foreign_key "job_applications", "users"
   add_foreign_key "positions", "companies"
   add_foreign_key "sessions", "users"
 end

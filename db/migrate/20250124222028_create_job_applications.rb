@@ -1,6 +1,6 @@
-class CreateApplications < ActiveRecord::Migration[8.0]
+class CreateJobApplications < ActiveRecord::Migration[8.0]
   def change
-    create_table :applications do |t|
+    create_table :job_applications do |t|
       t.date :applied
       t.date :accepted
       t.boolean :active, default: true, null: false
