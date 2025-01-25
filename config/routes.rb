@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  resources :positions, only: %i[show]
-  resources :companies, only: %i[index]
   resource :session
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
