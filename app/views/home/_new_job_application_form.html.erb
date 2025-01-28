@@ -1,0 +1,119 @@
+<div data-controller="dialog">
+  <dialog
+    data-dialog-target="dialog"
+    class="w-full
+           md:w-1/2
+           p-4
+           rounded-lg
+           shadow-xl
+           border-2
+           dark:bg-black
+           dark:text-white
+           border-blue-500">
+    <div class="flex justify-between">
+      <h1 class="mt-1 text-xl"><%= t(:new_job_application) %></h1>
+      <button
+        type="button"
+        data-action="dialog#close"
+        class="rounded-lg
+               bg-red-500
+               px-3.5 py-1
+               mt-1"
+        autofocus>
+        <%= t(:close) %>
+      </button>
+    </div>
+    <%= form_with model: @new_application do |form| %>
+      <h2 class="text-lg"><%= t(:position) %>:</h2>
+      <div>
+        <%= form.fields_for :position do |position_form| %>
+          <ul class="mt-2">
+            <%= render partial: 'layouts/form_components/text_field',
+                       locals: {
+                         form: position_form,
+                         field: :name,
+                         field_name: t(:job_title),
+                         required: true
+                       } %>
+            <%= render partial: 'layouts/form_components/textarea_field',
+                       locals: {
+                         form: position_form,
+                         field: :description,
+                         field_name: t(:job_description),
+                         required: true
+                       } %>
+            <%= render partial: 'layouts/form_components/number_field',
+                       locals: {
+                         form: position_form,
+                         field: :pay_start,
+                         field_name: t(:pay_start),
+                         min: 0,
+                         required: false
+                       } %>
+            <%= render partial: 'layouts/form_components/number_field',
+                       locals: {
+                         form: position_form,
+                         field: :pay_end,
+                         field_name: t(:pay_end),
+                         min: 0,
+                         required: false
+                       } %>
+          </ul>
+
+          <h2 class="text-lg mt-4"><%= t(:company) %>:</h2>
+          <div>
+            <%= position_form.fields_for :company do |company_form| %>
+              <ul class="mt-2">
+                <%= render partial: 'layouts/form_components/text_field',
+                           locals: {
+                             form: company_form,
+                             field: :name,
+                             field_name: t(:company_name),
+                             required: true
+                           } %>
+                <%= render partial: 'layouts/form_components/text_field',
+                           locals: {
+                             form: company_form,
+                             field: :friendly_name,
+                             field_name: t(:friendly_name),
+                             required: false
+                           } %>
+            <%= render partial: 'layouts/form_components/textarea_field',
+                       locals: {
+                         form: company_form,
+                         field: :description,
+                         field_name: t(:company_description),
+                         required: false
+                       } %>
+              </ul>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+
+      <%= form.button t(:add_application), class: 'mt-8
+                                                   rounded-md
+                                                   px-3.5 py-1
+                                                   bg-blue-600
+                                                   hover:bg-blue-500
+                                                   text-white
+                                                   inline-block
+                                                   font-medium
+                                                   cursor-pointer' %>
+    <% end %>
+  </dialog>
+
+  <button
+    type="button"
+    data-action="dialog#open"
+    class="rounded-md
+           px-3.5 py-1
+           bg-blue-600
+           hover:bg-blue-500
+           text-white
+           inline-block
+           font-medium
+           cursor-pointer">
+    <%= t(:new_application) %>
+  </button>
+</div>
