@@ -100,6 +100,14 @@ RSpec.describe JobApplicationsController, type: :request do
         expect(response).to redirect_to('/')
       end
 
+      it 'does not create duplicate companies' do
+        create(:company, name: 'Google')
+
+        expect do
+          post '/job_applications', params: valid_attributes
+        end.not_to change(Company, :count)
+      end
+
       it 'sets a flash alert' do
         post '/job_applications', params: invalid_attributes
 
