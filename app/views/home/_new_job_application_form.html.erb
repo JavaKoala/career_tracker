@@ -78,6 +78,13 @@
                              field_name: t(:friendly_name),
                              required: false
                            } %>
+            <%= render partial: 'layouts/form_components/textarea_field',
+                       locals: {
+                         form: company_form,
+                         field: :description,
+                         field_name: t(:company_description),
+                         required: false
+                       } %>
               </ul>
             <% end %>
           </div>

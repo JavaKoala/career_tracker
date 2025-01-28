@@ -33,6 +33,7 @@ en:
   close: "Close"
   companies: "Companies"
   company: "Company"
+  company_description: "Company description"
   company_name: "Company name"
   enter_email: "Enter your email address"
   enter_password: "Enter your password"
