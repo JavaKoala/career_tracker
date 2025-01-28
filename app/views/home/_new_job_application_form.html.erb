@@ -28,23 +28,13 @@
       <div>
         <%= form.fields_for :position do |position_form| %>
           <ul class="mt-2">
-            <li>
-              <%= position_form.label :name, 'Job title' %>
-              <%= position_form.text_field :name,
-                                           required: true,
-                                           class: 'shadow
-                                                   appearance-none
-                                                   border
-                                                   border-blue-500
-                                                   rounded
-                                                   w-full
-                                                   py-2
-                                                   px-3
-                                                   leading-tight
-                                                   bg-inherit
-                                                   focus:border-blue-700' %>
-            </li>
-
+            <%= render partial: 'layouts/form_components/text_field',
+                       locals: {
+                         form: position_form,
+                         field: :name,
+                         field_name: 'Job title',
+                         required: true
+                       } %>
             <li class="mt-2">
               <%= position_form.label :description, 'Job description' %>
               <%= position_form.text_field :description,
@@ -67,22 +57,13 @@
           <div>
             <%= position_form.fields_for :company do |company_form| %>
               <ul class="mt-2">
-                <li>
-                  <%= company_form.label :name, 'Company name' %>
-                  <%= company_form.text_field :name,
-                                              required: true,
-                                              class: 'shadow
-                                                      appearance-none
-                                                      border
-                                                      border-blue-500
-                                                      rounded
-                                                      w-full
-                                                      py-2
-                                                      px-3
-                                                      leading-tight
-                                                      bg-inherit
-                                                      focus:border-blue-700' %>
-                </li>
+                <%= render partial: 'layouts/form_components/text_field',
+                           locals: {
+                             form: company_form,
+                             field: :name,
+                             field_name: 'Company name',
+                             required: true
+                           } %>
               </ul>
             <% end %>
           </div>
