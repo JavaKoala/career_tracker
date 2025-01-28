@@ -1,6 +1,8 @@
 class JobApplicationsController < ApplicationController
   def show
     @job_application = JobApplication.find_by(id: params[:id])
+
+    redirect_to root_path unless @job_application
   end
 
   def create

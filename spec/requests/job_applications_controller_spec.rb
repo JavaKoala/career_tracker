@@ -36,6 +36,22 @@ RSpec.describe JobApplicationsController, type: :request do
     allow(Current).to receive_messages(session: session, user: user)
   end
 
+  describe 'GET /job_applications/:id' do
+    it 'returns a success response' do
+      job_application = create(:job_application, user: user)
+
+      get "/job_applications?id=#{job_application.id}"
+
+      expect(response).to be_successful
+    end
+
+    it 'redirects on invalid job application id' do
+      get '/job_applications?id=0'
+
+      expect(response).to redirect_to root_path
+    end
+  end
+
   describe 'POST /job_applications' do
     context 'with valid parameters' do
       it 'creates a new job application' do
