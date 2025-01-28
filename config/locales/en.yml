@@ -36,6 +36,7 @@ en:
   company_name: "Company name"
   enter_email: "Enter your email address"
   enter_password: "Enter your password"
+  friendly_name: "Friendly name"
   hello: "Hello world"
   job_application_created_successfully: "Job application created successfully"
   job_description: "Job description"

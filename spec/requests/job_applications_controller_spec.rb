@@ -10,7 +10,10 @@ RSpec.describe JobApplicationsController, type: :request do
           description: 'A great job',
           pay_start: 50_000,
           pay_end: 100_000,
-          company_attributes: { name: 'Google' }
+          company_attributes: {
+            name: 'Google',
+            friendly_name: 'Google Inc.'
+          }
         }
       }
     }
@@ -56,6 +59,12 @@ RSpec.describe JobApplicationsController, type: :request do
         post '/job_applications', params: valid_attributes
 
         expect(JobApplication.last.position.pay_end).to eq(100_000)
+      end
+
+      it 'sets the friendly name attribute' do
+        post '/job_applications', params: valid_attributes
+
+        expect(JobApplication.last.position.company.friendly_name).to eq('Google Inc.')
       end
 
       it 'redirects to root_path' do

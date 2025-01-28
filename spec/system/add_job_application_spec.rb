@@ -17,6 +17,7 @@ RSpec.describe 'Add Job Application', type: :system do
     fill_in 'Pay start', with: '50000'
     fill_in 'Pay end', with: '100000'
     fill_in 'Company name', with: 'Acme'
+    fill_in 'Friendly name', with: 'Acme Inc.'
 
     expect do
       click_on 'Add application'

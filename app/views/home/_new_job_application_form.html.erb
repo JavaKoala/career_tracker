@@ -71,6 +71,13 @@
                              field_name: t(:company_name),
                              required: true
                            } %>
+                <%= render partial: 'layouts/form_components/text_field',
+                           locals: {
+                             form: company_form,
+                             field: :friendly_name,
+                             field_name: t(:friendly_name),
+                             required: false
+                           } %>
               </ul>
             <% end %>
           </div>
