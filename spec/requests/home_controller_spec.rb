@@ -10,7 +10,7 @@ RSpec.describe HomeController, type: :request do
     it 'returns http redirect with session' do
       user = create(:user)
       session = create(:session, user: user)
-      allow(Current).to receive(:session).and_return(session)
+      allow(Current).to receive_messages(session: session, user: user)
 
       get '/'
       expect(response).to have_http_status(:success)

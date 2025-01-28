@@ -1,0 +1,24 @@
+<table class="mt-4
+              border
+              border-gray-300
+              dark:border-gray-700
+              dark:text-white
+              w-2/3">
+  <caption class="text-lg">
+    <%= t(:active_applications) %>
+  </caption>
+  <thead>
+    <tr class="border-b-4 border-gray-300 dark:border-gray-700">
+      <th class="p-2 border border-gray-300 dark:border-gray-700"><%= t(:position) %></th>
+      <th class="p-2 border border-gray-300 dark:border-gray-700"><%= t(:company) %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @active_applications.each do |application| %>
+      <tr>
+        <td class="p-3 border border-gray-300 dark:border-gray-700"><%= link_to application.position_name, job_applications_path(id: application.id) %></td>
+        <td class="p-3 border border-gray-300 dark:border-gray-700"><%= link_to application.company_name, job_applications_path(id: application.id) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

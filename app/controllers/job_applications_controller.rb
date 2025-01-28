@@ -1,4 +1,10 @@
 class JobApplicationsController < ApplicationController
+  def show
+    @job_application = JobApplication.find_by(id: params[:id])
+
+    redirect_to root_path unless @job_application && @job_application.user == Current.user
+  end
+
   def create
     @job_application = JobApplication.new(job_application_params)
     @job_application.user = Current.user
