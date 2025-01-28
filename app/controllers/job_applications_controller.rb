@@ -3,8 +3,11 @@ class JobApplicationsController < ApplicationController
     @job_application = JobApplication.new(job_application_params)
     @job_application.user = Current.user
 
-    @job_application.save!
-    redirect_to root_path
+    if @job_application.save
+      redirect_to root_path, notice: 'Job application created successfully'
+    else
+      redirect_to root_path, alert: @job_application.errors.full_messages.join(', ')
+    end
   end
 
   private
