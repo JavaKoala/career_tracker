@@ -15,12 +15,12 @@ RSpec.describe 'Display Job Application', type: :system do
 
     click_on job_application.position.name
 
-    expect(page).to have_content(job_application.position.name)
-    expect(page).to have_content(job_application.position.description)
-    expect(page).to have_content(job_application.position.pay_start)
-    expect(page).to have_content(job_application.position.pay_end)
-    expect(page).to have_content(job_application.position.company.name)
-    expect(page).to have_content(job_application.position.company.friendly_name)
-    expect(page).to have_content(job_application.position.company.description)
+    expect(page).to have_content(job_application.position_name)
+    expect(page).to have_content(job_application.position_description)
+    expect(page).to have_content(job_application.position_pay_start)
+    expect(page).to have_content(job_application.position_pay_end)
+    expect(page).to have_content(job_application.company_name)
+    expect(page).to have_content(job_application.company_friendly_name)
+    expect(page).to have_content(job_application.company_description)
   end
 end
