@@ -14,6 +14,7 @@ RSpec.describe 'Add Job Application', type: :system do
 
     fill_in 'Job title', with: 'Developer'
     fill_in 'Job description', with: 'A developer role'
+    fill_in 'Pay start', with: '50000'
     fill_in 'Company name', with: 'Acme'
 
     expect do

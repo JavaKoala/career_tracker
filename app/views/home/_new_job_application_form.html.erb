@@ -42,6 +42,14 @@
                          field_name: t(:job_description),
                          required: true
                        } %>
+            <%= render partial: 'layouts/form_components/number_field',
+                       locals: {
+                         form: position_form,
+                         field: :pay_start,
+                         field_name: t(:pay_start),
+                         min: 0,
+                         required: false
+                       } %>
           </ul>
 
           <h2 class="text-lg mt-4"><%= t(:company) %>:</h2>
