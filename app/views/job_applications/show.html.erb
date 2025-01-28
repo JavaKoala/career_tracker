@@ -1,16 +1,16 @@
 <div class="dark:text-white">
   <h2 class="text-2xl">Job application</h2>
   <div class="mt-2 p-2">
-    <h3 class="text-xl">Position</h3>
-    <p><strong>Job title:</strong> <%= @job_application.position.name %></p>
-    <p><strong>Job description:</strong> <%= @job_application.position.description %></p>
-    <p><strong>Pay start:</strong> <%= @job_application.position.pay_start %></p>
-    <p><strong>Pay end:</strong> <%= @job_application.position.pay_end %></p>
+    <h3 class="text-xl"><%= t(:position) %></h3>
+    <p><strong><%= t(:job_title) %>:</strong> <%= @job_application.position.name %></p>
+    <p><strong><%= t(:job_description) %>:</strong> <%= @job_application.position.description %></p>
+    <p><strong><%= t(:pay_start) %>:</strong> <%= @job_application.position.pay_start %></p>
+    <p><strong><%= t(:pay_end) %>:</strong> <%= @job_application.position.pay_end %></p>
   </div>
   <div class="mt-2 p-2">
-    <h3 class="text-xl">Company</h3>
-    <p><strong>Company name:</strong> <%= @job_application.position.company.name %></p>
-    <p><strong>Friendly name:</strong> <%= @job_application.position.company.friendly_name %></p>
-    <p><strong>Description:</strong> <%= @job_application.position.company.description %></p>
+    <h3 class="text-xl"><%= t(:company) %></h3>
+    <p><strong><%= t(:company_name) %>:</strong> <%= @job_application.position.company.name %></p>
+    <p><strong><%= t(:friendly_name) %>:</strong> <%= @job_application.position.company.friendly_name %></p>
+    <p><strong><%= t(:company_description) %>:</strong> <%= @job_application.position.company.description %></p>
   </div>
 </div>
