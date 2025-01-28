@@ -1,4 +1,8 @@
 class JobApplicationsController < ApplicationController
+  def show
+    @job_application = JobApplication.find_by(id: params[:id])
+  end
+
   def create
     @job_application = JobApplication.new(job_application_params)
     @job_application.user = Current.user

@@ -16,8 +16,8 @@
   <tbody>
     <% @active_applications.each do |application| %>
       <tr>
-        <td class="p-3 border border-gray-300 dark:border-gray-700"><%= application.position.name %></td>
-        <td class="p-3 border border-gray-300 dark:border-gray-700"><%= application.position.company.name %></td>
+        <td class="p-3 border border-gray-300 dark:border-gray-700"><%= link_to application.position.name, job_applications_path(id: application.id) %></td>
+        <td class="p-3 border border-gray-300 dark:border-gray-700"><%= link_to application.position.company.name, job_applications_path(id: application.id) %></td>
       </tr>
     <% end %>
   </tbody>

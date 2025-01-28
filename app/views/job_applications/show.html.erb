@@ -1,0 +1,16 @@
+<div class="dark:text-white">
+  <h2>Job application</h2>
+  <div>
+    <h3>Position</h3>
+    <p><strong>Job title:</strong> <%= @job_application.position.name %></p>
+    <p><strong>Job description:</strong> <%= @job_application.position.description %></p>
+    <p><strong>Pay start:</strong> <%= @job_application.position.pay_start %></p>
+    <p><strong>Pay end:</strong> <%= @job_application.position.pay_end %></p>
+  </div>
+  <div>
+    <h3>Company</h3>
+    <p><strong>Company name:</strong> <%= @job_application.position.company.name %></p>
+    <p><strong>Friendly name:</strong> <%= @job_application.position.company.friendly_name %></p>
+    <p><strong>Description:</strong> <%= @job_application.position.company.description %></p>
+  </div>
+</div>
