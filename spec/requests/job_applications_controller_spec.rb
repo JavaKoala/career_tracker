@@ -50,6 +50,15 @@ RSpec.describe JobApplicationsController, type: :request do
 
       expect(response).to redirect_to root_path
     end
+
+    it 'redirects on job application not associated with user' do
+      new_user = create(:user, email_address: 'foo1@test.com')
+      job_application = create(:job_application, user: new_user)
+
+      get "/job_applications?id=#{job_application.id}"
+
+      expect(response).to redirect_to root_path
+    end
   end
 
   describe 'POST /job_applications' do
