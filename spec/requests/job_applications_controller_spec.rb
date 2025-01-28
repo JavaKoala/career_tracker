@@ -9,6 +9,7 @@ RSpec.describe JobApplicationsController, type: :request do
           name: 'Software Engineer',
           description: 'A great job',
           pay_start: 50_000,
+          pay_end: 100_000,
           company_attributes: { name: 'Google' }
         }
       }
@@ -49,6 +50,12 @@ RSpec.describe JobApplicationsController, type: :request do
         post '/job_applications', params: valid_attributes
 
         expect(JobApplication.last.position.pay_start).to eq(50_000)
+      end
+
+      it 'sets the pay_end attribute' do
+        post '/job_applications', params: valid_attributes
+
+        expect(JobApplication.last.position.pay_end).to eq(100_000)
       end
 
       it 'redirects to root_path' do

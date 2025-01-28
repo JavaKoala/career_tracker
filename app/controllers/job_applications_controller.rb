@@ -13,7 +13,7 @@ class JobApplicationsController < ApplicationController
   private
 
   def job_application_params
-    params.expect(job_application: [position_attributes: [:name, :description, :pay_start,
+    params.expect(job_application: [position_attributes: [:name, :description, :pay_start, :pay_end,
                                                           { company_attributes: [:name] }]])
   end
 end
