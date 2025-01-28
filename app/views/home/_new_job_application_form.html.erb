@@ -11,7 +11,7 @@
            dark:text-white
            border-blue-500">
     <div class="flex justify-between">
-      <h1 class="mt-1 text-xl">New job application</h1>
+      <h1 class="mt-1 text-xl"><%= t(:new_job_application) %></h1>
       <button
         type="button"
         data-action="dialog#close"
@@ -20,11 +20,11 @@
                px-3.5 py-1
                mt-1"
         autofocus>
-        Close
+        <%= t(:close) %>
       </button>
     </div>
     <%= form_with model: @new_application do |form| %>
-      <h2 class="text-lg">Position:</h2>
+      <h2 class="text-lg"><%= t(:position) %>:</h2>
       <div>
         <%= form.fields_for :position do |position_form| %>
           <ul class="mt-2">
@@ -32,19 +32,19 @@
                        locals: {
                          form: position_form,
                          field: :name,
-                         field_name: 'Job title',
+                         field_name: t(:job_title),
                          required: true
                        } %>
             <%= render partial: 'layouts/form_components/textarea_field',
                        locals: {
                          form: position_form,
                          field: :description,
-                         field_name: 'Job description',
+                         field_name: t(:job_description),
                          required: true
                        } %>
           </ul>
 
-          <h2 class="text-lg mt-4">Company:</h2>
+          <h2 class="text-lg mt-4"><%= t(:company) %>:</h2>
           <div>
             <%= position_form.fields_for :company do |company_form| %>
               <ul class="mt-2">
@@ -52,7 +52,7 @@
                            locals: {
                              form: company_form,
                              field: :name,
-                             field_name: 'Company name',
+                             field_name: t(:company_name),
                              required: true
                            } %>
               </ul>
@@ -61,15 +61,15 @@
         <% end %>
       </div>
 
-      <%= form.button 'Add application', class: 'mt-8
-                                                 rounded-md
-                                                 px-3.5 py-1
-                                                 bg-blue-600
-                                                 hover:bg-blue-500
-                                                 text-white
-                                                 inline-block
-                                                 font-medium
-                                                 cursor-pointer' %>
+      <%= form.button t(:add_application), class: 'mt-8
+                                                   rounded-md
+                                                   px-3.5 py-1
+                                                   bg-blue-600
+                                                   hover:bg-blue-500
+                                                   text-white
+                                                   inline-block
+                                                   font-medium
+                                                   cursor-pointer' %>
     <% end %>
   </dialog>
 
@@ -84,6 +84,6 @@
            inline-block
            font-medium
            cursor-pointer">
-    New application
+    <%= t(:new_application) %>
   </button>
 </div>

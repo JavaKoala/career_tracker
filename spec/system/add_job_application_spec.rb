@@ -40,4 +40,13 @@ RSpec.describe 'Add Job Application', type: :system do
       expect(page).to have_content("Position name can't be blank")
     end.not_to change(JobApplication, :count)
   end
+
+  it 'closes the form when close is clicked' do
+    visit root_path
+
+    click_on 'New application'
+    click_on 'Close'
+
+    expect(page).to have_no_content('Add application')
+  end
 end

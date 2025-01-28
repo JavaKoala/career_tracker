@@ -4,7 +4,7 @@ class JobApplicationsController < ApplicationController
     @job_application.user = Current.user
 
     if @job_application.save
-      redirect_to root_path, notice: 'Job application created successfully'
+      redirect_to root_path, notice: t(:job_application_created_successfully)
     else
       redirect_to root_path, alert: @job_application.errors.full_messages.join(', ')
     end

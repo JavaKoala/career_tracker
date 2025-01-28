@@ -28,11 +28,21 @@
 #       enabled: "ON"
 
 en:
+  add_application: 'Add application'
   career_tracker: "Career Tracker"
+  close: "Close"
   companies: "Companies"
+  company: "Company"
+  company_name: "Company name"
   enter_email: "Enter your email address"
   enter_password: "Enter your password"
   hello: "Hello world"
+  job_application_created_successfully: "Job application created successfully"
+  job_description: "Job description"
+  job_title: "Job title"
+  new_application: "New application"
+  new_job_application: "New job application"
+  position: "Position"
   sign_in: "Sign in"
   sign_out: "Sign out"
   try_again_later: "Try again later."
