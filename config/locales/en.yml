@@ -28,6 +28,7 @@
 #       enabled: "ON"
 
 en:
+  active_applications: "Active applications"
   add_application: 'Add application'
   career_tracker: "Career Tracker"
   close: "Close"

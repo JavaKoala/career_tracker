@@ -11,11 +11,11 @@ RSpec.describe 'Login', type: :system do
 
     click_on 'Sign in'
 
-    expect(page).to have_content('Companies')
+    expect(page).to have_content('Active applications')
 
     visit root_path
 
-    expect(page).to have_content('Companies')
+    expect(page).to have_content('Active applications')
   end
 
   it 'does not allow a user to login with incorrect password' do

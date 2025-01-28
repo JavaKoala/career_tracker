@@ -9,4 +9,23 @@ RSpec.describe User, type: :model do
 
     expect(user.email_address).to eq('foo@bar.com')
   end
+
+  describe '#active_applications' do
+    let(:user) { create(:user) }
+    let(:position) { create(:position) }
+    let(:job_application) do
+      create(:job_application,
+             user: user,
+             position: position)
+    end
+
+    it 'returns active job applications' do
+      create(:job_application,
+             active: false,
+             position: position,
+             user: user)
+
+      expect(job_application.user.active_applications).to eq([job_application])
+    end
+  end
 end

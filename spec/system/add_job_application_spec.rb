@@ -25,6 +25,8 @@ RSpec.describe 'Add Job Application', type: :system do
 
       expect(page).to have_no_content('Add application')
       expect(page).to have_content('Job application created successfully')
+      expect(page).to have_content('Developer')
+      expect(page).to have_content('Acme')
     end.to change(JobApplication, :count).by(1)
   end
 
