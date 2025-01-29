@@ -15,10 +15,12 @@ RSpec.describe 'Add Company', type: :system do
 
       fill_in 'Company name', with: 'Acme'
 
-      click_on 'Add company'
+      expect do
+        click_on 'Add company'
 
-      expect(page).to have_content('Created company')
-      expect(page).to have_content('Acme')
+        expect(page).to have_content('Created company')
+        expect(page).to have_content('Acme')
+      end.to change(Company, :count).by(1)
     end
 
     it 'does not add company with blank name' do
