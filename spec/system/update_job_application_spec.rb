@@ -31,6 +31,7 @@ RSpec.describe 'Display Company', type: :system do
 
     click_on 'Update'
 
+    expect(page).to have_content('Updated company')
     expect(page).to have_content('New Name')
     expect(page).to have_content('New Friendly Name')
     expect(page).to have_content('New Description')

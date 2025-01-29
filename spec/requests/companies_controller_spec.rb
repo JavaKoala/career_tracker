@@ -65,6 +65,12 @@ RSpec.describe CompaniesController, type: :request do
       expect(response).to redirect_to("/companies?id=#{company.id}")
     end
 
+    it 'returns a success flash message' do
+      patch "/companies?id=#{company.id}", params: company_params
+
+      expect(flash[:notice]).to eq('Updated company')
+    end
+
     it 'updates company attributes' do # rubocop:disable RSpec/ExampleLength,RSpec/MultipleExpectations
       patch "/companies?id=#{company.id}", params: company_params
 
