@@ -3,6 +3,7 @@ class CompanyController < ApplicationController
 
   def index
     @companies = Company.all
+    @new_company = Company.new
   end
 
   def show

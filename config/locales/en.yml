@@ -32,6 +32,7 @@ en:
   address1: "Address 1"
   address2: "Address 2"
   add_application: 'Add application'
+  add_company: 'Add company'
   career_tracker: "Career Tracker"
   city: "City"
   close: "Close"
@@ -52,6 +53,7 @@ en:
   job_description: "Job description"
   job_title: "Job title"
   new_application: "New application"
+  new_company: "New company"
   new_job_application: "New job application"
   pay_end: "Pay end"
   pay_start: "Pay start"
