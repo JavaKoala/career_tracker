@@ -11,7 +11,7 @@
            dark:text-white
            border-blue-500">
     <div class="flex justify-between">
-      <h1 class="mt-1 text-xl">Update</h1>
+      <h1 class="mt-1 text-xl"><%= t(:update) %> <%= @company.name %></h1>
       <button
         type="button"
         data-action="dialog#close"
@@ -37,6 +37,6 @@
            inline-block
            font-medium
            cursor-pointer">
-    Update company
+    <%= t(:update_company) %>
   </button>
 </div>

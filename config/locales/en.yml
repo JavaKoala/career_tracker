@@ -60,5 +60,7 @@ en:
   state: "State"
   try_again_later: "Try again later."
   try_another_password: "Try another email address or password."
+  update: "Update"
+  update_company: "Update company"
   zip: "Zip"
 
