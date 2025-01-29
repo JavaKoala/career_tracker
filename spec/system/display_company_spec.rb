@@ -40,4 +40,14 @@ RSpec.describe 'Display Company', type: :system do
 
     expect(page).to have_content(company.description)
   end
+
+  it 'displays companies through home link' do
+    company
+
+    visit root_path
+
+    click_on 'Companies'
+
+    expect(page).to have_content(company.name)
+  end
 end
