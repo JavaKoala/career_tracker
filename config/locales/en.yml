@@ -43,6 +43,7 @@ en:
   company_not_found: "Company not found"
   country: "Country"
   county: "County"
+  created_company: "Created company"
   enter_email: "Enter your email address"
   enter_password: "Enter your password"
   friendly_name: "Friendly name"

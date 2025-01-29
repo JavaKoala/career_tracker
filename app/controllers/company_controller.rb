@@ -9,6 +9,16 @@ class CompanyController < ApplicationController
     redirect_to root_path, alert: t(:company_not_found) unless @company
   end
 
+  def create
+    @company = Company.new(company_params)
+
+    if @company.save
+      redirect_to company_path(@company), notice: t(:created_company)
+    else
+      redirect_to company_index_path, alert: @company.errors.full_messages.join(', ')
+    end
+  end
+
   def update
     if @company.blank?
       redirect_to root_path, alert: t(:company_not_found)
