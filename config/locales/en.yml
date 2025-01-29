@@ -29,8 +29,11 @@
 
 en:
   active_applications: "Active applications"
+  address1: "Address 1"
+  address2: "Address 2"
   add_application: 'Add application'
   career_tracker: "Career Tracker"
+  city: "City"
   close: "Close"
   companies: "Companies"
   company: "Company"
@@ -38,6 +41,8 @@ en:
   company_information: "Company information"
   company_name: "Company name"
   company_not_found: "Company not found"
+  country: "Country"
+  county: "County"
   enter_email: "Enter your email address"
   enter_password: "Enter your password"
   friendly_name: "Friendly name"
@@ -52,6 +57,8 @@ en:
   position: "Position"
   sign_in: "Sign in"
   sign_out: "Sign out"
+  state: "State"
   try_again_later: "Try again later."
   try_another_password: "Try another email address or password."
+  zip: "Zip"
 
