@@ -1,86 +1,74 @@
-<%= form_with model: @company do |form| %>
-  <div>
-    <ul class="mt-2">
-      <%= render partial: 'layouts/form_components/text_field',
-                 locals: {
-                   form: form,
-                   field: :name,
-                   field_name: t(:company_name),
-                   required: true
-                 } %>
-      <%= render partial: 'layouts/form_components/text_field',
-                 locals: {
-                   form: form,
-                   field: :friendly_name,
-                   field_name: t(:friendly_name),
-                   required: false
-                 } %>
-      <%= render partial: 'layouts/form_components/textarea_field',
-                  locals: {
-                    form: form,
-                    field: :description,
-                    field_name: t(:company_description),
-                    required: false
-                  } %>
-      <%= render partial: 'layouts/form_components/text_field',
-                 locals: {
-                   form: form,
-                   field: :address1,
-                   field_name: t(:address1),
-                   required: false
-                 } %>
-      <%= render partial: 'layouts/form_components/text_field',
-                 locals: {
-                   form: form,
-                   field: :address2,
-                   field_name: t(:address2),
-                   required: false
-                 } %>
-      <%= render partial: 'layouts/form_components/text_field',
-                 locals: {
-                   form: form,
-                   field: :city,
-                   field_name: t(:city),
-                   required: false
-                 } %>
-      <%= render partial: 'layouts/form_components/text_field',
-                 locals: {
-                   form: form,
-                   field: :state,
-                   field_name: t(:state),
-                   required: false
-                 } %>
-      <%= render partial: 'layouts/form_components/text_field',
-                 locals: {
-                   form: form,
-                   field: :county,
-                   field_name: t(:county),
-                   required: false
-                 } %>
-      <%= render partial: 'layouts/form_components/text_field',
-                 locals: {
-                   form: form,
-                   field: :zip,
-                   field_name: t(:zip),
-                   required: false
-                 } %>
-      <%= render partial: 'layouts/form_components/text_field',
-                 locals: {
-                   form: form,
-                   field: :country,
-                   field_name: t(:country),
-                   required: false
-                 } %>
-    </ul>
-  </div>
-
-  <%= form.button t(:update), class: 'mt-8
-                                      rounded-md
-                                      px-3.5 py-1
-                                      bg-blue-600
-                                      hover:bg-blue-500
-                                      text-white
-                                      inline-block
-                                      font-medium
-                                      cursor-pointer' %>
-<% end %>
+<div>
+  <ul class="mt-2">
+    <%= render partial: 'layouts/form_components/text_field',
+                locals: {
+                  form: form,
+                  field: :name,
+                  field_name: t(:company_name),
+                  required: true
+                } %>
+    <%= render partial: 'layouts/form_components/text_field',
+                locals: {
+                  form: form,
+                  field: :friendly_name,
+                  field_name: t(:friendly_name),
+                  required: false
+                } %>
+    <%= render partial: 'layouts/form_components/textarea_field',
+                locals: {
+                  form: form,
+                  field: :description,
+                  field_name: t(:company_description),
+                  required: false
+                } %>
+    <%= render partial: 'layouts/form_components/text_field',
+                locals: {
+                  form: form,
+                  field: :address1,
+                  field_name: t(:address1),
+                  required: false
+                } %>
+    <%= render partial: 'layouts/form_components/text_field',
+                locals: {
+                  form: form,
+                  field: :address2,
+                  field_name: t(:address2),
+                  required: false
+                } %>
+    <%= render partial: 'layouts/form_components/text_field',
+                locals: {
+                  form: form,
+                  field: :city,
+                  field_name: t(:city),
+                  required: false
+                } %>
+    <%= render partial: 'layouts/form_components/text_field',
+                locals: {
+                  form: form,
+                  field: :state,
+                  field_name: t(:state),
+                  required: false
+                } %>
+    <%= render partial: 'layouts/form_components/text_field',
+                locals: {
+                  form: form,
+                  field: :county,
+                  field_name: t(:county),
+                  required: false
+                } %>
+    <%= render partial: 'layouts/form_components/text_field',
+                locals: {
+                  form: form,
+                  field: :zip,
+                  field_name: t(:zip),
+                  required: false
+                } %>
+    <%= render partial: 'layouts/form_components/text_field',
+                locals: {
+                  form: form,
+                  field: :country,
+                  field_name: t(:country),
+                  required: false
+                } %>
+  </ul>
+</div>
