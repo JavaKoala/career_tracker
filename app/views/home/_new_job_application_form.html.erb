@@ -23,7 +23,7 @@
         <%= t(:close) %>
       </button>
     </div>
-    <%= form_with model: @new_application do |form| %>
+    <%= form_with model: @new_application, url: job_application_index_path do |form| %>
       <h2 class="text-lg"><%= t(:position) %>:</h2>
       <div>
         <%= form.fields_for :position do |position_form| %>

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe JobApplicationsController, type: :request do
+RSpec.describe JobApplicationController, type: :request do
   let(:user) { create(:user) }
   let(:valid_attributes) do
     {
@@ -40,13 +40,13 @@ RSpec.describe JobApplicationsController, type: :request do
     it 'returns a success response' do
       job_application = create(:job_application, user: user)
 
-      get "/job_applications?id=#{job_application.id}"
+      get "/job_application/#{job_application.id}"
 
       expect(response).to be_successful
     end
 
     it 'redirects on invalid job application id' do
-      get '/job_applications?id=0'
+      get '/job_application/0'
 
       expect(response).to redirect_to root_path
     end
@@ -55,7 +55,7 @@ RSpec.describe JobApplicationsController, type: :request do
       new_user = create(:user, email_address: 'foo1@test.com')
       job_application = create(:job_application, user: new_user)
 
-      get "/job_applications?id=#{job_application.id}"
+      get "/job_application/#{job_application.id}"
 
       expect(response).to redirect_to root_path
     end
@@ -65,48 +65,48 @@ RSpec.describe JobApplicationsController, type: :request do
     context 'with valid parameters' do
       it 'creates a new job application' do
         expect do
-          post '/job_applications', params: valid_attributes
+          post '/job_application', params: valid_attributes
         end.to change(JobApplication, :count).by(1)
       end
 
       it 'associates the job application with the current user' do
-        post '/job_applications', params: valid_attributes
+        post '/job_application', params: valid_attributes
 
         expect(JobApplication.last.user).to eq(user)
       end
 
       it 'sets the pay_start attribute' do
-        post '/job_applications', params: valid_attributes
+        post '/job_application', params: valid_attributes
 
         expect(JobApplication.last.position.pay_start).to eq(50_000)
       end
 
       it 'sets the pay_end attribute' do
-        post '/job_applications', params: valid_attributes
+        post '/job_application', params: valid_attributes
 
         expect(JobApplication.last.position.pay_end).to eq(100_000)
       end
 
       it 'sets the friendly name attribute' do
-        post '/job_applications', params: valid_attributes
+        post '/job_application', params: valid_attributes
 
         expect(JobApplication.last.position.company.friendly_name).to eq('Google Inc.')
       end
 
       it 'sets the company description' do
-        post '/job_applications', params: valid_attributes
+        post '/job_application', params: valid_attributes
 
         expect(JobApplication.last.position.company.description).to eq('Search engine')
       end
 
       it 'redirects to root_path' do
-        post '/job_applications', params: valid_attributes
+        post '/job_application', params: valid_attributes
 
         expect(response).to redirect_to('/')
       end
 
       it 'sets a flash notice' do
-        post '/job_applications', params: valid_attributes
+        post '/job_application', params: valid_attributes
 
         expect(flash[:notice]).to eq('Job application created successfully')
       end
@@ -115,12 +115,12 @@ RSpec.describe JobApplicationsController, type: :request do
     context 'with invalid parameters' do
       it 'does not create a new job application' do
         expect do
-          post '/job_applications', params: invalid_attributes
+          post '/job_application', params: invalid_attributes
         end.not_to change(JobApplication, :count)
       end
 
       it 'redirects to root_path' do
-        post '/job_applications', params: invalid_attributes
+        post '/job_application', params: invalid_attributes
 
         expect(response).to redirect_to('/')
       end
@@ -129,12 +129,12 @@ RSpec.describe JobApplicationsController, type: :request do
         create(:company, name: 'Google')
 
         expect do
-          post '/job_applications', params: valid_attributes
+          post '/job_application', params: valid_attributes
         end.not_to change(Company, :count)
       end
 
       it 'sets a flash alert' do
-        post '/job_applications', params: invalid_attributes
+        post '/job_application', params: invalid_attributes
 
         expect(flash[:alert]).to eq("Position name can't be blank")
       end

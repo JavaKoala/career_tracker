@@ -1,4 +1,4 @@
-class JobApplicationsController < ApplicationController
+class JobApplicationController < ApplicationController
   def show
     @job_application = JobApplication.find_by(id: params[:id])
 
