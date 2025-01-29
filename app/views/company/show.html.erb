@@ -1,0 +1,24 @@
+<% if alert = flash[:alert] %>
+  <p class="py-2 px-3 bg-red-50 mb-5 text-red-500 font-medium rounded-lg inline-block" id="alert"><%= alert %></p>
+<% end %>
+
+<% if notice = flash[:notice] %>
+  <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+<% end %>
+
+<%= render 'company/update_dialog' %>
+<div class="dark:text-white mt-2">
+  <h2 class="text-2xl"><%= @company.name %></h2>
+  <div class="mt-2 p-2">
+    <h3 class="text-xl mb-2"><%= t(:company_information) %></h3>
+    <p class="mb-1"><strong><%= t(:friendly_name) %>:</strong> <%= @company.friendly_name %></p>
+    <p><strong><%= t(:description) %>:</strong> <%= simple_format(@company.description) %></p>
+    <p class="mb-1 mt-1"><strong><%= t(:address1) %>:</strong> <%= @company.address1 %></p>
+    <p class="mb-1"><strong><%= t(:address2) %>:</strong> <%= @company.address2 %></p>
+    <p class="mb-1"><strong><%= t(:city) %>:</strong> <%= @company.city %></p>
+    <p class="mb-1"><strong><%= t(:state) %>:</strong> <%= @company.state %></p>
+    <p class="mb-1"><strong><%= t(:county) %>:</strong> <%= @company.county %></p>
+    <p class="mb-1"><strong><%= t(:zip) %>:</strong> <%= @company.zip %></p>
+    <p class="mb-1"><strong><%= t(:country) %>:</strong> <%= @company.country %></p>
+  </div>
+</div>

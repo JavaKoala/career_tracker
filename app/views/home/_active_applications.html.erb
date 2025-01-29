@@ -3,7 +3,7 @@
               border-gray-300
               dark:border-gray-700
               dark:text-white
-              w-2/3">
+              w-full xl:w-2/3">
   <caption class="text-lg">
     <%= t(:active_applications) %>
   </caption>
@@ -17,7 +17,7 @@
     <% @active_applications.each do |application| %>
       <tr>
         <td class="p-3 border border-gray-300 dark:border-gray-700"><%= link_to application.position_name, job_applications_path(id: application.id) %></td>
-        <td class="p-3 border border-gray-300 dark:border-gray-700"><%= link_to application.company_name, job_applications_path(id: application.id) %></td>
+        <td class="p-3 border border-gray-300 dark:border-gray-700"><%= link_to application.company_name, company_path(application.company) %></td>
       </tr>
     <% end %>
   </tbody>
