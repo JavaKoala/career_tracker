@@ -37,6 +37,7 @@ en:
   company_description: "Company description"
   company_information: "Company information"
   company_name: "Company name"
+  company_not_found: "Company not found"
   enter_email: "Enter your email address"
   enter_password: "Enter your password"
   friendly_name: "Friendly name"
