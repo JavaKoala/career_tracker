@@ -1,6 +1,10 @@
 class CompanyController < ApplicationController
   before_action :set_company, only: %i[show update]
 
+  def index
+    @companies = Company.all
+  end
+
   def show
     redirect_to root_path, alert: t(:company_not_found) unless @company
   end

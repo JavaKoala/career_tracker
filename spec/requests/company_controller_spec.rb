@@ -9,6 +9,14 @@ RSpec.describe CompanyController, type: :request do
     allow(Current).to receive_messages(session: session, user: user)
   end
 
+  describe 'GET /company' do
+    it 'returns a success response' do
+      get '/company'
+
+      expect(response).to be_successful
+    end
+  end
+
   describe 'GET /company/:id' do
     it 'returns a success response' do
       get "/company/#{company.id}"
