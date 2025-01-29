@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Display Company', type: :system do
+RSpec.describe 'Update Company', type: :system do
   let(:user) { create(:user) }
   let(:session) { create(:session, user: user) }
   let(:company) { create(:company) }
