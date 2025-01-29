@@ -1,6 +1,4 @@
-<%= form_with model: @company,
-              url: companies_path(id: @company.id),
-              method: 'patch' do |form| %>
+<%= form_with model: @company do |form| %>
   <div>
     <ul class="mt-2">
       <%= render partial: 'layouts/form_components/text_field',

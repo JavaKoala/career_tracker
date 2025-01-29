@@ -1,4 +1,4 @@
-class CompaniesController < ApplicationController
+class CompanyController < ApplicationController
   before_action :set_company, only: %i[show update]
 
   def show
@@ -9,9 +9,9 @@ class CompaniesController < ApplicationController
     if @company.blank?
       redirect_to root_path, alert: t(:company_not_found)
     elsif @company.update(company_params)
-      redirect_to companies_path(id: @company.id), notice: t(:updated_company)
+      redirect_to company_path(id: @company.id), notice: t(:updated_company)
     else
-      redirect_to companies_path(id: @company.id), alert: @company.errors.full_messages.join(', ')
+      redirect_to company_path(id: @company.id), alert: @company.errors.full_messages.join(', ')
     end
   end
 
