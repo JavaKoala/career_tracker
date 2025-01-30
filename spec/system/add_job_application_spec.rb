@@ -17,6 +17,7 @@ RSpec.describe 'Add Job Application', type: :system do
     fill_in 'Job description', with: 'A developer role'
     fill_in 'Pay start', with: '50000'
     fill_in 'Pay end', with: '100000'
+    choose(option: 'remote')
     fill_in 'Company name', with: 'Acme'
     fill_in 'Friendly name', with: 'Acme Inc.'
     fill_in 'Company description', with: 'A company'

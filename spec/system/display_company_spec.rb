@@ -27,6 +27,7 @@ RSpec.describe 'Display Company', type: :system do
     expect(page).to have_content(company.zip)
     expect(page).to have_content(company.country)
     expect(page).to have_content(company.description)
+    expect(page).to have_content(position.name)
   end
 
   it 'displays company through index' do

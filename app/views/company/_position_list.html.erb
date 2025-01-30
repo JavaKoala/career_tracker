@@ -1,0 +1,19 @@
+<table class="mt-4
+              border
+              border-gray-300
+              dark:border-gray-700
+              dark:text-white
+              w-full xl:w-2/3">
+  <thead>
+    <tr class="border-b-4 border-gray-300 dark:border-gray-700">
+      <th class="p-2 border border-gray-300 dark:border-gray-700"><%= t(:positions) %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @company.positions.each do |position| %>
+      <tr>
+        <td class="p-3 border border-gray-300 dark:border-gray-700"><%= link_to position.name, position_path(position) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

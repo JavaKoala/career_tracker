@@ -4,6 +4,8 @@ class Position < ApplicationRecord
 
   has_many :job_applications, dependent: :destroy
 
+  enum :location, { office: 0, hybrid: 1, remote: 2 }, default: :office, validate: true
+
   validates :name, presence: true
   validates :description, presence: true
 end

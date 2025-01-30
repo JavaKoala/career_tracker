@@ -65,6 +65,13 @@
                          min: 0,
                          required: false
                        } %>
+            <li class="mt-2">
+              <%= t(:location) %>:
+              <% Position.locations.keys.each do |location| %>
+                <%= position_form.radio_button :location, location %>
+                <%= position_form.label location, t(location.to_sym) %>
+              <% end %>
+            </li>
           </ul>
 
           <h2 class="text-lg mt-4"><%= t(:company) %>:</h2>
