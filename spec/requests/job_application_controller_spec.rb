@@ -10,6 +10,7 @@ RSpec.describe JobApplicationController, type: :request do
           description: 'A great job',
           pay_start: 50_000,
           pay_end: 100_000,
+          location: :remote,
           company_attributes: {
             name: 'Google',
             friendly_name: 'Google Inc.',
@@ -86,6 +87,12 @@ RSpec.describe JobApplicationController, type: :request do
         post '/job_application', params: valid_attributes
 
         expect(JobApplication.last.position.pay_end).to eq(100_000)
+      end
+
+      it 'sets the location attribute' do
+        post '/job_application', params: valid_attributes
+
+        expect(JobApplication.last.position.location).to eq('remote')
       end
 
       it 'sets the friendly name attribute' do

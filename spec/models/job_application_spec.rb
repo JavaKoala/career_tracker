@@ -13,6 +13,7 @@ RSpec.describe JobApplication, type: :model do
     it { expect(described_class.new).to delegate_method(:description).to(:position).with_prefix }
     it { expect(described_class.new).to delegate_method(:pay_start).to(:position).with_prefix }
     it { expect(described_class.new).to delegate_method(:pay_end).to(:position).with_prefix }
+    it { expect(described_class.new).to delegate_method(:location).to(:position).with_prefix }
     it { expect(described_class.new).to delegate_method(:company).to(:position) }
     it { expect(described_class.new).to delegate_method(:name).to(:company).with_prefix }
     it { expect(described_class.new).to delegate_method(:friendly_name).to(:company).with_prefix }

@@ -30,5 +30,12 @@
                   min: 0,
                   required: false
                 } %>
+    <li class="mt-2">
+      <%= t(:location) %>:
+      <% Position.locations.keys.each do |location| %>
+        <%= form.radio_button :location, location %>
+        <%= form.label location, t(location.to_sym) %>
+      <% end %>
+    </li>
   </ul>
 </div>

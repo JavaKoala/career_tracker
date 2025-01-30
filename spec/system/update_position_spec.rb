@@ -18,6 +18,7 @@ RSpec.describe 'Update Position', type: :system do
     fill_in 'Description', with: 'New Description'
     fill_in 'Pay start', with: '200000'
     fill_in 'Pay end', with: '250000'
+    choose(option: 'remote')
 
     click_on 'Update'
 
@@ -26,6 +27,7 @@ RSpec.describe 'Update Position', type: :system do
     expect(page).to have_content('New Description')
     expect(page).to have_content('200000')
     expect(page).to have_content('250000')
+    expect(page).to have_content('Location: remote')
   end
 
   it 'renders flash on invalid position name' do

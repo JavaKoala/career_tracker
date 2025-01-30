@@ -9,7 +9,8 @@ RSpec.describe PositionController, type: :request do
         name: 'Software Developer',
         description: 'New Description',
         pay_start: 90_000,
-        pay_end: 130_000
+        pay_end: 130_000,
+        location: :remote
       }
     }
   end
@@ -73,6 +74,7 @@ RSpec.describe PositionController, type: :request do
       expect(position.description).to eq('New Description')
       expect(position.pay_start).to eq(90_000)
       expect(position.pay_end).to eq(130_000)
+      expect(position.location).to eq('remote')
     end
 
     it 'redirects on invalid position params' do

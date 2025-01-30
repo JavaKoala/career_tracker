@@ -10,6 +10,7 @@ class JobApplication < ApplicationRecord
   delegate :description, to: :position, prefix: true
   delegate :pay_start, to: :position, prefix: true
   delegate :pay_end, to: :position, prefix: true
+  delegate :location, to: :position, prefix: true
   delegate :company, to: :position
   delegate :name, to: :company, prefix: true
   delegate :friendly_name, to: :company, prefix: true

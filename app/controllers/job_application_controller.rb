@@ -20,7 +20,7 @@ class JobApplicationController < ApplicationController
 
   def job_application_params
     params.expect(job_application: [:source, { position_attributes: [
-                    :name, :description, :pay_start, :pay_end,
+                    :name, :description, :pay_start, :pay_end, :location,
                     { company_attributes: %i[name friendly_name description] }
                   ] }])
   end

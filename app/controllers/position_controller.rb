@@ -20,7 +20,7 @@ class PositionController < ApplicationController
   private
 
   def position_params
-    params.expect(position: %i[name description pay_start pay_end])
+    params.expect(position: %i[name description pay_start pay_end location])
   end
 
   def set_position
