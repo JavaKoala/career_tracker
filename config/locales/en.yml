@@ -59,6 +59,7 @@ en:
   pay_start: "Pay start"
   position: "Position"
   positions: "Positions"
+  position_not_found: "Position not found"
   sign_in: "Sign in"
   sign_out: "Sign out"
   source: "Source"
