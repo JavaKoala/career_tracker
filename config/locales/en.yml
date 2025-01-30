@@ -60,6 +60,7 @@ en:
   pay_start: "Pay start"
   position: "Position"
   position_information: "Position information"
+  position_name: "Position name"
   positions: "Positions"
   position_not_found: "Position not found"
   sign_in: "Sign in"
@@ -72,5 +73,6 @@ en:
   updated_company: "Updated company"
   updated_position: "Updated position"
   update_company: "Update company"
+  update_position: "Update position"
   zip: "Zip"
 

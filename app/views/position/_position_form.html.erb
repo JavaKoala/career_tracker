@@ -1,0 +1,34 @@
+<div>
+  <ul class="mt-2">
+    <%= render partial: 'layouts/form_components/text_field',
+                locals: {
+                  form: form,
+                  field: :name,
+                  field_name: t(:position_name),
+                  required: true
+                } %>
+    <%= render partial: 'layouts/form_components/textarea_field',
+                locals: {
+                  form: form,
+                  field: :description,
+                  field_name: t(:description),
+                  required: false
+                } %>
+    <%= render partial: 'layouts/form_components/number_field',
+                locals: {
+                  form: form,
+                  field: :pay_start,
+                  field_name: t(:pay_start),
+                  min: 0,
+                  required: false
+                } %>
+    <%= render partial: 'layouts/form_components/number_field',
+                locals: {
+                  form: form,
+                  field: :pay_end,
+                  field_name: t(:pay_end),
+                  min: 0,
+                  required: false
+                } %>
+  </ul>
+</div>
