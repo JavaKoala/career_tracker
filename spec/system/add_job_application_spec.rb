@@ -12,6 +12,7 @@ RSpec.describe 'Add Job Application', type: :system do
 
     click_on 'New application'
 
+    fill_in 'Source', with: 'LinkedIn'
     fill_in 'Job title', with: 'Developer'
     fill_in 'Job description', with: 'A developer role'
     fill_in 'Pay start', with: '50000'
@@ -35,6 +36,7 @@ RSpec.describe 'Add Job Application', type: :system do
 
     click_on 'New application'
 
+    fill_in 'Source', with: 'LinkedIn'
     fill_in 'Job title', with: '    '
     fill_in 'Job description', with: 'A developer role'
     fill_in 'Company name', with: 'Acme'

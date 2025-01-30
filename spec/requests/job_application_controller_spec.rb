@@ -15,7 +15,8 @@ RSpec.describe JobApplicationController, type: :request do
             friendly_name: 'Google Inc.',
             description: 'Search engine'
           }
-        }
+        },
+        source: 'LinkedIn'
       }
     }
   end
@@ -136,7 +137,7 @@ RSpec.describe JobApplicationController, type: :request do
       it 'sets a flash alert' do
         post '/job_application', params: invalid_attributes
 
-        expect(flash[:alert]).to eq("Position name can't be blank")
+        expect(flash[:alert]).to eq("Position name can't be blank, Source can't be blank")
       end
     end
   end
