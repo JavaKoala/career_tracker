@@ -37,5 +37,6 @@
         <%= form.label location, t(location.to_sym) %>
       <% end %>
     </li>
+    <%= form.hidden_field :company_id, value: @position.company.id %>
   </ul>
 </div>
