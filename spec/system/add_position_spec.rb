@@ -33,17 +33,19 @@ RSpec.describe 'Add Position', type: :system do
       expect(page).to have_content('Doctor')
     end
 
-    it 'does not add company with blank name' do
-      #       visit company_index_path
-      #
-      #       click_on 'New company'
-      #
-      #       fill_in 'Company name', with: '    '
-      #
-      #       click_on 'Add company'
-      #
-      #       expect(page).to have_content("Name can't be blank")
-      #       expect(page).to have_no_content('Acme')
+    it 'does not add position with a blank description' do
+      visit company_path(company)
+
+      click_on 'New position'
+
+      fill_in 'Position name', with: 'Doctor'
+      fill_in 'Description', with: '    '
+
+      click_on 'Add position'
+
+      expect(page).to have_content("Description can't be blank")
+      expect(page).to have_no_content('Doctor')
+      expect(page).to have_content(company.description)
     end
   end
 end

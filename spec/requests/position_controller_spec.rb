@@ -10,7 +10,8 @@ RSpec.describe PositionController, type: :request do
         description: 'New Description',
         pay_start: 90_000,
         pay_end: 130_000,
-        location: :remote
+        location: :remote,
+        company_id: position.company_id
       }
     }
   end
@@ -37,6 +38,44 @@ RSpec.describe PositionController, type: :request do
       get '/position/0'
 
       expect(flash[:alert]).to eq(I18n.t(:position_not_found))
+    end
+  end
+
+  describe 'POST /position' do
+    it 'returns a success response' do
+      post position_index_path, params: position_params
+
+      expect(response).to redirect_to("/position/#{Position.last.id}")
+    end
+
+    it 'returns a success flash message' do
+      post position_index_path, params: position_params
+
+      expect(flash[:notice]).to eq('Created position')
+    end
+
+    it 'creates a position' do # rubocop:disable RSpec/ExampleLength,RSpec/MultipleExpectations
+      post position_index_path, params: position_params
+
+      position = Position.last
+
+      expect(position.name).to eq('Software Developer')
+      expect(position.description).to eq('New Description')
+      expect(position.pay_start).to eq(90_000)
+      expect(position.pay_end).to eq(130_000)
+      expect(position.location).to eq('remote')
+    end
+
+    it 'redirects on invalid company params' do
+      post position_index_path, params: { position: { name: '', company_id: position.company.id } }
+
+      expect(response).to redirect_to(company_path(position.company))
+    end
+
+    it 'renders flash on invalid company params' do
+      post position_index_path, params: { position: { name: '', company_id: position.company.id } }
+
+      expect(flash[:alert]).to eq("Name can't be blank, Description can't be blank")
     end
   end
 
