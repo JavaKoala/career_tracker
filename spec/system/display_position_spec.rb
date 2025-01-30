@@ -21,6 +21,7 @@ RSpec.describe 'Display Position', type: :system do
     expect(page).to have_content(job_application.position_description)
     expect(page).to have_content(job_application.position_pay_start)
     expect(page).to have_content(job_application.position_pay_end)
+    expect(page).to have_content(job_application.position_location)
 
     click_on job_application.company_name
 
