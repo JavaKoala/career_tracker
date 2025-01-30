@@ -26,8 +26,15 @@
     <%= form_with model: @new_application, url: job_application_index_path do |form| %>
       <h2 class="text-lg"><%= t(:position) %>:</h2>
       <div>
-        <%= form.fields_for :position do |position_form| %>
-          <ul class="mt-2">
+        <ul class="mt-2">
+          <%= render partial: 'layouts/form_components/text_field',
+            locals: {
+              form: form,
+              field: :source,
+              field_name: t(:source),
+              required: true
+            } %>
+          <%= form.fields_for :position do |position_form| %>
             <%= render partial: 'layouts/form_components/text_field',
                        locals: {
                          form: position_form,

@@ -4,6 +4,8 @@ class JobApplication < ApplicationRecord
 
   accepts_nested_attributes_for :position
 
+  validates :source, presence: true
+
   delegate :name, to: :position, prefix: true
   delegate :description, to: :position, prefix: true
   delegate :pay_start, to: :position, prefix: true
