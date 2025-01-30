@@ -69,7 +69,7 @@
               <%= t(:location) %>:
               <% Position.locations.keys.each do |location| %>
                 <%= position_form.radio_button :location, location %>
-                <%= position_form.label location, t(location.to_sym) %>
+                <%= position_form.label "location_#{location}", t(location.to_sym) %>
               <% end %>
             </li>
           </ul>

@@ -34,7 +34,7 @@
       <%= t(:location) %>:
       <% Position.locations.keys.each do |location| %>
         <%= form.radio_button :location, location %>
-        <%= form.label location, t(location.to_sym) %>
+        <%= form.label "location_#{location}", t(location.to_sym) %>
       <% end %>
     </li>
     <%= form.hidden_field :company_id, value: @position.company.id %>
