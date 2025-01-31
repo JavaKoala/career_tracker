@@ -7,7 +7,7 @@ class Position < ApplicationRecord
   enum :location, { office: 0, hybrid: 1, remote: 2 }, default: :office, validate: true
 
   validates :name, presence: true
-  validates :description, presence: true
+  has_rich_text :description
 
   def already_applied?(user)
     job_applications.exists?(user: user)
