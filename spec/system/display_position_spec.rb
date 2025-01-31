@@ -14,6 +14,8 @@ RSpec.describe 'Display Position', type: :system do
     visit root_path
 
     click_on job_application.company_name
+    expect(page).to have_content('Company information')
+
     click_on job_application.position_name
 
     expect(page).to have_content('Position information')
