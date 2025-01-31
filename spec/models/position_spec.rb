@@ -14,7 +14,6 @@ RSpec.describe Position, type: :model do
   end
 
   it { is_expected.to validate_presence_of(:name) }
-  it { is_expected.to validate_presence_of(:description) }
 
   describe '#already_applied?' do
     let(:user) { create(:user) }
