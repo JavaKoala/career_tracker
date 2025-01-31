@@ -29,6 +29,7 @@
 
 en:
   active_applications: "Active applications"
+  active: "Active"
   address1: "Address 1"
   address2: "Address 2"
   add_application: 'Add application'
@@ -54,6 +55,7 @@ en:
   friendly_name: "Friendly name"
   hello: "Hello world"
   hybrid: "Hybrid"
+  inactive: "Inactive"
   job_application_created_successfully: "Job application created successfully"
   job_application_not_found: "Job application not found"
   job_description: "Job description"
