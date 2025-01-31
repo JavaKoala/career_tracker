@@ -7,13 +7,8 @@
                   field_name: t(:position_name),
                   required: true
                 } %>
-    <%= render partial: 'layouts/form_components/textarea_field',
-                locals: {
-                  form: form,
-                  field: :description,
-                  field_name: t(:description),
-                  required: true
-                } %>
+    <%= form.label :description %>
+    <%= form.rich_textarea :description %>
     <%= render partial: 'layouts/form_components/number_field',
                 locals: {
                   form: form,

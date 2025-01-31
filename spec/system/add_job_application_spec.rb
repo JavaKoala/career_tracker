@@ -14,7 +14,7 @@ RSpec.describe 'Add Job Application', type: :system do
 
     fill_in 'Source', with: 'LinkedIn'
     fill_in 'Job title', with: 'Developer'
-    fill_in 'Job description', with: 'A developer role'
+    find('trix-editor').click.set('A developer role')
     fill_in 'Pay start', with: '50000'
     fill_in 'Pay end', with: '100000'
     choose(option: 'remote')
@@ -39,7 +39,7 @@ RSpec.describe 'Add Job Application', type: :system do
 
     fill_in 'Source', with: 'LinkedIn'
     fill_in 'Job title', with: '    '
-    fill_in 'Job description', with: 'A developer role'
+    find('trix-editor').click.set('A developer role')
     fill_in 'Company name', with: 'Acme'
 
     expect do

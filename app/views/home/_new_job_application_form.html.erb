@@ -42,13 +42,8 @@
                          field_name: t(:job_title),
                          required: true
                        } %>
-            <%= render partial: 'layouts/form_components/textarea_field',
-                       locals: {
-                         form: position_form,
-                         field: :description,
-                         field_name: t(:job_description),
-                         required: true
-                       } %>
+            <%= position_form.label :description %>
+            <%= position_form.rich_textarea :description %>
             <%= render partial: 'layouts/form_components/number_field',
                        locals: {
                          form: position_form,
