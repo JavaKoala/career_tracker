@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resource :session
-  resources :job_application, only: %i[show create]
+  resources :job_application, only: %i[show create update]
   resources :company, only: %i[index create show update]
   resources :position, only: %i[show create update]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
