@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   resource :session
-  resources :job_application, only: %i[show create]
+  resources :job_application, only: %i[show create update]
   resources :company, only: %i[index create show update]
   resources :position, only: %i[show create update]
+  post '/position_apply', to: 'position_apply#create'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

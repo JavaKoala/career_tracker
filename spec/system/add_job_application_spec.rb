@@ -58,4 +58,22 @@ RSpec.describe 'Add Job Application', type: :system do
 
     expect(page).to have_no_content('Add application')
   end
+
+  context 'when applying from position' do
+    it 'creates a new job application' do
+      position = create(:position)
+
+      visit position_path(position)
+
+      expect do
+        click_on 'Apply'
+
+        expect(page).to have_content('Job application created successfully')
+      end.to change(JobApplication, :count).by(1)
+
+      visit position_path(position)
+
+      expect(page).to have_no_content('Apply')
+    end
+  end
 end

@@ -8,4 +8,8 @@ class Position < ApplicationRecord
 
   validates :name, presence: true
   validates :description, presence: true
+
+  def already_applied?(user)
+    job_applications.exists?(user: user)
+  end
 end

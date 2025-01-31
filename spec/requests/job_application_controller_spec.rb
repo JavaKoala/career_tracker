@@ -148,4 +148,60 @@ RSpec.describe JobApplicationController, type: :request do
       end
     end
   end
+
+  describe 'PATCH /job_applications/:id' do
+    let(:job_application) { create(:job_application, user: user) }
+
+    context 'with valid parameters' do
+      it 'updates the job application' do
+        patch job_application_path(job_application), params: { job_application: { active: false } }
+
+        job_application.reload
+
+        expect(job_application.active).to be(false)
+      end
+
+      it 'redirects to the job application' do
+        patch job_application_path(job_application), params: valid_attributes
+
+        expect(response).to redirect_to(job_application_path(job_application))
+      end
+    end
+
+    context 'with invalid parameters' do
+      it 'does not update the job application' do
+        patch job_application_path(job_application), params: { job_application: { source: '' } }
+
+        job_application.reload
+
+        expect(job_application.source).not_to eq('')
+      end
+
+      it 'sets a flash alert' do
+        patch job_application_path(job_application), params: { job_application: { source: '' } }
+
+        expect(flash[:alert]).to eq("Source can't be blank")
+      end
+
+      it 'redirects to the job application' do
+        patch job_application_path(job_application), params: invalid_attributes
+
+        expect(response).to redirect_to(job_application_path(job_application))
+      end
+    end
+
+    context 'with invalid job application id' do
+      it 'redirects to root_path' do
+        patch '/job_application/0', params: valid_attributes
+
+        expect(response).to redirect_to(root_path)
+      end
+
+      it 'contains flash message' do
+        patch '/job_application/0', params: valid_attributes
+
+        expect(flash[:alert]).to eq('Job application not found')
+      end
+    end
+  end
 end

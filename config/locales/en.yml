@@ -28,12 +28,15 @@
 #       enabled: "ON"
 
 en:
+  accepted_on: "Accepted on"
   active_applications: "Active applications"
+  active: "Active"
   address1: "Address 1"
   address2: "Address 2"
   add_application: 'Add application'
   add_company: 'Add company'
   add_position: 'Add position'
+  applied_on: 'Applied on'
   career_tracker: "Career Tracker"
   city: "City"
   close: "Close"
@@ -47,13 +50,16 @@ en:
   county: "County"
   created_company: "Created company"
   created_position: "Created position"
+  default: "default"
   description: "Description"
   enter_email: "Enter your email address"
   enter_password: "Enter your password"
   friendly_name: "Friendly name"
   hello: "Hello world"
   hybrid: "Hybrid"
+  inactive: "Inactive"
   job_application_created_successfully: "Job application created successfully"
+  job_application_not_found: "Job application not found"
   job_description: "Job description"
   job_title: "Job title"
   location: "Location"
