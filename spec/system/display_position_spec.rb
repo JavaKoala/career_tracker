@@ -18,7 +18,7 @@ RSpec.describe 'Display Position', type: :system do
 
     expect(page).to have_content('Position information')
     expect(page).to have_content(job_application.position_name)
-    expect(page).to have_content(job_application.position_description)
+    expect(page).to have_content(job_application.position_description.body.to_plain_text)
     expect(page).to have_content(job_application.position_pay_start)
     expect(page).to have_content(job_application.position_pay_end)
     expect(page).to have_content(job_application.position_location)

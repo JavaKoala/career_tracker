@@ -19,7 +19,7 @@ RSpec.describe 'Display Job Application', type: :system do
     expect(page).to have_content(job_application.applied)
     expect(page).to have_content(job_application.accepted)
     expect(page).to have_content(job_application.position_name)
-    expect(page).to have_content(job_application.position_description)
+    expect(page).to have_content(job_application.position_description.body.to_plain_text)
     expect(page).to have_content(job_application.position_pay_start)
     expect(page).to have_content(job_application.position_pay_end)
     expect(page).to have_content(job_application.company_name)
