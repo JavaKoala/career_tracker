@@ -60,7 +60,7 @@ RSpec.describe PositionController, type: :request do
       position = Position.last
 
       expect(position.name).to eq('Software Developer')
-      expect(position.description).to eq('New Description')
+      expect(position.description.body.to_plain_text).to eq('New Description')
       expect(position.pay_start).to eq(90_000)
       expect(position.pay_end).to eq(130_000)
       expect(position.location).to eq('remote')
@@ -75,7 +75,7 @@ RSpec.describe PositionController, type: :request do
     it 'renders flash on invalid company params' do
       post position_index_path, params: { position: { name: '', company_id: position.company.id } }
 
-      expect(flash[:alert]).to eq("Name can't be blank, Description can't be blank")
+      expect(flash[:alert]).to eq("Name can't be blank")
     end
   end
 
@@ -110,7 +110,7 @@ RSpec.describe PositionController, type: :request do
       position.reload
 
       expect(position.name).to eq('Software Developer')
-      expect(position.description).to eq('New Description')
+      expect(position.description.body.to_plain_text).to eq('New Description')
       expect(position.pay_start).to eq(90_000)
       expect(position.pay_end).to eq(130_000)
       expect(position.location).to eq('remote')
@@ -125,7 +125,7 @@ RSpec.describe PositionController, type: :request do
     it 'renders flash on invalid position params' do
       patch position_path(position), params: { position: { name: '', description: '' } }
 
-      expect(flash[:alert]).to eq("Name can't be blank, Description can't be blank")
+      expect(flash[:alert]).to eq("Name can't be blank")
     end
   end
 end
