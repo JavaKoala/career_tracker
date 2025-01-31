@@ -28,6 +28,7 @@
 #       enabled: "ON"
 
 en:
+  accepted_on: "Accepted on"
   active_applications: "Active applications"
   active: "Active"
   address1: "Address 1"

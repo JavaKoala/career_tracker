@@ -1,0 +1,77 @@
+<div data-controller="dialog">
+  <dialog
+    data-dialog-target="dialog"
+    class="w-full
+           md:w-1/2
+           p-4
+           rounded-lg
+           shadow-xl
+           border-2
+           dark:bg-black
+           dark:text-white
+           border-blue-500">
+    <div class="flex justify-between">
+      <h1 class="mt-1 text-xl"><%= t(:update) %> <%= @job_application.position_name %></h1>
+      <button
+        type="button"
+        data-action="dialog#close"
+        class="rounded-lg
+               bg-red-500
+               px-3.5 py-1
+               mt-1"
+        autofocus>
+        <%= t(:close) %>
+      </button>
+    </div>
+    <%= form_with model: @job_application do |form| %>
+      <div>
+        <ul class="mt-2">
+          <%= render partial: 'layouts/form_components/text_field',
+                      locals: {
+                        form: form,
+                        field: :source,
+                        field_name: t(:source),
+                        required: true
+                      } %>
+          <%= render partial: 'layouts/form_components/date_field',
+                      locals: {
+                        form: form,
+                        field: :applied,
+                        field_name: t(:applied),
+                        required: false
+                      } %>
+          <%= render partial: 'layouts/form_components/date_field',
+                      locals: {
+                        form: form,
+                        field: :accepted,
+                        field_name: t(:accepted),
+                        required: false
+                      } %>
+        </ul>
+      </div>
+      <%= form.button t(:update), class: 'mt-8
+                                          rounded-md
+                                          px-3.5 py-1
+                                          bg-blue-600
+                                          hover:bg-blue-500
+                                          text-white
+                                          inline-block
+                                          font-medium
+                                          cursor-pointer' %>
+    <% end %>
+  </dialog>
+
+  <button
+    type="button"
+    data-action="dialog#open"
+    class="rounded-md
+           px-3.5 py-1
+           bg-blue-600
+           hover:bg-blue-500
+           text-white
+           inline-block
+           font-medium
+           cursor-pointer">
+    <%= t(:update_job_application) %>
+  </button>
+</div>
