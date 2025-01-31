@@ -49,6 +49,7 @@ en:
   county: "County"
   created_company: "Created company"
   created_position: "Created position"
+  default: "default"
   description: "Description"
   enter_email: "Enter your email address"
   enter_password: "Enter your password"

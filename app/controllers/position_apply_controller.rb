@@ -20,7 +20,7 @@ class PositionApplyController < ApplicationController
   def set_job_application
     @position = Position.find_by(id: position_apply_params[:position_id])
     @job_application = JobApplication.new(
-      source: 'default',
+      source: t(:default),
       position: @position,
       user: Current.user
     )
