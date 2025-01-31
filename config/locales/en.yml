@@ -34,6 +34,7 @@ en:
   add_application: 'Add application'
   add_company: 'Add company'
   add_position: 'Add position'
+  applied_on: 'Applied on'
   career_tracker: "Career Tracker"
   city: "City"
   close: "Close"
