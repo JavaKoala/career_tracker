@@ -15,7 +15,7 @@ RSpec.describe 'Update Position', type: :system do
     click_on 'Update position'
 
     fill_in 'Position name', with: 'New Name'
-    fill_in 'Description', with: 'New Description'
+    find('trix-editor').click.set('New Description')
     fill_in 'Pay start', with: '200000'
     fill_in 'Pay end', with: '250000'
     choose(option: 'remote')

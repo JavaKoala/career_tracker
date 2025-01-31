@@ -16,7 +16,7 @@ RSpec.describe 'Add Position', type: :system do
       click_on 'New position'
 
       fill_in 'Position name', with: 'Doctor'
-      fill_in 'Description', with: 'Heals people'
+      find('trix-editor').click.set('Heals people')
       fill_in 'Pay start', with: '123000'
       fill_in 'Pay end', with: '150000'
       choose(option: 'hybrid')
@@ -33,17 +33,17 @@ RSpec.describe 'Add Position', type: :system do
       expect(page).to have_content('Doctor')
     end
 
-    it 'does not add position with a blank description' do
+    it 'does not add position with a blank name' do
       visit company_path(company)
 
       click_on 'New position'
 
-      fill_in 'Position name', with: 'Doctor'
-      fill_in 'Description', with: '    '
+      fill_in 'Position name', with: '    '
+      find('trix-editor').click.set('Doctor')
 
       click_on 'Add position'
 
-      expect(page).to have_content("Description can't be blank")
+      expect(page).to have_content("Name can't be blank")
       expect(page).to have_no_content('Doctor')
       expect(page).to have_content(company.description)
     end
