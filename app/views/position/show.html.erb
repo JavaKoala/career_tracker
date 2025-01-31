@@ -18,9 +18,10 @@
   <div class="mt-2 p-2">
     <h3 class="text-xl mb-2"><%= t(:position_information) %></h3>
     <p class="mb-1"><strong><%= t(:name) %>:</strong> <%= @position.name %></p>
-    <p><strong><%= t(:description) %>:</strong> <%= simple_format(@position.description) %></p>
     <p class="mb-1"><strong><%= t(:pay_start) %>:</strong> <%= @position.pay_start %></p>
     <p class="mb-1"><strong><%= t(:pay_end) %>:</strong> <%= @position.pay_end %></p>
     <p class="mb-1"><strong><%= t(:location) %>:</strong> <%= @position.location %></p>
+    <p><strong><%= t(:job_description) %>:</strong></p>
+    <%= @position.description %>
   </div>
 </div>
