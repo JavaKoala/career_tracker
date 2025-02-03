@@ -1,6 +1,10 @@
 class JobApplicationController < ApplicationController
   before_action :set_job_application, only: %i[show update]
 
+  def index
+    @job_applications = JobApplication.where(user: Current.user)
+  end
+
   def show
     redirect_to root_path unless @job_application && @job_application.user == Current.user
   end

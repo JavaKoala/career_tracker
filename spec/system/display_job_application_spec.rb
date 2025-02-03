@@ -26,4 +26,29 @@ RSpec.describe 'Display Job Application', type: :system do
     expect(page).to have_content(job_application.company_friendly_name)
     expect(page).to have_content(job_application.company_description)
   end
+
+  it 'displays all job applications' do
+    job_application = create(:job_application, user: user, active: false)
+
+    visit root_path
+
+    expect(page).to have_no_content(job_application.position.name)
+
+    click_on 'All applications'
+
+    expect(page).to have_content(job_application.position.name)
+  end
+
+  it 'does not display job applications from other users' do
+    user1 = create(:user, email_address: 'test@test.com')
+    job_application = create(:job_application, user: user1)
+
+    visit root_path
+
+    expect(page).to have_no_content(job_application.position.name)
+
+    click_on 'All applications'
+
+    expect(page).to have_no_content(job_application.position.name)
+  end
 end

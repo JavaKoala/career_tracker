@@ -14,5 +14,22 @@
             cursor-pointer"
   %>
 </div>
-<h1 class="dark:text-white"></h1>
-<%= render 'active_applications' %>
+<%= render partial: 'job_application/applications_table',
+            locals: {
+              applications: @active_applications,
+              caption: t(:active_applications)
+            }
+%>
+<div class="mt-4">
+  <%= link_to t(:all_applications),
+    job_application_index_path,
+    class: "rounded-md
+            px-3.5 py-1
+            bg-blue-600
+            hover:bg-blue-500
+            text-white
+            inline-block
+            font-medium
+            cursor-pointer"
+  %>
+</div>
