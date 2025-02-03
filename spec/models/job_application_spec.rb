@@ -4,9 +4,11 @@ RSpec.describe JobApplication, type: :model do
   it { is_expected.to belong_to(:position) }
   it { is_expected.to belong_to(:user) }
 
-  it { is_expected.to validate_presence_of(:source) }
+  it { is_expected.to have_one_attached(:cover_letter) }
 
   it { is_expected.to accept_nested_attributes_for(:position) }
+
+  it { is_expected.to validate_presence_of(:source) }
 
   describe 'delegates' do
     it { expect(described_class.new).to delegate_method(:name).to(:position).with_prefix }
