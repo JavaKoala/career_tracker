@@ -15,4 +15,8 @@
   %>
 </div>
 <h1 class="dark:text-white"></h1>
-<%= render 'active_applications' %>
+<%= render partial: 'job_application/applications_table',
+            locals: {
+              applications: @active_applications,
+              caption: t(:active_applications)
+            } %>
