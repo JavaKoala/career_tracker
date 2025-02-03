@@ -33,8 +33,10 @@ en:
   active: "Active"
   address1: "Address 1"
   address2: "Address 2"
+  add: "Add"
   add_application: 'Add application'
   add_company: 'Add company'
+  add_interview: 'Add interview'
   add_position: 'Add position'
   all_applications: "All applications"
   applied_on: 'Applied on'
@@ -60,6 +62,9 @@ en:
   hello: "Hello world"
   hybrid: "Hybrid"
   inactive: "Inactive"
+  interviews: "Interviews"
+  interview_end: "Interview end"
+  interview_start: "Interview start"
   job_application_created_successfully: "Job application created successfully"
   job_application_not_found: "Job application not found"
   job_description: "Job description"
@@ -67,6 +72,7 @@ en:
   location: "Location"
   new_application: "New application"
   new_company: "New company"
+  new_interview: "New interview"
   new_job_application: "New job application"
   new_position: "New position"
   office: "Office"

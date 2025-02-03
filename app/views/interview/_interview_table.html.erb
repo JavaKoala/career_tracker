@@ -1,0 +1,26 @@
+<table class="mt-4
+              border
+              border-gray-300
+              dark:border-gray-700
+              dark:text-white
+              w-full xl:w-2/3">
+  <caption class="text-lg">
+    <%= caption %>
+  </caption>
+  <thead>
+    <tr class="border-b-4 border-gray-300 dark:border-gray-700">
+      <th class="p-2 border border-gray-300 dark:border-gray-700"><%= t(:interview_start) %></th>
+      <th class="p-2 border border-gray-300 dark:border-gray-700"><%= t(:interview_end) %></th>
+      <th class="p-2 border border-gray-300 dark:border-gray-700"><%= t(:location) %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% interviews.each do |interview| %>
+      <tr>
+        <td class="p-3 border border-gray-300 dark:border-gray-700"><%= interview.interview_start %></td>
+        <td class="p-3 border border-gray-300 dark:border-gray-700"><%= interview.interview_end %></td>
+        <td class="p-3 border border-gray-300 dark:border-gray-700"><%= interview.location %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
