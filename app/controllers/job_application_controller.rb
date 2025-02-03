@@ -1,6 +1,8 @@
 class JobApplicationController < ApplicationController
   before_action :set_job_application, only: %i[show update]
 
+  def index; end
+
   def show
     redirect_to root_path unless @job_application && @job_application.user == Current.user
   end

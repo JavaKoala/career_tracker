@@ -38,6 +38,14 @@ RSpec.describe JobApplicationController, type: :request do
     allow(Current).to receive_messages(session: session, user: user)
   end
 
+  describe 'GET /job_applications' do
+    it 'returns a success response' do
+      get job_application_index_path
+
+      expect(response).to be_successful
+    end
+  end
+
   describe 'GET /job_applications/:id' do
     it 'returns a success response' do
       job_application = create(:job_application, user: user)

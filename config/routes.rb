@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resource :session
-  resources :job_application, only: %i[show create update]
+  resources :job_application, only: %i[index show create update]
   resources :company, only: %i[index create show update]
   resources :position, only: %i[show create update]
   post '/position_apply', to: 'position_apply#create'
