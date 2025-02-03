@@ -2,6 +2,8 @@ class JobApplication < ApplicationRecord
   belongs_to :user
   belongs_to :position
 
+  has_one_attached :cover_letter
+
   accepts_nested_attributes_for :position
 
   validates :source, presence: true

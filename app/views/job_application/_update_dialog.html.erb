@@ -47,6 +47,9 @@
                         field_name: t(:accepted),
                         required: false
                       } %>
+          <li class="mt-2">
+            <%= t(:cover_letter) %>:  <%= form.file_field :cover_letter %>
+          </li>
         </ul>
       </div>
       <%= form.button t(:update), class: 'mt-8
