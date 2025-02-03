@@ -23,6 +23,15 @@
     <% end %>
   </div>
 
+  <% if @job_application.cover_letter.attached? %>
+    <%= link_to rails_blob_path(@job_application.cover_letter, disposition: "attachment") do %>
+      <p>
+        <strong><%= t(:cover_letter) %>:</strong>
+        <span class="underline"><%= @job_application.cover_letter.filename.to_s %></span>
+      </p>
+    <% end %>
+  <% end %>
+
   <div class="mt-2 p-2">
     <h3 class="text-xl"><%= t(:position) %></h3>
     <p><strong><%= t(:job_title) %>:</strong> <%= @job_application.position_name %></p>
