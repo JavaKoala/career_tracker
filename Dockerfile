@@ -60,10 +60,10 @@ COPY --from=build "${BUNDLE_PATH}" "${BUNDLE_PATH}"
 COPY --from=build /rails /rails
 
 # Run and own only the runtime files as a non-root user for security
-RUN groupadd --system --gid 1001 rails && \
-    useradd rails --uid 1001 --gid 1001 --create-home --shell /bin/bash && \
+RUN groupadd --system --gid 1002 rails && \
+    useradd rails --uid 1002 --gid 1002 --create-home --shell /bin/bash && \
     chown -R rails:rails db log storage tmp
-USER 1001:1001
+USER 1002:1002
 
 # Entrypoint prepares the database.
 ENTRYPOINT ["/rails/bin/docker-entrypoint"]
