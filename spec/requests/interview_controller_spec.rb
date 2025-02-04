@@ -156,4 +156,50 @@ RSpec.describe InterviewController, type: :request do
       expect(flash[:alert]).to eq("Location can't be blank")
     end
   end
+
+  describe 'DELETE /interview/:id' do
+    it 'redirects to the root path if the interview is not found' do
+      delete '/interview/0'
+
+      expect(response).to redirect_to(root_path)
+    end
+
+    it 'adds an error message if the interview is not found' do
+      delete '/interview/0'
+
+      expect(flash[:alert]).to eq(I18n.t(:interview_not_found))
+    end
+
+    it 'redirects to the root path if the job application does not belong to the current user' do
+      user1 = create(:user, email_address: 'test@test.com')
+      interview = create(:interview, job_application: create(:job_application, user: user1))
+      delete interview_path(interview)
+
+      expect(response).to redirect_to(root_path)
+    end
+
+    it 'deletes the interview' do
+      interview = create(:interview, job_application: job_application)
+
+      expect do
+        delete interview_path(interview)
+      end.to change(Interview, :count).by(-1)
+    end
+
+    it 'redirects to the job application page' do
+      interview = create(:interview, job_application: job_application)
+
+      delete interview_path(interview)
+
+      expect(response).to redirect_to(job_application_path(job_application))
+    end
+
+    it 'adds a flash message' do
+      interview = create(:interview, job_application: job_application)
+
+      delete interview_path(interview)
+
+      expect(flash[:notice]).to eq(I18n.t(:deleted_interview))
+    end
+  end
 end

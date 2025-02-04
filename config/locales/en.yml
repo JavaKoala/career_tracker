@@ -56,6 +56,7 @@ en:
   created_company: "Created company"
   created_position: "Created position"
   default: "default"
+  deleted_interview: "Deleted interview"
   description: "Description"
   edit: "Edit"
   enter_email: "Enter your email address"
