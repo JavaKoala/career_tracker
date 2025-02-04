@@ -40,6 +40,7 @@ en:
   add_position: 'Add position'
   all_applications: "All applications"
   applied_on: 'Applied on'
+  are_you_sure: "Are you sure?"
   at: "at"
   career_tracker: "Career Tracker"
   city: "City"
@@ -56,7 +57,9 @@ en:
   created_company: "Created company"
   created_position: "Created position"
   default: "default"
+  delete: "Delete"
   deleted_interview: "Deleted interview"
+  delete_interview: "Delete interview"
   description: "Description"
   edit: "Edit"
   enter_email: "Enter your email address"
