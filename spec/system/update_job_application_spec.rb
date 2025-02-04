@@ -37,6 +37,7 @@ RSpec.describe 'Updating a Job Application', type: :system do
       fill_in 'Source', with: 'Career Fair'
       fill_in 'Applied', with: '01/01/2021'
       fill_in 'Accepted', with: '01/02/2021'
+      fill_in 'Notes', with: 'A note'
       attach_file 'job_application_cover_letter', Rails.root.join('spec/fixtures/cover_letter.txt')
 
       click_on 'Update'
@@ -44,6 +45,7 @@ RSpec.describe 'Updating a Job Application', type: :system do
       expect(page).to have_content('Career Fair')
       expect(page).to have_content('2021-01-01')
       expect(page).to have_content('2021-01-02')
+      expect(page).to have_content('A note')
       expect(page).to have_content('cover_letter.txt')
     end
 

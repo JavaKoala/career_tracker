@@ -47,6 +47,13 @@
                         field_name: t(:accepted),
                         required: false
                       } %>
+          <%= render partial: 'layouts/form_components/textarea_field',
+                      locals: {
+                        form: form,
+                        field: :note,
+                        field_name: t(:notes),
+                        required: false
+                      } %>
           <li class="mt-2">
             <%= t(:cover_letter) %>:  <%= form.file_field :cover_letter %>
           </li>
