@@ -64,6 +64,7 @@ en:
   inactive: "Inactive"
   interviews: "Interviews"
   interview_end: "Interview end"
+  interview_not_found: "Interview not found"
   interview_start: "Interview start"
   job_application_created_successfully: "Job application created successfully"
   job_application_not_found: "Job application not found"
