@@ -11,7 +11,7 @@
            dark:text-white
            border-blue-500">
     <div class="flex justify-between">
-      <h1 class="mt-1 text-xl"><%= t(:new_interview) %></h1>
+      <h1 class="mt-1 text-xl"><%= t(:update_interview) %></h1>
       <button
         type="button"
         data-action="dialog#close"
@@ -23,17 +23,17 @@
         <%= t(:close) %>
       </button>
     </div>
-    <%= form_with model: @interview, url: interview_index_path do |form| %>
+    <%= form_with model: @interview do |form| %>
       <%= render partial: '/interview/interview_form', locals: { form: form } %>
-      <%= form.button t(:add), class: 'mt-8
-                                               rounded-md
-                                               px-3.5 py-1
-                                               bg-blue-600
-                                               hover:bg-blue-500
-                                               text-white
-                                               inline-block
-                                               font-medium
-                                               cursor-pointer'
+      <%= form.button t(:update), class: 'mt-8
+                                          rounded-md
+                                          px-3.5 py-1
+                                          bg-blue-600
+                                          hover:bg-blue-500
+                                          text-white
+                                          inline-block
+                                          font-medium
+                                          cursor-pointer'
       %>
     <% end %>
   </dialog>
@@ -49,6 +49,6 @@
            inline-block
            font-medium
            cursor-pointer">
-    <%= t(:add_interview) %>
+    <%= t(:update_interview) %>
   </button>
 </div>
