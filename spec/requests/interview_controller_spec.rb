@@ -19,7 +19,7 @@ RSpec.describe InterviewController, type: :request do
     allow(Current).to receive_messages(session: session, user: user)
   end
 
-  describe 'GET /interview' do
+  describe 'GET /interview/:id' do
     let(:interview) { create(:interview, job_application: job_application) }
 
     it 'redirects to the root path if the interview is not found' do
@@ -95,6 +95,65 @@ RSpec.describe InterviewController, type: :request do
       expect(flash[:alert]).to eq(
         "Interview start can't be blank, Interview end can't be blank, Location can't be blank"
       )
+    end
+  end
+
+  describe 'PATCH /interview/:id' do
+    it 'redirects to the root path if the interview is not found' do
+      patch '/interview/0'
+
+      expect(response).to redirect_to(root_path)
+    end
+
+    it 'adds an error message if the interview is not found' do
+      patch '/interview/0'
+
+      expect(flash[:alert]).to eq(I18n.t(:interview_not_found))
+    end
+
+    it 'redirects to the root path if the job application does not belong to the current user' do
+      user1 = create(:user, email_address: 'test@test.com')
+      interview = create(:interview, job_application: create(:job_application, user: user1))
+      patch interview_path(interview),
+            params: { interview: { location: 'In-Person', job_application_id: interview.job_application.id } }
+
+      expect(response).to redirect_to(root_path)
+    end
+
+    it 'updates the interview' do
+      interview = create(:interview, job_application: job_application)
+
+      patch interview_path(interview),
+            params: { interview: { location: 'In-Person', job_application_id: interview.job_application.id } }
+
+      expect(response).to redirect_to(interview_path(interview))
+    end
+
+    it 'updates include a flash message' do
+      interview = create(:interview, job_application: job_application)
+
+      patch interview_path(interview),
+            params: { interview: { location: 'In-Person', job_application_id: interview.job_application.id } }
+
+      expect(flash[:notice]).to eq(I18n.t(:updated_interview))
+    end
+
+    it 'redirects to the interview if not valid' do
+      interview = create(:interview, job_application: job_application)
+
+      patch interview_path(interview),
+            params: { interview: { location: '', job_application_id: interview.job_application.id } }
+
+      expect(response).to redirect_to(interview_path(interview))
+    end
+
+    it 'adds an error message if not valid' do
+      interview = create(:interview, job_application: job_application)
+
+      patch interview_path(interview),
+            params: { interview: { location: '', job_application_id: interview.job_application.id } }
+
+      expect(flash[:alert]).to eq("Location can't be blank")
     end
   end
 end
