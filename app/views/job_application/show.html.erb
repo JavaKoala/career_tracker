@@ -7,6 +7,7 @@
   <% if @job_application.accepted.present? %>
     <p><strong><%= t(:accepted_on) %>:</strong> <%= @job_application.accepted %></p>
   <% end %>
+  <p><strong><%= t(:notes) %>:</strong> <%= simple_format(@job_application.note) %></p>
 
   <% if @job_application.active? %>
     <p><strong><%= t(:active) %></strong></p>
