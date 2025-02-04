@@ -19,6 +19,36 @@ RSpec.describe InterviewController, type: :request do
     allow(Current).to receive_messages(session: session, user: user)
   end
 
+  describe 'GET /interview' do
+    let(:interview) { create(:interview, job_application: job_application) }
+
+    it 'redirects to the root path if the interview is not found' do
+      get '/interview/0'
+
+      expect(response).to redirect_to(root_path)
+    end
+
+    it 'adds an error message if the job application is not found' do
+      get '/interview/0'
+
+      expect(flash[:alert]).to eq(I18n.t(:interview_not_found))
+    end
+
+    it 'redirects to the root path if the job application does not belong to the current user' do
+      user1 = create(:user, email_address: 'test@foo.com')
+      job_application.update!(user: user1)
+      get interview_path(interview)
+
+      expect(response).to redirect_to(root_path)
+    end
+
+    it 'returns a success response' do
+      get interview_path(interview)
+
+      expect(response).to be_successful
+    end
+  end
+
   describe 'POST /interview' do
     it 'redirects to the root path if the job application is not found' do
       post interview_index_path, params: { interview: { job_application_id: 0 } }

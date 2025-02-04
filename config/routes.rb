@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :interview, only: %i[create]
+  resources :interview, only: %i[show create]
   resource :session
   resources :job_application, only: %i[index show create update]
   resources :company, only: %i[index create show update]

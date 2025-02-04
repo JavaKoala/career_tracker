@@ -1,5 +1,12 @@
 class InterviewController < ApplicationController
   before_action :set_job_application, only: %i[create]
+  before_action :set_interview, only: %i[show]
+
+  def show
+    return unless @interview.blank? || @interview.job_application.user != Current.user
+
+    redirect_to root_path, alert: t(:interview_not_found)
+  end
 
   def create
     @interview = Interview.new(interview_params)
@@ -21,5 +28,9 @@ class InterviewController < ApplicationController
 
   def set_job_application
     @job_application = JobApplication.find_by(id: params[:interview][:job_application_id], user: Current.user)
+  end
+
+  def set_interview
+    @interview = Interview.find_by(id: params[:id])
   end
 end
