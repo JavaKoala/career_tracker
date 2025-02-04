@@ -7,6 +7,8 @@ RSpec.describe Interview, type: :model do
   it { is_expected.to validate_presence_of(:interview_end) }
   it { is_expected.to validate_presence_of(:location) }
 
+  it { expect(described_class.new).to delegate_method(:user).to(:job_application).with_prefix }
+
   describe '#end_after_start' do
     let(:job_application) { create(:job_application) }
 
