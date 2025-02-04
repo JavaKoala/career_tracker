@@ -40,6 +40,7 @@ en:
   add_position: 'Add position'
   all_applications: "All applications"
   applied_on: 'Applied on'
+  at: "at"
   career_tracker: "Career Tracker"
   city: "City"
   close: "Close"
@@ -65,6 +66,7 @@ en:
   inactive: "Inactive"
   interviews: "Interviews"
   interview_end: "Interview end"
+  interview_for: "Interview for"
   interview_not_found: "Interview not found"
   interview_start: "Interview start"
   job_application_created_successfully: "Job application created successfully"
