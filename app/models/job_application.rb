@@ -1,6 +1,7 @@
 class JobApplication < ApplicationRecord
   belongs_to :user
   belongs_to :position
+  has_many :interviews, dependent: :destroy
 
   has_one_attached :cover_letter
 

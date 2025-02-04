@@ -1,0 +1,17 @@
+<%= render 'layouts/flash' %>
+<div class="flex justify-between">
+  <%= render 'interview/update_dialog' %>
+  <%= render 'interview/delete_dialog' %>
+</div>
+<div class="dark:text-white mt-2">
+  <h2 class="text-2xl">
+    <%= t(:interview_for) %>
+    <%= link_to "#{@interview.job_application.position_name} #{t(:at)} #{@interview.job_application.company_name}",
+                job_application_path(@interview.job_application),
+                class: 'underline'
+    %>
+  </h2>
+  <p><strong><%= t(:interview_start) %>:</strong> <%= @interview.interview_start %></p>
+  <p><strong><%= t(:interview_end) %>:</strong> <%= @interview.interview_end %></p>
+  <p><strong><%= t(:location) %>:</strong> <%= @interview.location %></p>
+</div>

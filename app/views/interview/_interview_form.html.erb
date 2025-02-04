@@ -1,0 +1,27 @@
+<ul>
+  <%= render partial: 'layouts/form_components/text_field',
+        locals: {
+          form: form,
+          field: :location,
+          field_name: t(:location),
+          required: true
+        }
+  %>
+  <%= render partial: 'layouts/form_components/datetime_field',
+        locals: {
+          form: form,
+          field: :interview_start,
+          field_name: t(:interview_start),
+          required: true
+        }
+  %>
+  <%= render partial: 'layouts/form_components/datetime_field',
+        locals: {
+          form: form,
+          field: :interview_end,
+          field_name: t(:interview_end),
+          required: true
+        }
+  %>
+  <%= form.hidden_field :job_application_id, value: @interview.job_application.id %>
+</ul>

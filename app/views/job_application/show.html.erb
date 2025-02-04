@@ -32,6 +32,18 @@
     <% end %>
   <% end %>
 
+  <div class="mt-2">
+    <%= render 'interview/add_dialog' %>
+    <% unless @job_application.interviews.blank? %>
+      <%= render partial: 'interview/interview_table',
+            locals: {
+              caption: t(:interviews),
+              interviews: @job_application.interviews
+            }
+      %>
+    <% end %>
+  </div>
+
   <div class="mt-2 p-2">
     <h3 class="text-xl"><%= link_to t(:position), position_path(@job_application.position), class: 'underline' %></h3>
     <p><strong><%= t(:job_title) %>:</strong> <%= @job_application.position_name %></p>
