@@ -9,6 +9,7 @@
   </caption>
   <thead>
     <tr class="border-b-4 border-gray-300 dark:border-gray-700">
+      <th></th>
       <th class="p-2 border border-gray-300 dark:border-gray-700"><%= t(:question) %></th>
       <th class="p-2 border border-gray-300 dark:border-gray-700"><%= t(:answer) %></th>
     </tr>
@@ -16,6 +17,9 @@
   <tbody>
     <% @interview.interview_questions.each do |question| %>
       <tr>
+        <td class="p-3 border border-gray-300 dark:border-gray-700 dark:invert">
+          <%= render partial: '/interview_question/update_dialog', locals: { question: question } %>
+        </td>
         <td class="p-3 border border-gray-300 dark:border-gray-700"><%= question.question %></td>
         <td class="p-3 border border-gray-300 dark:border-gray-700"><%= question.answer %></td>
     <% end %>
