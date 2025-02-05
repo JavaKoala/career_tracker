@@ -63,6 +63,7 @@ en:
   deleted_interview: "Deleted interview"
   deleted_interview_question: "Deleted interview question"
   delete_interview: "Delete interview"
+  delete_question: "Delete question"
   description: "Description"
   edit: "Edit"
   enter_email: "Enter your email address"
