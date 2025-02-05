@@ -63,4 +63,52 @@ RSpec.describe InterviewQuestionController, type: :request do
       expect(flash[:alert]).to eq("Question can't be blank")
     end
   end
+
+  describe 'PATCH /interview_question/:id' do
+    let(:interview_question) { create(:interview_question, interview: interview) }
+
+    it 'redirects to root path if the interview is not found' do
+      patch interview_question_path(interview_question), params: { interview_question: { interview_id: 0 } }
+
+      expect(response).to redirect_to(root_path)
+    end
+
+    it 'renders a flash message if the interview is not found' do
+      patch interview_question_path(interview_question), params: { interview_question: { interview_id: 0 } }
+
+      expect(flash[:alert]).to eq(I18n.t(:interview_not_found))
+    end
+
+    it 'redirects to the root path if the interview question is not found' do
+      patch '/interview/0', params: valid_attributes
+
+      expect(response).to redirect_to(root_path)
+    end
+
+    it 'updates an interview question' do
+      patch interview_question_path(interview_question), params: valid_attributes
+
+      expect(interview_question.reload.question).to eq(valid_attributes.dig(:interview_question, :question))
+    end
+
+    it 'redirects to the interview page' do
+      patch interview_question_path(interview_question), params: valid_attributes
+
+      expect(response).to redirect_to(interview_path(interview))
+    end
+
+    it 'renders a flash message if the interview question is invalid' do
+      patch interview_question_path(interview_question),
+            params: { interview_question: { question: '', interview_id: interview.id } }
+
+      expect(flash[:alert]).to eq("Question can't be blank")
+    end
+
+    it 'redirects to the interview page if the interview question is invalid' do
+      patch interview_question_path(interview_question),
+            params: { interview_question: { question: '', interview_id: interview.id } }
+
+      expect(response).to redirect_to(interview_path(interview))
+    end
+  end
 end
