@@ -111,4 +111,52 @@ RSpec.describe InterviewQuestionController, type: :request do
       expect(response).to redirect_to(interview_path(interview))
     end
   end
+
+  describe 'DELETE /interview_question/:id' do
+    it 'redirects to the root path if the interview question is not found' do
+      delete '/interview_question/0'
+
+      expect(response).to redirect_to(root_path)
+    end
+
+    it 'renders a flash message if the interview is not found' do
+      delete '/interview_question/0'
+
+      expect(flash[:alert]).to eq(I18n.t(:interview_question_not_found))
+    end
+
+    it 'redirects to root path if the interview question user is not equal to the current user' do
+      user1 = create(:user, email_address: 'test@test.com')
+      job_application.update!(user: user1)
+      interview_question = create(:interview_question, interview: interview)
+
+      delete interview_question_path(interview_question)
+
+      expect(response).to redirect_to(root_path)
+    end
+
+    it 'deletes an interview question' do
+      interview_question = create(:interview_question, interview: interview)
+
+      expect do
+        delete interview_question_path(interview_question)
+      end.to change(InterviewQuestion, :count).by(-1)
+    end
+
+    it 'redirects to the interview page' do
+      interview_question = create(:interview_question, interview: interview)
+
+      delete interview_question_path(interview_question)
+
+      expect(response).to redirect_to(interview_path(interview))
+    end
+
+    it 'renders a flash message if the question is deleted' do
+      interview_question = create(:interview_question, interview: interview)
+
+      delete interview_question_path(interview_question)
+
+      expect(flash[:notice]).to eq(I18n.t(:deleted_interview_question))
+    end
+  end
 end

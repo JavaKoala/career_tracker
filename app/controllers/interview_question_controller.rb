@@ -1,6 +1,6 @@
 class InterviewQuestionController < ApplicationController
   before_action :set_interview, only: %i[create update]
-  before_action :set_interview_question, only: %i[update]
+  before_action :set_interview_question, only: %i[update destroy]
 
   def create
     @interview_question = InterviewQuestion.new(interview_question_params)
@@ -22,6 +22,15 @@ class InterviewQuestionController < ApplicationController
       redirect_to interview_path(@interview)
     else
       redirect_to interview_path(@interview), alert: @interview_question.errors.full_messages.join(', ')
+    end
+  end
+
+  def destroy
+    if @interview_question.blank? || @interview_question.user != Current.user
+      redirect_to root_path, alert: t(:interview_question_not_found)
+    else
+      @interview_question.destroy
+      redirect_to interview_path(@interview_question.interview), notice: t(:deleted_interview_question)
     end
   end
 
