@@ -38,7 +38,9 @@ en:
   add_company: 'Add company'
   add_interview: 'Add interview'
   add_position: 'Add position'
+  add_question: 'Add question'
   all_applications: "All applications"
+  answer: "Answer"
   applied_on: 'Applied on'
   are_you_sure: "Are you sure?"
   at: "at"
@@ -72,6 +74,7 @@ en:
   interview_end: "Interview end"
   interview_for: "Interview for"
   interview_not_found: "Interview not found"
+  interview_questions: "Interview questions"
   interview_start: "Interview start"
   job_application_created_successfully: "Job application created successfully"
   job_application_not_found: "Job application not found"
@@ -81,6 +84,7 @@ en:
   new_application: "New application"
   new_company: "New company"
   new_interview: "New interview"
+  new_interview_question: "New interview question"
   new_job_application: "New job application"
   new_position: "New position"
   notes: "Notes"
@@ -92,6 +96,7 @@ en:
   position_name: "Position name"
   positions: "Positions"
   position_not_found: "Position not found"
+  question: "Question"
   remote: "Remote"
   sign_in: "Sign in"
   sign_out: "Sign out"
