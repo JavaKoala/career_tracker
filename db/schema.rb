@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_02_04_200422) do
+ActiveRecord::Schema[8.0].define(version: 2025_02_05_135954) do
   create_table "action_text_rich_texts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.text "body", size: :long
@@ -63,6 +63,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_04_200422) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_companies_on_name", unique: true
+  end
+
+  create_table "interview_questions", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.text "question"
+    t.text "answer"
+    t.bigint "interview_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["interview_id"], name: "index_interview_questions_on_interview_id"
   end
 
   create_table "interviews", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -119,6 +128,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_04_200422) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "interview_questions", "interviews"
   add_foreign_key "interviews", "job_applications"
   add_foreign_key "job_applications", "positions"
   add_foreign_key "job_applications", "users"

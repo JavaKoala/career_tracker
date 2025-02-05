@@ -1,0 +1,19 @@
+<ul>
+  <%= render partial: 'layouts/form_components/textarea_field',
+            locals: {
+              form: form,
+              field: :question,
+              field_name: t(:question),
+              required: true
+            }
+  %>
+  <%= render partial: 'layouts/form_components/textarea_field',
+            locals: {
+              form: form,
+              field: :answer,
+              field_name: t(:answer),
+              required: false
+            }
+  %>
+  <%= form.hidden_field :interview_id, value: @interview_question.interview.id %>
+</ul>

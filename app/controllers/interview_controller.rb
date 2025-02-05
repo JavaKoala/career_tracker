@@ -3,9 +3,11 @@ class InterviewController < ApplicationController
   before_action :set_interview, only: %i[show update destroy]
 
   def show
-    return unless @interview.blank? || @interview.job_application_user != Current.user
-
-    redirect_to root_path, alert: t(:interview_not_found)
+    if @interview.blank? || @interview.user != Current.user
+      redirect_to root_path, alert: t(:interview_not_found)
+    else
+      @interview_question = InterviewQuestion.new(interview: @interview)
+    end
   end
 
   def create
@@ -31,7 +33,7 @@ class InterviewController < ApplicationController
   end
 
   def destroy
-    if @interview.blank? || @interview.job_application_user != Current.user
+    if @interview.blank? || @interview.user != Current.user
       redirect_to root_path, alert: t(:interview_not_found)
     else
       @interview.destroy

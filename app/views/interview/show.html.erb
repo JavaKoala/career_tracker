@@ -15,3 +15,8 @@
   <p><strong><%= t(:interview_end) %>:</strong> <%= @interview.interview_end %></p>
   <p><strong><%= t(:location) %>:</strong> <%= @interview.location %></p>
 </div>
+<%= render 'interview_question/add_dialog' %>
+
+<% unless @interview.interview_questions.blank? %>
+  <%= render 'interview_question/interview_question_table' %>
+<% end %>
