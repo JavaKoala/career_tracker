@@ -1,6 +1,7 @@
 class Interview < ApplicationRecord
   belongs_to :job_application
   has_many :interview_questions, dependent: :destroy
+  has_many :interviewers, dependent: :destroy
 
   delegate :user, to: :job_application
 

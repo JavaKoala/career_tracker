@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe Interview, type: :model do
   it { is_expected.to belong_to(:job_application) }
   it { is_expected.to have_many(:interview_questions).dependent(:destroy) }
+  it { is_expected.to have_many(:interviewers).dependent(:destroy) }
 
   it { is_expected.to validate_presence_of(:interview_start) }
   it { is_expected.to validate_presence_of(:interview_end) }
