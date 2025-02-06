@@ -11,6 +11,17 @@ class InterviewerController < ApplicationController
     end
   end
 
+  def destroy
+    @interviewer = Interviewer.find_by(id: params[:id])
+
+    if @interviewer.blank? || @interviewer.interview.user != Current.user
+      redirect_to root_path, alert: t(:interviewer_not_found)
+    else
+      @interviewer.destroy
+      redirect_to interview_path(@interviewer.interview), notice: t(:deleted_interviewer)
+    end
+  end
+
   private
 
   def interviewer_params

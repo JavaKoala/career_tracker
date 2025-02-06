@@ -131,4 +131,86 @@ RSpec.describe InterviewerController, type: :request do
       end
     end
   end
+
+  describe 'DELETE /interviewer/:id' do
+    let(:person) { create(:person, company: interview.company) }
+
+    context 'when the interview does not belong to the current user' do
+      let(:user2) { create(:user, email_address: 'test@test.com') }
+
+      before do
+        allow(Current).to receive(:user).and_return(user2)
+      end
+
+      it 'redirects to the root path' do
+        interviewer = create(:interviewer, interview: interview, person: person)
+
+        delete interviewer_path(interviewer)
+
+        expect(response).to redirect_to(root_path)
+      end
+
+      it 'does not delete the interviewer' do
+        interviewer = create(:interviewer, interview: interview, person: person)
+
+        expect do
+          delete interviewer_path(interviewer)
+        end.not_to change(Interviewer, :count)
+      end
+
+      it 'renders flash message' do
+        interviewer = create(:interviewer, interview: interview, person: person)
+
+        delete interviewer_path(interviewer)
+
+        expect(flash[:alert]).to eq('Interviewer not found')
+      end
+    end
+
+    context 'when the inerviewer is not found' do
+      it 'redirects to the root path' do
+        delete interviewer_path(0)
+
+        expect(response).to redirect_to(root_path)
+      end
+
+      it 'does not delete the interviewer' do
+        expect do
+          delete interviewer_path(0)
+        end.not_to change(Interviewer, :count)
+      end
+
+      it 'displays an error message' do
+        delete interviewer_path(0)
+
+        expect(flash[:alert]).to eq('Interviewer not found')
+      end
+    end
+
+    context 'when the interviewer is found' do
+      it 'destroys the requested interviewer' do
+        interviewer = create(:interviewer, interview: interview, person: person)
+
+        expect do
+          delete interviewer_path(interviewer)
+        end.to change(Interviewer, :count).by(-1)
+      end
+
+      it 'redirects to the interview path' do
+        interviewer = create(:interviewer, interview: interview, person: person)
+
+        delete interviewer_path(interviewer)
+
+        expect(response).to redirect_to(interview_path(interview))
+      end
+
+      it 'renders flash message' do
+        interviewer = create(:interviewer, interview: interview, person: person)
+
+        delete interviewer_path(interviewer)
+
+        expect(flash[:notice]).to eq('Deleted interviewer')
+      end
+    end
+  end
 end
