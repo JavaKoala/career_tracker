@@ -1,6 +1,6 @@
 class PersonController < ApplicationController
   before_action :set_company, only: %i[create]
-  before_action :set_person, only: %i[update]
+  before_action :set_person, only: %i[update destroy]
 
   def create
     @person = Person.new(person_params)
@@ -25,8 +25,6 @@ class PersonController < ApplicationController
   end
 
   def destroy
-    @person = Person.find_by(id: params[:id])
-
     if @person.blank?
       redirect_to root_path, alert: t(:person_not_found)
     else
