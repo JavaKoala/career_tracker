@@ -38,8 +38,10 @@ RSpec.describe 'Update Person', type: :system do
   end
 
   context 'when updating from a interview' do
-    let(:position) { create(:position, company: person.company) }
-    let(:job_application) { create(:job_application, user: user, position: position) }
+    let(:job_application) do
+      create(:job_application,
+             user: user, position: create(:position, company: person.company))
+    end
     let(:interview) { create(:interview, job_application: job_application) }
 
     before do

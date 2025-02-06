@@ -64,6 +64,7 @@ en:
   created_position: "Created position"
   default: "default"
   delete: "Delete"
+  delete_interviewer: "Delete interviewer"
   deleted_interview: "Deleted interview"
   deleted_interviewer: "Deleted interviewer"
   deleted_interview_question: "Deleted interview question"
