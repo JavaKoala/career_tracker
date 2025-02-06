@@ -36,7 +36,10 @@ en:
   add: "Add"
   add_application: 'Add application'
   add_company: 'Add company'
+  add_existing: "Add existing"
   add_interview: 'Add interview'
+  add_interviewer: 'Add interviewer'
+  add_new: "Add new"
   add_position: 'Add position'
   add_question: 'Add question'
   all_applications: "All applications"
@@ -66,12 +69,16 @@ en:
   delete_question: "Delete question"
   description: "Description"
   edit: "Edit"
+  email_address: "Email address"
   enter_email: "Enter your email address"
   enter_password: "Enter your password"
+  existing_interviewer: "Existing interviewer"
   friendly_name: "Friendly name"
   hello: "Hello world"
   hybrid: "Hybrid"
   inactive: "Inactive"
+  interviwer: "Interviewer"
+  interviewers: "Interviewers"
   interviews: "Interviews"
   interview_end: "Interview end"
   interview_for: "Interview for"
@@ -87,6 +94,7 @@ en:
   new_application: "New application"
   new_company: "New company"
   new_interview: "New interview"
+  new_interviewer: "New interviewer"
   new_interview_question: "New interview question"
   new_job_application: "New job application"
   new_position: "New position"

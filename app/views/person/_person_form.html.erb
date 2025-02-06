@@ -1,0 +1,19 @@
+<div>
+  <ul class="mt-2">
+    <%= render partial: 'layouts/form_components/text_field',
+                locals: {
+                  form: form,
+                  field: :name,
+                  field_name: t(:name),
+                  required: true
+                } %>
+    <%= render partial: 'layouts/form_components/text_field',
+                locals: {
+                  form: form,
+                  field: :email_address,
+                  field_name: t(:email_address),
+                  required: false
+                } %>
+    <%= form.hidden_field :company_id, value: company.id %>
+  </ul>
+</div>

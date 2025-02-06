@@ -15,8 +15,21 @@
   <p><strong><%= t(:interview_end) %>:</strong> <%= @interview.interview_end %></p>
   <p><strong><%= t(:location) %>:</strong> <%= @interview.location %></p>
 </div>
+
+<div class="mt-4">
 <%= render 'interview_question/add_dialog' %>
+</div>
 
 <% unless @interview.interview_questions.blank? %>
   <%= render 'interview_question/interview_question_table' %>
+<% end %>
+
+<div class="mt-8">
+  <%= render 'interviewer/add_dialog' %>
+</div>
+
+<% unless @interview.interviewers.blank? %>
+  <div class="mt-4">
+    <%= render partial: 'interviewer/interviewer_table', locals: { interviewers: @interview.interviewers } %>
+  </div>
 <% end %>
