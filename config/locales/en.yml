@@ -40,6 +40,7 @@ en:
   add_interview: 'Add interview'
   add_interviewer: 'Add interviewer'
   add_new: "Add new"
+  add_person: "Add person"
   add_position: 'Add position'
   add_question: 'Add question'
   all_applications: "All applications"
@@ -97,11 +98,13 @@ en:
   new_interviewer: "New interviewer"
   new_interview_question: "New interview question"
   new_job_application: "New job application"
+  new_person: "New person"
   new_position: "New position"
   notes: "Notes"
   office: "Office"
   pay_end: "Pay end"
   pay_start: "Pay start"
+  people: "People"
   position: "Position"
   position_information: "Position information"
   position_name: "Position name"

@@ -1,0 +1,23 @@
+<table class="mt-4
+              border
+              border-gray-300
+              dark:border-gray-700
+              dark:text-white
+              w-full xl:w-2/3">
+  <caption class="text-lg">
+    <%= t(:people) %>
+  </caption>
+  <thead>
+    <tr class="border-b-4 border-gray-300 dark:border-gray-700">
+      <th class="p-2 border border-gray-300 dark:border-gray-700"><%= t(:name) %></th>
+      <th class="p-2 border border-gray-300 dark:border-gray-700"><%= t(:email) %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% people.each do |person| %>
+      <tr>
+        <td class="p-3 border border-gray-300 dark:border-gray-700"><%= person.name %></td>
+        <td class="p-3 border border-gray-300 dark:border-gray-700"><%= person.email_address %></td>
+    <% end %>
+  </tbody>
+</table>

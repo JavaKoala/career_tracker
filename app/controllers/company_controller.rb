@@ -8,6 +8,7 @@ class CompanyController < ApplicationController
 
   def show
     @position = Position.new(company: @company)
+    @person = Person.new(company: @company)
     redirect_to root_path, alert: t(:company_not_found) unless @company
   end
 
