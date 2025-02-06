@@ -24,6 +24,17 @@ class PersonController < ApplicationController
     end
   end
 
+  def destroy
+    @person = Person.find_by(id: params[:id])
+
+    if @person.blank?
+      redirect_to root_path, alert: t(:person_not_found)
+    else
+      @person.destroy
+      redirect_to company_path(@person.company), notice: t(:deleted_person)
+    end
+  end
+
   private
 
   def person_params

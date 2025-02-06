@@ -68,6 +68,7 @@ en:
   deleted_interview: "Deleted interview"
   deleted_interviewer: "Deleted interviewer"
   deleted_interview_question: "Deleted interview question"
+  deleted_person: "Deleted person"
   delete_interview: "Delete interview"
   delete_question: "Delete question"
   description: "Description"

@@ -137,4 +137,54 @@ RSpec.describe PersonController, type: :request do
       end
     end
   end
+
+  describe 'DELETE /person/:id' do
+    context 'with valid person id' do
+      it 'deletes the person' do
+        person = create(:person, company: company)
+
+        expect do
+          delete person_path(person)
+        end.to change(Person, :count).by(-1)
+      end
+
+      it 'redirects to the company path' do
+        person = create(:person, company: company)
+
+        delete person_path(person)
+
+        expect(response).to redirect_to(company_path(company))
+      end
+
+      it 'renders flash message' do
+        person = create(:person, company: company)
+
+        delete person_path(person)
+
+        expect(flash[:notice]).to eq(I18n.t(:deleted_person))
+      end
+    end
+
+    context 'with invalid person id' do
+      it 'does not delete the person' do
+        create(:person, company: company)
+
+        expect do
+          delete person_path(0)
+        end.not_to change(Person, :count)
+      end
+
+      it 'redirects to root_path' do
+        delete person_path(0)
+
+        expect(response).to redirect_to(root_path)
+      end
+
+      it 'renders flash message' do
+        delete person_path(0)
+
+        expect(flash[:alert]).to eq(I18n.t(:person_not_found))
+      end
+    end
+  end
 end
