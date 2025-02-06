@@ -33,6 +33,23 @@ RSpec.describe InterviewerController, type: :request do
 
         expect(response).to redirect_to(interview_path(interview))
       end
+
+      it 'sets the person if provided' do
+        person2 = create(:person, company: interview.company)
+        valid_attributes[:interviewer][:person_id] = person2.id
+
+        post interviewer_index_path, params: valid_attributes
+
+        expect(Interviewer.last.person.id).to eq(person2.id)
+      end
+
+      it 'does not set the user if invalid' do
+        valid_attributes[:interviewer][:person_id] = 0
+
+        expect do
+          post interviewer_index_path, params: valid_attributes
+        end.to change(Interviewer, :count).by(1)
+      end
     end
 
     context 'with invalid parameters' do
