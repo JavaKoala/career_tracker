@@ -6,6 +6,7 @@ class InterviewController < ApplicationController
     if @interview.blank? || @interview.user != Current.user
       redirect_to root_path, alert: t(:interview_not_found)
     else
+      @interviewer = Interviewer.new(interview: @interview, person: Person.new)
       @interview_question = InterviewQuestion.new(interview: @interview)
     end
   end

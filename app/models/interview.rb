@@ -1,8 +1,10 @@
 class Interview < ApplicationRecord
   belongs_to :job_application
   has_many :interview_questions, dependent: :destroy
+  has_many :interviewers, dependent: :destroy
 
   delegate :user, to: :job_application
+  delegate :company, to: :job_application
 
   validates :interview_start, :interview_end, :location, presence: true
   validate :end_after_start
