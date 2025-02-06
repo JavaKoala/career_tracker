@@ -81,4 +81,60 @@ RSpec.describe PersonController, type: :request do
       end
     end
   end
+
+  describe 'PATCH /person/:id' do
+    let(:person) { create(:person, company: company) }
+
+    context 'with invalid person id' do
+      it 'redirects to root_path' do
+        patch '/person/0', params: valid_attributes
+
+        expect(response).to redirect_to(root_path)
+      end
+
+      it 'renders flash message' do
+        patch '/person/0', params: valid_attributes
+
+        expect(flash[:alert]).to eq(I18n.t(:person_not_found))
+      end
+    end
+
+    context 'with valid parameters' do
+      it 'updates the person' do
+        patch person_path(person), params: { person: { name: 'Jane Doe', company_id: company.id } }
+
+        person.reload
+
+        expect(person.name).to eq('Jane Doe')
+      end
+
+      it 'redirects to the company path' do
+        patch person_path(person), params: valid_attributes
+
+        expect(response).to redirect_to(company_path(company))
+      end
+    end
+
+    context 'with invalid parameters' do
+      it 'does not update the person' do
+        patch person_path(person), params: { person: { name: '    ', company_id: company.id } }
+
+        person.reload
+
+        expect(person.name).not_to eq('')
+      end
+
+      it 'redirects to the company path' do
+        patch person_path(person), params: { person: { name: '    ', company_id: company.id } }
+
+        expect(response).to redirect_to(company_path(company))
+      end
+
+      it 'renders flash message' do
+        patch person_path(person), params: { person: { name: '    ', company_id: company.id } }
+
+        expect(flash[:alert]).to eq("Name can't be blank")
+      end
+    end
+  end
 end

@@ -105,6 +105,7 @@ en:
   pay_end: "Pay end"
   pay_start: "Pay start"
   people: "People"
+  person_not_found: "Person not found"
   position: "Position"
   position_information: "Position information"
   position_name: "Position name"

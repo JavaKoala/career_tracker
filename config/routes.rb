@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :job_application, only: %i[index show create update]
   resources :company, only: %i[index create show update]
   resources :position, only: %i[show create update]
-  resources :person, only: %i[create]
+  resources :person, only: %i[create update]
 
   post '/position_apply', to: 'position_apply#create'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
