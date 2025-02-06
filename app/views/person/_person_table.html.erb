@@ -12,6 +12,7 @@
       <th></th>
       <th class="p-2 border border-gray-300 dark:border-gray-700"><%= t(:name) %></th>
       <th class="p-2 border border-gray-300 dark:border-gray-700"><%= t(:email) %></th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -22,6 +23,9 @@
         </td>
         <td class="p-3 border border-gray-300 dark:border-gray-700"><%= person.name %></td>
         <td class="p-3 border border-gray-300 dark:border-gray-700"><%= person.email_address %></td>
+        <td class="p-3 border border-gray-300 dark:border-gray-700 dark:invert">
+          <%= render partial: 'person/delete_dialog', locals: { person: person } %>
+        </td>
     <% end %>
   </tbody>
 </table>

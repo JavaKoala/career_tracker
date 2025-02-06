@@ -65,6 +65,7 @@ en:
   default: "default"
   delete: "Delete"
   delete_interviewer: "Delete interviewer"
+  delete_person: "Delete person"
   deleted_interview: "Deleted interview"
   deleted_interviewer: "Deleted interviewer"
   deleted_interview_question: "Deleted interview question"
