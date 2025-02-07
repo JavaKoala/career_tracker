@@ -60,17 +60,5 @@
     <% end %>
   </dialog>
 
-  <button
-    type="button"
-    data-action="dialog#open"
-    class="rounded-md
-           px-3.5 py-1
-           bg-blue-600
-           hover:bg-blue-500
-           text-white
-           inline-block
-           font-medium
-           cursor-pointer">
-    <%= t(:add_interviewer) %>
-  </button>
+  <%= render partial: 'layouts/dialog_components/open_button', locals: { button_text: t(:add_interviewer) } %>
 </div>

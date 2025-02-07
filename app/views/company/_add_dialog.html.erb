@@ -25,17 +25,5 @@
     <% end %>
   </dialog>
 
-  <button
-    type="button"
-    data-action="dialog#open"
-    class="rounded-md
-           px-3.5 py-1
-           bg-blue-600
-           hover:bg-blue-500
-           text-white
-           inline-block
-           font-medium
-           cursor-pointer">
-    <%= t(:new_company) %>
-  </button>
+  <%= render partial: 'layouts/dialog_components/open_button', locals: { button_text: t(:new_company) } %>
 </div>
