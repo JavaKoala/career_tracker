@@ -1,6 +1,7 @@
 default: &default
   enabled: <%= ENV.fetch("HOME_CALENDAR_ENABLED") { false } %>
   url: <%= ENV.fetch("HOME_CALENDAR_URL") { 'http://localhost:3001' } %>
+  color: <%= ENV.fetch("HOME_CALENDAR_EVENT_COLOR") { 'green' } %>
 
 development:
   <<: *default
