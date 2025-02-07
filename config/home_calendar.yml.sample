@@ -1,0 +1,12 @@
+default: &default
+  enabled: <%= ENV.fetch("HOME_CALENDAR_ENABLED") { false } %>
+  url: <%= ENV.fetch("HOME_CALENDAR_URL") { 'http://localhost:3001' } %>
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+
+production:
+  <<: *default
