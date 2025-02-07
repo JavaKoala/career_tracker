@@ -10,44 +10,12 @@
            dark:bg-black
            dark:text-white
            border-blue-500">
-    <div class="flex justify-between">
-      <h1 class="mt-1 text-xl"><%= t(:new_position) %></h1>
-      <button
-        type="button"
-        data-action="dialog#close"
-        class="rounded-lg
-               bg-red-500
-               px-3.5 py-1
-               mt-1"
-        autofocus>
-        <%= t(:close) %>
-      </button>
-    </div>
+    <%= render partial: 'layouts/dialog_components/header', locals: { title: t(:new_position) } %>
     <%= form_with model: @position, url: position_index_path do |form| %>
       <%= render partial: 'position/position_form', locals: { form: form } %>
-      <%= form.button t(:add_position), class: 'mt-8
-                                                rounded-md
-                                                px-3.5 py-1
-                                                bg-blue-600
-                                                hover:bg-blue-500
-                                                text-white
-                                                inline-block
-                                                font-medium
-                                                cursor-pointer' %>
+      <%= render partial: 'layouts/form_components/form_button', locals: { form: form, button_text: t(:add_position) } %>
     <% end %>
   </dialog>
 
-  <button
-    type="button"
-    data-action="dialog#open"
-    class="rounded-md
-           px-3.5 py-1
-           bg-blue-600
-           hover:bg-blue-500
-           text-white
-           inline-block
-           font-medium
-           cursor-pointer">
-    <%= t(:new_position) %>
-  </button>
+  <%= render partial: 'layouts/dialog_components/open_button', locals: { button_text: t(:new_position) } %>
 </div>

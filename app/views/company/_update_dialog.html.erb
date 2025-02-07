@@ -10,44 +10,12 @@
            dark:bg-black
            dark:text-white
            border-blue-500">
-    <div class="flex justify-between">
-      <h1 class="mt-1 text-xl"><%= t(:update) %> <%= @company.name %></h1>
-      <button
-        type="button"
-        data-action="dialog#close"
-        class="rounded-lg
-               bg-red-500
-               px-3.5 py-1
-               mt-1"
-        autofocus>
-        <%= t(:close) %>
-      </button>
-    </div>
+    <%= render partial: 'layouts/dialog_components/header', locals: { title: "#{t(:update)} #{@company.name}" } %>
     <%= form_with model: @company do |form| %>
       <%= render partial: 'company/company_form', locals: { form: form } %>
-      <%= form.button t(:update), class: 'mt-8
-                                          rounded-md
-                                          px-3.5 py-1
-                                          bg-blue-600
-                                          hover:bg-blue-500
-                                          text-white
-                                          inline-block
-                                          font-medium
-                                          cursor-pointer' %>
+      <%= render partial: 'layouts/form_components/form_button', locals: { form: form, button_text: t(:update) } %>
     <% end %>
   </dialog>
 
-  <button
-    type="button"
-    data-action="dialog#open"
-    class="rounded-md
-           px-3.5 py-1
-           bg-blue-600
-           hover:bg-blue-500
-           text-white
-           inline-block
-           font-medium
-           cursor-pointer">
-    <%= t(:update_company) %>
-  </button>
+  <%= render partial: 'layouts/dialog_components/open_button', locals: { button_text: t(:update_company) } %>
 </div>
