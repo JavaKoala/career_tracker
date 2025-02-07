@@ -10,19 +10,7 @@
            dark:bg-black
            dark:text-white
            border-blue-500">
-    <div class="flex justify-between">
-      <h1 class="mt-1 text-xl"><%= t(:update_interview) %></h1>
-      <button
-        type="button"
-        data-action="dialog#close"
-        class="rounded-lg
-               bg-red-500
-               px-3.5 py-1
-               mt-1"
-        autofocus>
-        <%= t(:close) %>
-      </button>
-    </div>
+    <%= render partial: 'layouts/dialog_components/header', locals: { title: t(:update_interview) } %>
     <%= form_with model: @interview do |form| %>
       <%= render partial: '/interview/interview_form', locals: { form: form } %>
       <%= form.button t(:update), class: 'mt-8

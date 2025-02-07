@@ -10,19 +10,7 @@
            dark:bg-black
            dark:text-white
            border-blue-500">
-    <div class="flex justify-between">
-      <h1 class="mt-1 text-xl"><%= t(:are_you_sure) %></h1>
-      <button
-        type="button"
-        data-action="dialog#close"
-        class="rounded-lg
-               bg-blue-500
-               px-3.5 py-1
-               mt-1"
-        autofocus>
-        <%= t(:close) %>
-      </button>
-    </div>
+    <%= render partial: 'layouts/dialog_components/header', locals: { title: t(:are_you_sure) } %>
     <%= button_to t(:delete_person),
                person_path(person),
                method: :delete,
