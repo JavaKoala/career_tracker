@@ -12,22 +12,13 @@
            border-blue-500">
     <%= render partial: 'layouts/dialog_components/header', locals: { title: t(:new_person) } %>
     <%= form_with model: @person, url: person_index_path do |form| %>
-        <%= render partial: 'person/person_form',
-            locals: {
-              form: form,
-              company: @person.company
-            }
-        %>
-      <%= form.button t(:add), class: 'mt-4
-                                      rounded-md
-                                      px-3.5 py-1
-                                      bg-blue-600
-                                      hover:bg-blue-500
-                                      text-white
-                                      inline-block
-                                      font-medium
-                                      cursor-pointer'
+      <%= render partial: 'person/person_form',
+          locals: {
+            form: form,
+            company: @person.company
+          }
       %>
+      <%= render partial: 'layouts/form_components/form_button', locals: { form: form, button_text: t(:add) } %>
     <% end %>
   </dialog>
 

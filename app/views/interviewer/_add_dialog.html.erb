@@ -22,16 +22,7 @@
         <%= person_form.hidden_field :company_id, value: @interviewer.interview.company.id %>
       <% end %>
       <%= form.hidden_field :interview_id, value: @interviewer.interview.id %>
-      <%= form.button t(:add_new), class: 'mt-4
-                                          rounded-md
-                                          px-3.5 py-1
-                                          bg-blue-600
-                                          hover:bg-blue-500
-                                          text-white
-                                          inline-block
-                                          font-medium
-                                          cursor-pointer'
-      %>
+      <%= render partial: 'layouts/form_components/form_button', locals: { form: form, button_text: t(:add_new) } %>
     <% end %>
 
     <h1 class="mt-4 text-xl"><%= t(:existing_interviewer) %></h1>
@@ -47,16 +38,7 @@
           <%= form.hidden_field :interview_id, value: @interviewer.interview.id %>
         </ul>
       </div>
-      <%= form.button t(:add_existing), class: 'mt-4
-                                                rounded-md
-                                                px-3.5 py-1
-                                                bg-blue-600
-                                                hover:bg-blue-500
-                                                text-white
-                                                inline-block
-                                                font-medium
-                                                cursor-pointer'
-      %>
+      <%= render partial: 'layouts/form_components/form_button', locals: { form: form, button_text: t(:add_existing) } %>
     <% end %>
   </dialog>
 
