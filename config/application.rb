@@ -41,5 +41,8 @@ module CareerTracker
 
     # Use delayed_job for background processing
     config.active_job.queue_adapter = :delayed_job
+
+    # Configuration for send to home calendar feature
+    config.home_calendar = config_for(:home_calendar)
   end
 end

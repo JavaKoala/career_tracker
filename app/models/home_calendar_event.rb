@@ -9,6 +9,7 @@ class HomeCalendarEvent
   attribute :start, :datetime
   attribute :end, :datetime
   attribute :color, :string
+  attribute :recurring_uuid, :string
 
   validates :title, presence: true
   validates :start, presence: true
