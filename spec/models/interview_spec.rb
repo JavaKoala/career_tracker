@@ -39,4 +39,28 @@ RSpec.describe Interview, type: :model do
       expect(interview).to be_valid
     end
   end
+
+  describe '#create_home_calendar_event' do
+    before do
+      ActiveJob::Base.queue_adapter = :test
+    end
+
+    it 'enqueues a job to create a home calendar event' do
+      allow(Rails.configuration.home_calendar).to receive(:[]).with(:enabled).and_return(true)
+      interview = create(:interview)
+
+      expect do
+        interview.run_callbacks(:create) { true }
+      end.to have_enqueued_job(CreateHomeCalendarInterviewEventJob).with(interview.id)
+    end
+
+    it 'does not enqueue a job if home calendar is disabled' do
+      allow(Rails.configuration.home_calendar).to receive(:[]).with(:enabled).and_return(false)
+      interview = create(:interview)
+
+      expect do
+        interview.run_callbacks(:create) { true }
+      end.not_to have_enqueued_job(CreateHomeCalendarInterviewEventJob)
+    end
+  end
 end
