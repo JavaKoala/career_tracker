@@ -35,6 +35,7 @@ gem 'thruster', require: false
 gem 'image_processing', '~> 1.2'
 
 # Use delayed_job for background processing
+gem 'daemons', '~> 1.4'
 gem 'delayed_job_active_record', '~> 4.1'
 
 # Use faraday for HTTP requests
