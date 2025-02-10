@@ -18,6 +18,8 @@ class Interview < ApplicationRecord
   end
 
   def create_home_calendar_event
+    return unless Rails.application.config.home_calendar[:enabled]
+
     CreateHomeCalendarInterviewEventJob.perform_later(id)
   end
 end
