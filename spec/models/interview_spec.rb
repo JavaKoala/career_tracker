@@ -39,4 +39,15 @@ RSpec.describe Interview, type: :model do
       expect(interview).to be_valid
     end
   end
+
+  describe '#create_home_calendar_event' do
+    it 'enqueues a job to create a home calendar event' do
+      ActiveJob::Base.queue_adapter = :test
+      interview = create(:interview)
+
+      expect do
+        interview.run_callbacks(:create) { true }
+      end.to have_enqueued_job(CreateHomeCalendarInterviewEventJob).with(interview.id)
+    end
+  end
 end

@@ -9,9 +9,15 @@ class Interview < ApplicationRecord
   validates :interview_start, :interview_end, :location, presence: true
   validate :end_after_start
 
+  after_create :create_home_calendar_event
+
   def end_after_start
     return if interview_end.blank? || interview_start.blank?
 
     errors.add(:interview_end, "can't be before start") if interview_end < interview_start
+  end
+
+  def create_home_calendar_event
+    CreateHomeCalendarInterviewEventJob.perform_later(id)
   end
 end
