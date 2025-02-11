@@ -13,9 +13,9 @@ class HomeCalendarInterviewService
     return if @home_calendar_event.invalid?
 
     response = @faraday_connection.post('/api/v1/events', @home_calendar_event.to_json)
-    get_home_calendar_event_from_response(response)
+    get_event_id_from_response(response)
 
-    @interview.update!(home_calendar_event_id: @api_event.id) if @api_event.present?
+    @interview.update!(home_calendar_event_id: @api_event_id) if @api_event_id.present?
   end
 
   private
@@ -28,7 +28,6 @@ class HomeCalendarInterviewService
   def home_calendar_event
     @home_calendar_event = HomeCalendarEvent.new
     @home_calendar_event.assign_attributes(
-      id: @interview.home_calendar_event_id,
       title: event_title,
       start: @interview.interview_start,
       end: @interview.interview_end,
@@ -55,12 +54,9 @@ class HomeCalendarInterviewService
     end
   end
 
-  def get_home_calendar_event_from_response(response)
-    event_from_api = HomeCalendarEvent.new
+  def get_event_id_from_response(response)
     JSON.parse(response.body).tap do |events|
-      event_from_api.assign_attributes(events.first)
+      @api_event_id = events.first.fetch('id', nil)
     end
-
-    @api_event = event_from_api if event_from_api.valid?
   end
 end
