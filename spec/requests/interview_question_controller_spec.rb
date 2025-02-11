@@ -80,7 +80,7 @@ RSpec.describe InterviewQuestionController, type: :request do
     end
 
     it 'redirects to the root path if the interview question is not found' do
-      patch '/interview/0', params: valid_attributes
+      patch '/interview_question/0', params: valid_attributes
 
       expect(response).to redirect_to(root_path)
     end

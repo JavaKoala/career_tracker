@@ -11,8 +11,8 @@
            dark:text-white
            border-blue-500">
     <%= render partial: 'layouts/dialog_components/header', locals: { title: t(:new_interview) } %>
-    <%= form_with model: @interview, url: interview_index_path do |form| %>
-      <%= render partial: '/interview/interview_form', locals: { form: form } %>
+    <%= form_with model: @interview, url: interviews_path do |form| %>
+      <%= render partial: '/interviews/interview_form', locals: { form: form } %>
       <%= render partial: 'layouts/form_components/form_button', locals: { form: form, button_text: t(:add) } %>
     <% end %>
   </dialog>

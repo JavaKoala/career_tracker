@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe InterviewController, type: :request do
+RSpec.describe InterviewsController, type: :request do
   let(:user) { create(:user) }
   let(:job_application) { create(:job_application, user: user) }
   let(:valid_attributes) do
@@ -19,17 +19,17 @@ RSpec.describe InterviewController, type: :request do
     allow(Current).to receive_messages(session: session, user: user)
   end
 
-  describe 'GET /interview/:id' do
+  describe 'GET /interviews/:id' do
     let(:interview) { create(:interview, job_application: job_application) }
 
     it 'redirects to the root path if the interview is not found' do
-      get '/interview/0'
+      get '/interviews/0'
 
       expect(response).to redirect_to(root_path)
     end
 
     it 'adds an error message if the job application is not found' do
-      get '/interview/0'
+      get '/interviews/0'
 
       expect(flash[:alert]).to eq(I18n.t(:interview_not_found))
     end
@@ -49,15 +49,15 @@ RSpec.describe InterviewController, type: :request do
     end
   end
 
-  describe 'POST /interview' do
+  describe 'POST /interviews' do
     it 'redirects to the root path if the job application is not found' do
-      post interview_index_path, params: { interview: { job_application_id: 0 } }
+      post interviews_path, params: { interview: { job_application_id: 0 } }
 
       expect(response).to redirect_to(root_path)
     end
 
     it 'adds an error message if the job application is not found' do
-      post interview_index_path, params: { interview: { job_application_id: 0 } }
+      post interviews_path, params: { interview: { job_application_id: 0 } }
 
       expect(flash[:alert]).to eq(I18n.t(:job_application_not_found))
     end
@@ -66,31 +66,31 @@ RSpec.describe InterviewController, type: :request do
       user1 = create(:user, email_address: 'test@test.com')
       job_application.update!(user: user1)
 
-      post interview_index_path, params: valid_attributes
+      post interviews_path, params: valid_attributes
 
       expect(response).to redirect_to(root_path)
     end
 
     it 'redirects to the job application page' do
-      post interview_index_path, params: valid_attributes
+      post interviews_path, params: valid_attributes
 
       expect(response).to redirect_to(job_application_path(job_application))
     end
 
     it 'creates an interview' do
       expect do
-        post interview_index_path, params: valid_attributes
+        post interviews_path, params: valid_attributes
       end.to change(Interview, :count).by(1)
     end
 
     it 'redirects to the job application if not valid' do
-      post interview_index_path, params: { interview: { job_application_id: job_application.id } }
+      post interviews_path, params: { interview: { job_application_id: job_application.id } }
 
       expect(response).to redirect_to(job_application_path(job_application))
     end
 
     it 'adds an error message if not valid' do
-      post interview_index_path, params: { interview: { job_application_id: job_application.id } }
+      post interviews_path, params: { interview: { job_application_id: job_application.id } }
 
       expect(flash[:alert]).to eq(
         "Interview start can't be blank, Interview end can't be blank, Location can't be blank"
@@ -98,15 +98,15 @@ RSpec.describe InterviewController, type: :request do
     end
   end
 
-  describe 'PATCH /interview/:id' do
+  describe 'PATCH /interviews/:id' do
     it 'redirects to the root path if the interview is not found' do
-      patch '/interview/0'
+      patch '/interviews/0'
 
       expect(response).to redirect_to(root_path)
     end
 
     it 'adds an error message if the interview is not found' do
-      patch '/interview/0'
+      patch '/interviews/0'
 
       expect(flash[:alert]).to eq(I18n.t(:interview_not_found))
     end
@@ -157,15 +157,15 @@ RSpec.describe InterviewController, type: :request do
     end
   end
 
-  describe 'DELETE /interview/:id' do
+  describe 'DELETE /interviews/:id' do
     it 'redirects to the root path if the interview is not found' do
-      delete '/interview/0'
+      delete '/interviews/0'
 
       expect(response).to redirect_to(root_path)
     end
 
     it 'adds an error message if the interview is not found' do
-      delete '/interview/0'
+      delete '/interviews/0'
 
       expect(flash[:alert]).to eq(I18n.t(:interview_not_found))
     end

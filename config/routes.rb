@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :companies, only: %i[index create show update]
-  resources :interview, only: %i[show create update destroy]
+  resources :interviews, only: %i[show create update destroy]
   resources :interview_question, only: %i[create update destroy]
   resources :interviewer, only: %i[create destroy]
   resource :session
