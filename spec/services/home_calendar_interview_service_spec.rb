@@ -83,6 +83,72 @@ RSpec.describe HomeCalendarInterviewService do
     end
   end
 
+  describe '#update_event' do
+    let(:interview) { create(:interview, home_calendar_event_id: 100) }
+    let(:service) { described_class.new }
+    let(:faraday_connection) { instance_double(Faraday::Connection, patch: true) }
+
+    context 'when the interview is found' do
+      it 'updates the event' do
+        service.update_event(interview.id)
+
+        expect(faraday_connection).to have_received(:patch).with(
+          "/api/v1/events/#{interview.home_calendar_event_id}",
+          service.instance_variable_get(:@home_calendar_event).to_json
+        )
+      end
+    end
+
+    context 'when the home_calendar_event_id is blank' do
+      it 'does not update the event' do
+        interview.update(home_calendar_event_id: nil)
+
+        service.update_event(interview.id)
+
+        expect(faraday_connection).not_to have_received(:patch)
+      end
+    end
+
+    context 'when the api event is not found' do
+      it 'does not update the event' do
+        allow(faraday_connection).to receive(:patch).and_raise(Faraday::ResourceNotFound)
+        allow(Rails.logger).to receive(:info)
+
+        service.update_event(interview.id)
+
+        expect(Rails.logger).to have_received(:info).with("Event not found for id: #{interview.home_calendar_event_id}")
+      end
+    end
+
+    context 'when the interview is not found' do
+      it 'does not update the event' do
+        service.update_event(0)
+
+        expect(faraday_connection).not_to have_received(:patch)
+      end
+    end
+
+    context 'when the home calendar is disabled' do
+      it 'does not update the event' do
+        allow(Rails.configuration.home_calendar).to receive(:[]).with(:enabled).and_return(false)
+
+        service.update_event(interview.id)
+
+        expect(faraday_connection).not_to have_received(:patch)
+      end
+    end
+
+    context 'when the home calendar event is invalid' do
+      it 'does not update the event' do
+        interview.update_attribute(:interview_start, nil) # rubocop:disable Rails/SkipsModelValidations
+
+        service.update_event(interview.id)
+
+        expect(faraday_connection).not_to have_received(:patch)
+      end
+    end
+  end
+
   describe '#delete_event' do
     let(:faraday_connection) { instance_double(Faraday::Connection, delete: true) }
 
