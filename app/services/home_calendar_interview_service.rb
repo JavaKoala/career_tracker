@@ -18,6 +18,14 @@ class HomeCalendarInterviewService
     @interview.update!(home_calendar_event_id: @api_event_id) if @api_event_id.present?
   end
 
+  def delete_event(event_id)
+    return if @faraday_connection.blank?
+
+    @faraday_connection.delete("/api/v1/events/#{event_id}")
+  rescue Faraday::ResourceNotFound
+    Rails.logger.info("Event not found for id: #{event_id}")
+  end
+
   private
 
   def interview(interview_id)
