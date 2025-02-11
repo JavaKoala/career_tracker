@@ -1,4 +1,4 @@
-class InterviewQuestionController < ApplicationController
+class InterviewQuestionsController < ApplicationController
   before_action :set_interview, only: %i[create update]
   before_action :set_interview_question, only: %i[update destroy]
 

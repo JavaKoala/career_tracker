@@ -19,12 +19,12 @@
     <% @interview.interview_questions.each do |question| %>
       <tr>
         <td class="p-3 border border-gray-300 dark:border-gray-700 dark:invert">
-          <%= render partial: '/interview_question/update_dialog', locals: { question: question } %>
+          <%= render partial: '/interview_questions/update_dialog', locals: { question: question } %>
         </td>
         <td class="p-3 border border-gray-300 dark:border-gray-700"><%= question.question %></td>
         <td class="p-3 border border-gray-300 dark:border-gray-700"><%= question.answer %></td>
         <td class="p-3 border border-gray-300 dark:border-gray-700 dark:invert">
-          <%= render partial: '/interview_question/delete_dialog', locals: { question: question } %>
+          <%= render partial: '/interview_questions/delete_dialog', locals: { question: question } %>
         </td>
     <% end %>
   </tbody>

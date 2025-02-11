@@ -17,11 +17,11 @@
 </div>
 
 <div class="mt-4">
-<%= render 'interview_question/add_dialog' %>
+<%= render 'interview_questions/add_dialog' %>
 </div>
 
 <% unless @interview.interview_questions.blank? %>
-  <%= render 'interview_question/interview_question_table' %>
+  <%= render 'interview_questions/interview_question_table' %>
 <% end %>
 
 <div class="mt-8">

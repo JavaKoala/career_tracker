@@ -12,7 +12,7 @@
            border-blue-500">
     <%= render partial: 'layouts/dialog_components/header', locals: { title: t(:update_interview_question) } %>
     <%= form_with model: question do |form| %>
-      <%= render partial: '/interview_question/interview_question_form', locals: { form: form } %>
+      <%= render partial: '/interview_questions/interview_question_form', locals: { form: form } %>
       <%= render partial: 'layouts/form_components/form_button', locals: { form: form, button_text: t(:update_question) } %>
     <% end %>
   </dialog>
