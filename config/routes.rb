@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :interviewers, only: %i[create destroy]
   resource :session
   resources :job_applications, only: %i[index show create update]
-  resources :position, only: %i[show create update]
+  resources :positions, only: %i[show create update]
   resources :people, only: %i[create update destroy]
 
   post '/position_apply', to: 'position_apply#create'

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe PositionController, type: :request do
+RSpec.describe PositionsController, type: :request do
   let(:user) { create(:user) }
   let(:position) { create(:position) }
   let(:position_params) do
@@ -21,7 +21,7 @@ RSpec.describe PositionController, type: :request do
     allow(Current).to receive_messages(session: session, user: user)
   end
 
-  describe 'GET /position/:id' do
+  describe 'GET /positions/:id' do
     it 'returns a success response' do
       get position_path(position)
 
@@ -29,13 +29,13 @@ RSpec.describe PositionController, type: :request do
     end
 
     it 'redirects on invalid position id' do
-      get '/position/0'
+      get '/positions/0'
 
       expect(response).to redirect_to root_path
     end
 
     it 'renders flash on invalid position id' do
-      get '/position/0'
+      get '/positions/0'
 
       expect(flash[:alert]).to eq(I18n.t(:position_not_found))
     end
@@ -43,19 +43,19 @@ RSpec.describe PositionController, type: :request do
 
   describe 'POST /position' do
     it 'returns a success response' do
-      post position_index_path, params: position_params
+      post positions_path, params: position_params
 
-      expect(response).to redirect_to("/position/#{Position.last.id}")
+      expect(response).to redirect_to("/positions/#{Position.last.id}")
     end
 
     it 'returns a success flash message' do
-      post position_index_path, params: position_params
+      post positions_path, params: position_params
 
       expect(flash[:notice]).to eq('Created position')
     end
 
     it 'creates a position' do # rubocop:disable RSpec/ExampleLength,RSpec/MultipleExpectations
-      post position_index_path, params: position_params
+      post positions_path, params: position_params
 
       position = Position.last
 
@@ -67,27 +67,27 @@ RSpec.describe PositionController, type: :request do
     end
 
     it 'redirects on invalid company params' do
-      post position_index_path, params: { position: { name: '', company_id: position.company.id } }
+      post positions_path, params: { position: { name: '', company_id: position.company.id } }
 
       expect(response).to redirect_to(company_path(position.company))
     end
 
     it 'renders flash on invalid company params' do
-      post position_index_path, params: { position: { name: '', company_id: position.company.id } }
+      post positions_path, params: { position: { name: '', company_id: position.company.id } }
 
       expect(flash[:alert]).to eq("Name can't be blank")
     end
   end
 
-  describe 'PATCH /position/:id' do
+  describe 'PATCH /positions/:id' do
     it 'redirects on invalid position id' do
-      patch '/position/0', params: position_params
+      patch '/positions/0', params: position_params
 
       expect(response).to redirect_to root_path
     end
 
     it 'renders flash on invalid position id' do
-      patch '/position/0', params: position_params
+      patch '/positions/0', params: position_params
 
       expect(flash[:alert]).to eq(I18n.t(:position_not_found))
     end

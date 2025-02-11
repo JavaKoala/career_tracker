@@ -11,8 +11,8 @@
            dark:text-white
            border-blue-500">
     <%= render partial: 'layouts/dialog_components/header', locals: { title: t(:new_position) } %>
-    <%= form_with model: @position, url: position_index_path do |form| %>
-      <%= render partial: 'position/position_form', locals: { form: form } %>
+    <%= form_with model: @position, url: positions_path do |form| %>
+      <%= render partial: 'positions/position_form', locals: { form: form } %>
       <%= render partial: 'layouts/form_components/form_button', locals: { form: form, button_text: t(:add_position) } %>
     <% end %>
   </dialog>

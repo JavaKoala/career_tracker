@@ -12,7 +12,7 @@
            border-blue-500">
     <%= render partial: 'layouts/dialog_components/header', locals: { title: "#{t(:update)} #{@position.name}" } %>
     <%= form_with model: @position do |form| %>
-      <%= render partial: 'position/position_form', locals: { form: form } %>
+      <%= render partial: 'positions/position_form', locals: { form: form } %>
       <%= render partial: 'layouts/form_components/form_button', locals: { form: form, button_text: t(:update) } %>
     <% end %>
   </dialog>

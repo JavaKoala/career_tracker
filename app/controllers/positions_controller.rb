@@ -1,4 +1,4 @@
-class PositionController < ApplicationController
+class PositionsController < ApplicationController
   before_action :set_position, only: %i[show update]
 
   def show
