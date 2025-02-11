@@ -16,7 +16,7 @@ RSpec.describe CreateHomeCalendarInterviewEventJob do
 
       described_class.perform_now(1)
 
-      expect(service).to have_received(:create_event)
+      expect(service).to have_received(:create_event).with(1)
     end
   end
 end

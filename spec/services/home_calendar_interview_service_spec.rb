@@ -10,7 +10,7 @@ RSpec.describe HomeCalendarInterviewService do
     end
 
     let(:interview) { create(:interview) }
-    let(:service) { described_class.new(interview.id) }
+    let(:service) { described_class.new }
     let(:home_calendar_post_response) do
       [{ id: 1, title: 'test title', start: Time.zone.now, end: Time.zone.now, color: 'blue', recurring_uuid: 'test' }]
     end
@@ -19,7 +19,7 @@ RSpec.describe HomeCalendarInterviewService do
 
     context 'when the interview is found' do
       it 'creates a new event' do
-        service.create_event
+        service.create_event(interview.id)
 
         expect(faraday_connection).to have_received(:post).with(
           '/api/v1/events',
@@ -28,7 +28,7 @@ RSpec.describe HomeCalendarInterviewService do
       end
 
       it 'updates the interview home calendar event id' do
-        service.create_event
+        service.create_event(interview.id)
 
         expect(interview.reload.home_calendar_event_id).to eq(1)
       end
@@ -38,7 +38,7 @@ RSpec.describe HomeCalendarInterviewService do
       it 'does not update the interview home calendar event id' do
         allow(JSON).to receive(:parse).and_return([{ id: nil }])
 
-        service.create_event
+        service.create_event(interview.id)
 
         expect(interview.reload.home_calendar_event_id).to be_nil
       end
@@ -46,8 +46,17 @@ RSpec.describe HomeCalendarInterviewService do
 
     context 'when the interview is not found' do
       it 'does not create a new event' do
-        service = described_class.new(0)
-        service.create_event
+        service.create_event(0)
+
+        expect(faraday_connection).not_to have_received(:post)
+      end
+    end
+
+    context 'when the interview already has a home calendar event id' do
+      it 'does not create a new event' do
+        interview.update(home_calendar_event_id: 1)
+
+        service.create_event(interview.id)
 
         expect(faraday_connection).not_to have_received(:post)
       end
@@ -57,7 +66,7 @@ RSpec.describe HomeCalendarInterviewService do
       it 'does not create a new event' do
         interview.update_attribute(:interview_start, nil) # rubocop:disable Rails/SkipsModelValidations
 
-        service.create_event
+        service.create_event(interview.id)
 
         expect(faraday_connection).not_to have_received(:post)
       end
@@ -67,7 +76,7 @@ RSpec.describe HomeCalendarInterviewService do
       it 'does not create a new event' do
         allow(Rails.configuration.home_calendar).to receive(:[]).with(:enabled).and_return(false)
 
-        service.create_event
+        service.create_event(interview.id)
 
         expect(faraday_connection).not_to have_received(:post)
       end

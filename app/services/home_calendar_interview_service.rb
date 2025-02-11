@@ -1,12 +1,16 @@
 class HomeCalendarInterviewService
-  def initialize(interview_id)
-    interview(interview_id)
-    home_calendar_event
+  def initialize
     faraday_connection
   end
 
-  def create_event
+  def create_event(interview_id)
     return if @faraday_connection.blank?
+
+    interview(interview_id)
+    return if @interview.blank? || @interview.home_calendar_event_id.present?
+
+    home_calendar_event
+    return if @home_calendar_event.invalid?
 
     response = @faraday_connection.post('/api/v1/events', @home_calendar_event.to_json)
     get_home_calendar_event_from_response(response)
@@ -22,8 +26,6 @@ class HomeCalendarInterviewService
   end
 
   def home_calendar_event
-    return if @interview.blank?
-
     @home_calendar_event = HomeCalendarEvent.new
     @home_calendar_event.assign_attributes(
       id: @interview.home_calendar_event_id,
@@ -40,7 +42,7 @@ class HomeCalendarInterviewService
   end
 
   def faraday_connection
-    if @home_calendar_event.blank? || @home_calendar_event.invalid? || !Rails.application.config.home_calendar[:enabled]
+    unless Rails.application.config.home_calendar[:enabled]
       Rails.logger.info('Home calendar event is invalid or disabled')
       return
     end
