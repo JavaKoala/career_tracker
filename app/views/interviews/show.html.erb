@@ -25,11 +25,11 @@
 <% end %>
 
 <div class="mt-8">
-  <%= render 'interviewer/add_dialog' %>
+  <%= render 'interviewers/add_dialog' %>
 </div>
 
 <% unless @interview.interviewers.blank? %>
   <div class="mt-4">
-    <%= render partial: 'interviewer/interviewer_table', locals: { interviewers: @interview.interviewers } %>
+    <%= render partial: 'interviewers/interviewer_table', locals: { interviewers: @interview.interviewers } %>
   </div>
 <% end %>

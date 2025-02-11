@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe InterviewerController, type: :request do
+RSpec.describe InterviewersController, type: :request do
   let(:interview) { create(:interview) }
   let(:valid_attributes) do
     {
@@ -20,16 +20,16 @@ RSpec.describe InterviewerController, type: :request do
     allow(Current).to receive_messages(session: session, user: interview.user)
   end
 
-  describe 'POST /interviewer' do
+  describe 'POST /interviewers' do
     context 'with valid parameters' do
       it 'creates a new interviewer' do
         expect do
-          post interviewer_index_path, params: valid_attributes
+          post interviewers_path, params: valid_attributes
         end.to change(Interviewer, :count).by(1)
       end
 
       it 'redirects to the interview path' do
-        post interviewer_index_path, params: valid_attributes
+        post interviewers_path, params: valid_attributes
 
         expect(response).to redirect_to(interview_path(interview))
       end
@@ -38,7 +38,7 @@ RSpec.describe InterviewerController, type: :request do
         person2 = create(:person, company: interview.company)
         valid_attributes[:interviewer][:person_id] = person2.id
 
-        post interviewer_index_path, params: valid_attributes
+        post interviewers_path, params: valid_attributes
 
         expect(Interviewer.last.person.id).to eq(person2.id)
       end
@@ -47,7 +47,7 @@ RSpec.describe InterviewerController, type: :request do
         valid_attributes[:interviewer][:person_id] = 0
 
         expect do
-          post interviewer_index_path, params: valid_attributes
+          post interviewers_path, params: valid_attributes
         end.to change(Interviewer, :count).by(1)
       end
     end
@@ -68,18 +68,18 @@ RSpec.describe InterviewerController, type: :request do
 
       it 'does not create a new interviewer' do
         expect do
-          post interviewer_index_path, params: invalid_attributes
+          post interviewers_path, params: invalid_attributes
         end.not_to change(Interviewer, :count)
       end
 
       it 'redirects to the interview path' do
-        post interviewer_index_path, params: invalid_attributes
+        post interviewers_path, params: invalid_attributes
 
         expect(response).to redirect_to(interview_path(interview))
       end
 
       it 'displays an error message' do
-        post interviewer_index_path, params: invalid_attributes
+        post interviewers_path, params: invalid_attributes
 
         expect(flash[:alert]).to eq("Person name can't be blank")
       end
@@ -99,13 +99,13 @@ RSpec.describe InterviewerController, type: :request do
       end
 
       it 'redirects to the root path' do
-        post interviewer_index_path, params: invalid_attributes
+        post interviewers_path, params: invalid_attributes
 
         expect(response).to redirect_to(root_path)
       end
 
       it 'displays an error message' do
-        post interviewer_index_path, params: invalid_attributes
+        post interviewers_path, params: invalid_attributes
 
         expect(flash[:alert]).to eq('Interview not found')
       end
@@ -119,20 +119,20 @@ RSpec.describe InterviewerController, type: :request do
       end
 
       it 'redirects to the root path' do
-        post interviewer_index_path, params: valid_attributes
+        post interviewers_path, params: valid_attributes
 
         expect(response).to redirect_to(root_path)
       end
 
       it 'displays an error message' do
-        post interviewer_index_path, params: valid_attributes
+        post interviewers_path, params: valid_attributes
 
         expect(flash[:alert]).to eq('Interview not found')
       end
     end
   end
 
-  describe 'DELETE /interviewer/:id' do
+  describe 'DELETE /interviewers/:id' do
     let(:person) { create(:person, company: interview.company) }
 
     context 'when the interview does not belong to the current user' do

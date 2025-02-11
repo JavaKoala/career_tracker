@@ -1,4 +1,4 @@
-class InterviewerController < ApplicationController
+class InterviewersController < ApplicationController
   before_action :set_interview, :set_person, :set_interviewer, only: %i[create]
 
   def create

@@ -11,7 +11,7 @@
            dark:text-white
            border-blue-500">
     <%= render partial: 'layouts/dialog_components/header', locals: { title: t(:new_interviewer) } %>
-    <%= form_with model: @interviewer, url: interviewer_index_path do |form| %>
+    <%= form_with model: @interviewer, url: interviewers_path do |form| %>
       <%= form.fields_for :person do |person_form| %>
         <%= render partial: 'person/person_form',
             locals: {
@@ -26,7 +26,7 @@
     <% end %>
 
     <h1 class="mt-4 text-xl"><%= t(:existing_interviewer) %></h1>
-    <%= form_with model: @interviewer, url: interviewer_index_path do |form| %>
+    <%= form_with model: @interviewer, url: interviewers_path do |form| %>
       <div>
         <ul class="mt-2">
           <li>
