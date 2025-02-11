@@ -21,11 +21,11 @@
 <%= render 'companies/position_list' %>
 
 <div class="mt-4">
-  <%= render 'person/add_dialog' %>
+  <%= render 'people/add_dialog' %>
 </div>
 
 <% unless @company.people.blank? %>
   <div class="mt-4">
-    <%= render partial: 'person/person_table', locals: { people: @company.people } %>
+    <%= render partial: 'people/people_table', locals: { people: @company.people } %>
   </div>
 <% end %>

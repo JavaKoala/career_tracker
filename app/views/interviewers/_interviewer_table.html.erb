@@ -19,7 +19,7 @@
     <% interviewers.each do |interviewer| %>
       <tr>
         <td class="p-3 border border-gray-300 dark:border-gray-700 dark:invert">
-          <%= render partial: 'person/update_dialog', locals: { person: interviewer.person } %>
+          <%= render partial: 'people/update_dialog', locals: { person: interviewer.person } %>
         </td>
         <td class="p-3 border border-gray-300 dark:border-gray-700"><%= interviewer.name %></td>
         <td class="p-3 border border-gray-300 dark:border-gray-700"><%= interviewer.email_address %></td>

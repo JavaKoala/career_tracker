@@ -11,8 +11,8 @@
            dark:text-white
            border-blue-500">
     <%= render partial: 'layouts/dialog_components/header', locals: { title: t(:new_person) } %>
-    <%= form_with model: @person, url: person_index_path do |form| %>
-      <%= render partial: 'person/person_form',
+    <%= form_with model: @person, url: people_path do |form| %>
+      <%= render partial: 'people/person_form',
           locals: {
             form: form,
             company: @person.company

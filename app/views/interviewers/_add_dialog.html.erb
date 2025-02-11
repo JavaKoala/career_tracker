@@ -13,7 +13,7 @@
     <%= render partial: 'layouts/dialog_components/header', locals: { title: t(:new_interviewer) } %>
     <%= form_with model: @interviewer, url: interviewers_path do |form| %>
       <%= form.fields_for :person do |person_form| %>
-        <%= render partial: 'person/person_form',
+        <%= render partial: 'people/person_form',
             locals: {
               form: person_form,
               company: @interviewer.interview.company

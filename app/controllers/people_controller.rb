@@ -1,4 +1,4 @@
-class PersonController < ApplicationController
+class PeopleController < ApplicationController
   before_action :set_company, only: %i[create]
   before_action :set_person, only: %i[update destroy]
 
