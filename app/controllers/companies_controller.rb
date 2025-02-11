@@ -1,4 +1,4 @@
-class CompanyController < ApplicationController
+class CompaniesController < ApplicationController
   before_action :set_company, only: %i[show update]
 
   def index
@@ -18,7 +18,7 @@ class CompanyController < ApplicationController
     if @company.save
       redirect_to company_path(@company), notice: t(:created_company)
     else
-      redirect_to company_index_path, alert: @company.errors.full_messages.join(', ')
+      redirect_to companies_path, alert: @company.errors.full_messages.join(', ')
     end
   end
 

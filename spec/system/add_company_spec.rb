@@ -9,7 +9,7 @@ RSpec.describe 'Add Company', type: :system do
 
   describe 'Adding a company' do
     it 'creates a new company' do
-      visit company_index_path
+      visit companies_path
 
       click_on 'New company'
 
@@ -24,7 +24,7 @@ RSpec.describe 'Add Company', type: :system do
     end
 
     it 'does not add company with blank name' do
-      visit company_index_path
+      visit companies_path
 
       click_on 'New company'
 

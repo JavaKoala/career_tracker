@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe CompanyController, type: :request do
+RSpec.describe CompaniesController, type: :request do
   let(:user) { create(:user) }
   let(:company) { create(:company) }
   let(:company_params) do
@@ -25,49 +25,49 @@ RSpec.describe CompanyController, type: :request do
     allow(Current).to receive_messages(session: session, user: user)
   end
 
-  describe 'GET /company' do
+  describe 'GET /companies' do
     it 'returns a success response' do
-      get '/company'
+      get companies_path
 
       expect(response).to be_successful
     end
   end
 
-  describe 'GET /company/:id' do
+  describe 'GET /companies/:id' do
     it 'returns a success response' do
-      get "/company/#{company.id}"
+      get company_path(company)
 
       expect(response).to be_successful
     end
 
     it 'redirects on invalid company id' do
-      get '/company/0'
+      get '/companies/0'
 
       expect(response).to redirect_to root_path
     end
 
     it 'renders flash on invalid company id' do
-      get '/company/0'
+      get '/companies/0'
 
       expect(flash[:alert]).to eq(I18n.t(:company_not_found))
     end
   end
 
-  describe 'POST /company' do
+  describe 'POST /companies' do
     it 'returns a success response' do
-      post '/company', params: company_params
+      post companies_path, params: company_params
 
-      expect(response).to redirect_to("/company/#{Company.last.id}")
+      expect(response).to redirect_to(company_path(Company.last))
     end
 
     it 'returns a success flash message' do
-      post '/company', params: company_params
+      post companies_path, params: company_params
 
       expect(flash[:notice]).to eq('Created company')
     end
 
     it 'creates a company' do # rubocop:disable RSpec/ExampleLength,RSpec/MultipleExpectations
-      post '/company', params: company_params
+      post companies_path, params: company_params
 
       company = Company.last
 
@@ -84,45 +84,45 @@ RSpec.describe CompanyController, type: :request do
     end
 
     it 'redirects on invalid company params' do
-      post '/company', params: { company: { name: '' } }
+      post companies_path, params: { company: { name: '' } }
 
-      expect(response).to redirect_to('/company')
+      expect(response).to redirect_to(companies_path)
     end
 
     it 'renders flash on invalid company params' do
-      post '/company', params: { company: { name: '' } }
+      post companies_path, params: { company: { name: '' } }
 
       expect(flash[:alert]).to eq("Name can't be blank")
     end
   end
 
-  describe 'PATCH /company/:id' do
+  describe 'PATCH /companies/:id' do
     it 'redirects on invalid company id' do
-      patch '/company/0', params: company_params
+      patch '/companies/0', params: company_params
 
       expect(response).to redirect_to root_path
     end
 
     it 'renders flash on invalid company id' do
-      patch '/company/0', params: company_params
+      patch '/companies/0', params: company_params
 
       expect(flash[:alert]).to eq(I18n.t(:company_not_found))
     end
 
     it 'returns a success response' do
-      patch "/company/#{company.id}", params: company_params
+      patch company_path(company), params: company_params
 
-      expect(response).to redirect_to("/company/#{company.id}")
+      expect(response).to redirect_to(company_path(company))
     end
 
     it 'returns a success flash message' do
-      patch "/company/#{company.id}", params: company_params
+      patch company_path(company), params: company_params
 
       expect(flash[:notice]).to eq('Updated company')
     end
 
     it 'updates company attributes' do # rubocop:disable RSpec/ExampleLength,RSpec/MultipleExpectations
-      patch "/company/#{company.id}", params: company_params
+      patch company_path(company), params: company_params
 
       company.reload
 
@@ -139,13 +139,13 @@ RSpec.describe CompanyController, type: :request do
     end
 
     it 'redirects on invalid company params' do
-      patch "/company/#{company.id}", params: { company: { name: '' } }
+      patch company_path(company), params: { company: { name: '' } }
 
-      expect(response).to redirect_to("/company/#{company.id}")
+      expect(response).to redirect_to(company_path(company))
     end
 
     it 'renders flash on invalid company params' do
-      patch "/company/#{company.id}", params: { company: { name: '' } }
+      patch company_path(company), params: { company: { name: '' } }
 
       expect(flash[:alert]).to eq("Name can't be blank")
     end
