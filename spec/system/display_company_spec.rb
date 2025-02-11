@@ -33,7 +33,7 @@ RSpec.describe 'Display Company', type: :system do
   it 'displays company through index' do
     company
 
-    visit company_index_path
+    visit companies_path
 
     expect(page).to have_content(company.name)
 

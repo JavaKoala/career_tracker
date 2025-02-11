@@ -1,0 +1,35 @@
+<%= render 'layouts/flash' %>
+<div class="flex justify-between">
+  <%= render 'interviews/update_dialog' %>
+  <%= render 'interviews/delete_dialog' %>
+</div>
+<div class="dark:text-white mt-2">
+  <h2 class="text-2xl">
+    <%= t(:interview_for) %>
+    <%= link_to "#{@interview.job_application.position_name} #{t(:at)} #{@interview.job_application.company_name}",
+                job_application_path(@interview.job_application),
+                class: 'underline'
+    %>
+  </h2>
+  <p><strong><%= t(:interview_start) %>:</strong> <%= @interview.interview_start %></p>
+  <p><strong><%= t(:interview_end) %>:</strong> <%= @interview.interview_end %></p>
+  <p><strong><%= t(:location) %>:</strong> <%= @interview.location %></p>
+</div>
+
+<div class="mt-4">
+<%= render 'interview_questions/add_dialog' %>
+</div>
+
+<% unless @interview.interview_questions.blank? %>
+  <%= render 'interview_questions/interview_question_table' %>
+<% end %>
+
+<div class="mt-8">
+  <%= render 'interviewers/add_dialog' %>
+</div>
+
+<% unless @interview.interviewers.blank? %>
+  <div class="mt-4">
+    <%= render partial: 'interviewers/interviewer_table', locals: { interviewers: @interview.interviewers } %>
+  </div>
+<% end %>

@@ -1,14 +1,14 @@
 Rails.application.routes.draw do
-  resources :interview, only: %i[show create update destroy]
-  resources :interview_question, only: %i[create update destroy]
-  resources :interviewer, only: %i[create destroy]
-  resource :session
-  resources :job_application, only: %i[index show create update]
-  resources :company, only: %i[index create show update]
-  resources :position, only: %i[show create update]
-  resources :person, only: %i[create update destroy]
-
+  resources :companies, only: %i[index create show update]
+  resources :interview_questions, only: %i[create update destroy]
+  resources :interviewers, only: %i[create destroy]
+  resources :interviews, only: %i[show create update destroy]
+  resources :job_applications, only: %i[index show create update]
+  resources :people, only: %i[create update destroy]
   post '/position_apply', to: 'position_apply#create'
+  resources :positions, only: %i[show create update]
+  resource :session
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

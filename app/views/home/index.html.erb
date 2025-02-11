@@ -3,7 +3,7 @@
 <div class="flex justify-between">
   <%= render 'new_job_application_form' %>
   <%= link_to t(:companies),
-    company_index_path,
+    companies_path,
     class: "rounded-md
             px-3.5 py-1
             bg-green-600
@@ -14,7 +14,7 @@
             cursor-pointer"
   %>
 </div>
-<%= render partial: 'job_application/applications_table',
+<%= render partial: 'job_applications/applications_table',
             locals: {
               applications: @active_applications,
               caption: t(:active_applications)
@@ -22,7 +22,7 @@
 %>
 <div class="mt-4">
   <%= link_to t(:all_applications),
-    job_application_index_path,
+    job_applications_path,
     class: "rounded-md
             px-3.5 py-1
             bg-blue-600

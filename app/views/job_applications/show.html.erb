@@ -1,0 +1,63 @@
+<%= render 'layouts/flash' %>
+<%= render 'job_applications/update_dialog' %>
+<div class="dark:text-white">
+  <h2 class="text-2xl">Job application</h2>
+  <p><strong><%= t(:source) %>:</strong> <%= @job_application.source %></p>
+  <p><strong><%= t(:applied_on) %>:</strong> <%= @job_application.applied %></p>
+  <% if @job_application.accepted.present? %>
+    <p><strong><%= t(:accepted_on) %>:</strong> <%= @job_application.accepted %></p>
+  <% end %>
+  <p><strong><%= t(:notes) %>:</strong> <%= simple_format(@job_application.note) %></p>
+
+  <% if @job_application.active? %>
+    <p><strong><%= t(:active) %></strong></p>
+  <% else %>
+    <p><strong><%= t(:inactive) %></strong></p>
+  <% end %>
+  
+  <div class="relative inline-block w-11 h-5">
+    <%= form_with model: @job_application do |form| %>
+      <%= form.check_box :active,
+                         onchange: 'this.form.submit();',
+                         class: 'peer appearance-none w-11 h-5 bg-slate-100 rounded-full checked:bg-blue-600 cursor-pointer transition-colors duration-300' %>
+      <%= form.label :active, "&nbsp;".html_safe, class: 'absolute top-0 left-0 w-5 h-5 bg-white rounded-full border border-slate-300 shadow-sm transition-transform duration-300 peer-checked:translate-x-6 peer-checked:border-blue-600 cursor-pointer' %>
+    <% end %>
+  </div>
+
+  <% if @job_application.cover_letter.attached? %>
+    <%= link_to rails_blob_path(@job_application.cover_letter, disposition: "attachment") do %>
+      <p>
+        <strong><%= t(:cover_letter) %>:</strong>
+        <span class="underline"><%= @job_application.cover_letter.filename.to_s %></span>
+      </p>
+    <% end %>
+  <% end %>
+
+  <div class="mt-2">
+    <%= render 'interviews/add_dialog' %>
+    <% unless @job_application.interviews.blank? %>
+      <%= render partial: 'interviews/interview_table',
+            locals: {
+              caption: t(:interviews),
+              interviews: @job_application.interviews
+            }
+      %>
+    <% end %>
+  </div>
+
+  <div class="mt-2 p-2">
+    <h3 class="text-xl"><%= link_to t(:position), position_path(@job_application.position), class: 'underline' %></h3>
+    <p><strong><%= t(:job_title) %>:</strong> <%= @job_application.position_name %></p>
+    <p><strong><%= t(:pay_start) %>:</strong> <%= @job_application.position_pay_start %></p>
+    <p><strong><%= t(:pay_end) %>:</strong> <%= @job_application.position_pay_end %></p>
+    <p><strong><%= t(:location) %>:</strong> <%= @job_application.position_location %></p>
+    <p><strong><%= t(:job_description) %>:</strong></p>
+    <%= @job_application.position_description %>
+  </div>
+  <div class="mt-2 p-2">
+    <h3 class="text-xl"><%= link_to t(:company), company_path(@job_application.position.company), class: 'underline' %></h3>
+    <p><strong><%= t(:company_name) %>:</strong> <%= @job_application.company_name %></p>
+    <p><strong><%= t(:friendly_name) %>:</strong> <%= @job_application.company_friendly_name %></p>
+    <p><strong><%= t(:company_description) %>:</strong> <%= simple_format(@job_application.company_description) %></p>
+  </div>
+</div>
