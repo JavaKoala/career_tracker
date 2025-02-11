@@ -63,4 +63,35 @@ RSpec.describe Interview, type: :model do
       end.not_to have_enqueued_job(CreateHomeCalendarInterviewEventJob)
     end
   end
+
+  describe '#delete_home_calendar_event' do
+    let(:interview) { create(:interview, home_calendar_event_id: 1) }
+
+    before do
+      ActiveJob::Base.queue_adapter = :test
+      allow(Rails.configuration.home_calendar).to receive(:[]).with(:enabled).and_return(true)
+    end
+
+    it 'enqueues a job to delete a home calendar event' do
+      expect do
+        interview.run_callbacks(:destroy) { true }
+      end.to have_enqueued_job(DeleteHomeCalendarInterviewEventJob).with(1)
+    end
+
+    it 'does not enqueue a job if home calendar is disabled' do
+      allow(Rails.configuration.home_calendar).to receive(:[]).with(:enabled).and_return(false)
+
+      expect do
+        interview.run_callbacks(:destroy) { true }
+      end.not_to have_enqueued_job(DeleteHomeCalendarInterviewEventJob)
+    end
+
+    it 'does not enqueue a job if home calendar event id is blank' do
+      interview = create(:interview)
+
+      expect do
+        interview.run_callbacks(:destroy) { true }
+      end.not_to have_enqueued_job(DeleteHomeCalendarInterviewEventJob)
+    end
+  end
 end

@@ -10,6 +10,7 @@ class Interview < ApplicationRecord
   validate :end_after_start
 
   after_create :create_home_calendar_event
+  after_destroy :delete_home_calendar_event
 
   def end_after_start
     return if interview_end.blank? || interview_start.blank?
@@ -21,5 +22,11 @@ class Interview < ApplicationRecord
     return unless Rails.application.config.home_calendar[:enabled]
 
     CreateHomeCalendarInterviewEventJob.perform_later(id)
+  end
+
+  def delete_home_calendar_event
+    return unless Rails.application.config.home_calendar[:enabled] && home_calendar_event_id.present?
+
+    DeleteHomeCalendarInterviewEventJob.perform_later(home_calendar_event_id)
   end
 end

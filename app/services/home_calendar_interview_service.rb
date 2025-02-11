@@ -1,17 +1,29 @@
 class HomeCalendarInterviewService
-  def initialize(interview_id)
-    interview(interview_id)
-    home_calendar_event
+  def initialize
     faraday_connection
   end
 
-  def create_event
+  def create_event(interview_id)
     return if @faraday_connection.blank?
 
-    response = @faraday_connection.post('/api/v1/events', @home_calendar_event.to_json)
-    get_home_calendar_event_from_response(response)
+    interview(interview_id)
+    return if @interview.blank? || @interview.home_calendar_event_id.present?
 
-    @interview.update!(home_calendar_event_id: @api_event.id) if @api_event.present?
+    home_calendar_event
+    return if @home_calendar_event.invalid?
+
+    response = @faraday_connection.post('/api/v1/events', @home_calendar_event.to_json)
+    get_event_id_from_response(response)
+
+    @interview.update!(home_calendar_event_id: @api_event_id) if @api_event_id.present?
+  end
+
+  def delete_event(event_id)
+    return if @faraday_connection.blank?
+
+    @faraday_connection.delete("/api/v1/events/#{event_id}")
+  rescue Faraday::ResourceNotFound
+    Rails.logger.info("Event not found for id: #{event_id}")
   end
 
   private
@@ -22,11 +34,8 @@ class HomeCalendarInterviewService
   end
 
   def home_calendar_event
-    return if @interview.blank?
-
     @home_calendar_event = HomeCalendarEvent.new
     @home_calendar_event.assign_attributes(
-      id: @interview.home_calendar_event_id,
       title: event_title,
       start: @interview.interview_start,
       end: @interview.interview_end,
@@ -40,7 +49,7 @@ class HomeCalendarInterviewService
   end
 
   def faraday_connection
-    if @home_calendar_event.blank? || @home_calendar_event.invalid? || !Rails.application.config.home_calendar[:enabled]
+    unless Rails.application.config.home_calendar[:enabled]
       Rails.logger.info('Home calendar event is invalid or disabled')
       return
     end
@@ -53,12 +62,9 @@ class HomeCalendarInterviewService
     end
   end
 
-  def get_home_calendar_event_from_response(response)
-    event_from_api = HomeCalendarEvent.new
+  def get_event_id_from_response(response)
     JSON.parse(response.body).tap do |events|
-      event_from_api.assign_attributes(events.first)
+      @api_event_id = events.first.fetch('id', nil)
     end
-
-    @api_event = event_from_api if event_from_api.valid?
   end
 end
