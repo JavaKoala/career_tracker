@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :interview_questions, only: %i[create update destroy]
   resources :interviewers, only: %i[create destroy]
   resource :session
-  resources :job_application, only: %i[index show create update]
+  resources :job_applications, only: %i[index show create update]
   resources :position, only: %i[show create update]
   resources :person, only: %i[create update destroy]
 

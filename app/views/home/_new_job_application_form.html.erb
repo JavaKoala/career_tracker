@@ -11,7 +11,7 @@
            dark:text-white
            border-blue-500">
     <%= render partial: 'layouts/dialog_components/header', locals: { title: t(:new_job_application) } %>
-    <%= form_with model: @new_application, url: job_application_index_path do |form| %>
+    <%= form_with model: @new_application, url: job_applications_path do |form| %>
       <h2 class="text-lg"><%= t(:position) %>:</h2>
       <div>
         <ul class="mt-2">

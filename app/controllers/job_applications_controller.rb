@@ -1,4 +1,4 @@
-class JobApplicationController < ApplicationController
+class JobApplicationsController < ApplicationController
   before_action :set_job_application, only: %i[show update]
 
   def index
