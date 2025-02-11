@@ -83,39 +83,6 @@ RSpec.describe HomeCalendarInterviewService do
     end
   end
 
-  describe '#delete_event' do
-    let(:faraday_connection) { instance_double(Faraday::Connection, delete: true) }
-
-    context 'when the faraday connection is present' do
-      it 'deletes the event' do
-        described_class.new.delete_event(1)
-
-        expect(faraday_connection).to have_received(:delete).with('/api/v1/events/1')
-      end
-    end
-
-    context 'when the faraday connection is not present' do
-      it 'does not delete the event' do
-        allow(Rails.configuration.home_calendar).to receive(:[]).with(:enabled).and_return(false)
-
-        described_class.new.delete_event(1)
-
-        expect(faraday_connection).not_to have_received(:delete)
-      end
-    end
-
-    context 'when the event is not found' do
-      it 'logs the error' do
-        allow(faraday_connection).to receive(:delete).and_raise(Faraday::ResourceNotFound)
-        allow(Rails.logger).to receive(:info)
-
-        described_class.new.delete_event(1)
-
-        expect(Rails.logger).to have_received(:info).with('Event not found for id: 1')
-      end
-    end
-  end
-
   describe '#update_event' do
     let(:interview) { create(:interview, home_calendar_event_id: 100) }
     let(:service) { described_class.new }
@@ -129,6 +96,16 @@ RSpec.describe HomeCalendarInterviewService do
           "/api/v1/events/#{interview.home_calendar_event_id}",
           service.instance_variable_get(:@home_calendar_event).to_json
         )
+      end
+    end
+
+    context 'when the home_calendar_event_id is blank' do
+      it 'does not update the event' do
+        interview.update(home_calendar_event_id: nil)
+
+        service.update_event(interview.id)
+
+        expect(faraday_connection).not_to have_received(:patch)
       end
     end
 
@@ -168,6 +145,39 @@ RSpec.describe HomeCalendarInterviewService do
         service.update_event(interview.id)
 
         expect(faraday_connection).not_to have_received(:patch)
+      end
+    end
+  end
+
+  describe '#delete_event' do
+    let(:faraday_connection) { instance_double(Faraday::Connection, delete: true) }
+
+    context 'when the faraday connection is present' do
+      it 'deletes the event' do
+        described_class.new.delete_event(1)
+
+        expect(faraday_connection).to have_received(:delete).with('/api/v1/events/1')
+      end
+    end
+
+    context 'when the faraday connection is not present' do
+      it 'does not delete the event' do
+        allow(Rails.configuration.home_calendar).to receive(:[]).with(:enabled).and_return(false)
+
+        described_class.new.delete_event(1)
+
+        expect(faraday_connection).not_to have_received(:delete)
+      end
+    end
+
+    context 'when the event is not found' do
+      it 'logs the error' do
+        allow(faraday_connection).to receive(:delete).and_raise(Faraday::ResourceNotFound)
+        allow(Rails.logger).to receive(:info)
+
+        described_class.new.delete_event(1)
+
+        expect(Rails.logger).to have_received(:info).with('Event not found for id: 1')
       end
     end
   end
