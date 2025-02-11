@@ -75,7 +75,7 @@ RSpec.describe Interview, type: :model do
     it 'enqueues a job to create a home calendar event' do
       expect do
         interview.run_callbacks(:update) { true }
-      end.to have_enqueued_job(UpdateHomeCalendarInterviewEventJob).with(interview.home_calendar_event_id)
+      end.to have_enqueued_job(UpdateHomeCalendarInterviewEventJob).with(interview.id)
     end
 
     it 'does not enqueue a job if home calendar is disabled' do

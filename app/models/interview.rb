@@ -34,6 +34,6 @@ class Interview < ApplicationRecord
   def update_home_calendar_event
     return unless Rails.application.config.home_calendar[:enabled] && home_calendar_event_id.present?
 
-    UpdateHomeCalendarInterviewEventJob.perform_later(home_calendar_event_id)
+    UpdateHomeCalendarInterviewEventJob.perform_later(id)
   end
 end
