@@ -37,6 +37,7 @@ gem 'image_processing', '~> 1.2'
 # Use delayed_job for background processing
 gem 'daemons', '~> 1.4'
 gem 'delayed_job_active_record', '~> 4.1'
+gem 'rush_job', git: 'https://github.com/JavaKoala/rush_job.git', branch: 'migrate-to-propshaft'
 
 # Use faraday for HTTP requests
 gem 'faraday', '~> 2.12'
