@@ -17,6 +17,8 @@ RSpec.describe 'Display Company', type: :system do
 
     click_on job_application.company_name
 
+    expect(page).to have_no_content('>')
+
     expect(page).to have_content(company.name)
     expect(page).to have_content(company.friendly_name)
     expect(page).to have_content(company.address1)
@@ -50,5 +52,20 @@ RSpec.describe 'Display Company', type: :system do
     click_on 'Companies'
 
     expect(page).to have_content(company.name)
+  end
+
+  it 'displays paginated companies' do
+    build_list(:company, 30).each do |company|
+      company.name = SecureRandom.uuid
+      company.save!
+    end
+
+    visit companies_path
+
+    expect(page).to have_content(Company.first.name)
+
+    click_on '>'
+
+    expect(page).to have_no_content(Company.first.name)
   end
 end

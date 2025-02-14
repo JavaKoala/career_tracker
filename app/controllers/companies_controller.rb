@@ -1,8 +1,9 @@
 class CompaniesController < ApplicationController
+  include Pagy::Backend
   before_action :set_company, only: %i[show update]
 
   def index
-    @companies = Company.all
+    @pagy, @companies = pagy(Company.all)
     @new_company = Company.new
   end
 
