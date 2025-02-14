@@ -42,6 +42,9 @@ gem 'rush_job', '~> 1.3'
 # Use faraday for HTTP requests
 gem 'faraday', '~> 2.12'
 
+# Use Pagy for pagination [https://ddnexus.github.io/pagy/]
+gem 'pagy', '~> 9.3'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri windows], require: 'debug/prelude'

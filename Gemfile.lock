@@ -415,6 +415,7 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   mysql2 (~> 0.5)
+  pagy (~> 9.3)
   propshaft
   puma (>= 5.0)
   rails (~> 8.0.1)
