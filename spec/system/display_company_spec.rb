@@ -68,4 +68,18 @@ RSpec.describe 'Display Company', type: :system do
 
     expect(page).to have_no_content(Company.first.name)
   end
+
+  it 'searches companies' do
+    company
+    create(:company, name: 'Another Company')
+
+    visit companies_path
+
+    fill_in 'name', with: 'Another'
+
+    click_on 'Search'
+
+    expect(page).to have_content('Another Company')
+    expect(page).to have_no_content(company.name)
+  end
 end
