@@ -1,6 +1,6 @@
 <div class="dark:text-white mt-2 md:mt-0">
   <%= form_with url: companies_path, method: :get do |form| %>
-    <%= form.label :name, "Find company: " %>
+    <%= form.label :name, "#{t(:find_company)}: " %>
     <%= form.search_field :name,
                           class: 'shadow
                                   appearance-none
@@ -14,15 +14,15 @@
                                   bg-inherit
                                   focus:border-blue-700'
     %>
-    <%= form.submit "Search", class: "rounded-md
-                                      px-3.5 py-1
-                                      mx-1
-                                      bg-green-600
-                                      hover:bg-green-500
-                                      text-white
-                                      inline-block
-                                      font-medium
-                                      cursor-pointer"
+    <%= form.submit t(:search), class: 'rounded-md
+                                        px-3.5 py-1
+                                        mx-1
+                                        bg-green-600
+                                        hover:bg-green-500
+                                        text-white
+                                        inline-block
+                                        font-medium
+                                        cursor-pointer'
     %>
   <% end %>
 </div>
