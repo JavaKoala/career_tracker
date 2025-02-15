@@ -3,7 +3,7 @@ class CompaniesController < ApplicationController
   before_action :set_company, only: %i[show update]
 
   def index
-    @pagy, @companies = pagy(Company.all)
+    @pagy, @companies = pagy(CompanySearchService.new(params).search)
     @new_company = Company.new
   end
 
