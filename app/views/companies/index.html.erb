@@ -1,8 +1,6 @@
 <%= render 'layouts/flash' %>
-<%= render 'companies/add_dialog' %>
-<%= form_with url: companies_path, method: :get do |form| %>
-  <%= form.label :name, "Find company: " %>
-  <%= form.search_field :name %>
-  <%= form.submit "Search" %>
-<% end %>
+<div class="md:flex md:justify-between">
+  <%= render 'companies/add_dialog' %>
+  <%= render 'companies/company_search' %>
+</div>
 <%= render 'companies/company_list' %>
