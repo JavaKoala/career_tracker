@@ -5,9 +5,13 @@ class CompanySearchService
 
   def search
     if @params[:name].present?
-      Company.where('name LIKE ?', "%#{@params[:name]}%")
+      Company.where('name LIKE ?', "%#{@params[:name]}%").order(name: direction)
     else
-      Company.all
+      Company.order(name: direction)
     end
+  end
+
+  def direction
+    %w[asc desc].include?(@params[:direction]) ? @params[:direction] : 'asc'
   end
 end
