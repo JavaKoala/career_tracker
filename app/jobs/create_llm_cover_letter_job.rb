@@ -1,5 +1,5 @@
 class CreateLlmCoverLetterJob < ApplicationJob
-  queue_as :cover_letter
+  queue_as :llm
 
   def perform(job_application_id)
     CoverLetterLlmService.new(job_application_id).create_cover_letter
