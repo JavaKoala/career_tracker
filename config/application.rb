@@ -44,5 +44,8 @@ module CareerTracker
 
     # Configuration for send to home calendar feature
     config.home_calendar = config_for(:home_calendar)
+
+    # Configuration for OpenAI API
+    config.openai = config_for(:openai)
   end
 end
