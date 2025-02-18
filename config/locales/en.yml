@@ -81,6 +81,7 @@ en:
   existing_interviewer: "Existing interviewer"
   find_company: "Find company"
   friendly_name: "Friendly name"
+  generate_cover_letter_with_ai: "Generate cover letter with AI"
   hello: "Hello world"
   hybrid: "Hybrid"
   inactive: "Inactive"

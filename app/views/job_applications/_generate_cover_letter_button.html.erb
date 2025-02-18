@@ -1,0 +1,14 @@
+<% if Rails.application.config.openai[:enabled] %>
+  <%= button_to t(:generate_cover_letter_with_ai),
+                llm_cover_letter_path,
+                params: { job_application_id: job_application.id },
+                class: 'mt-4 mb-6
+                        rounded-md
+                        px-3.5 py-1
+                        bg-blue-600
+                        hover:bg-blue-500
+                        text-white
+                        inline-block
+                        font-medium
+                        cursor-pointer' %>
+<% end %>
