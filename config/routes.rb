@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :interviewers, only: %i[create destroy]
   resources :interviews, only: %i[show create update destroy]
   resources :job_applications, only: %i[index show create update]
+  post '/llm_cover_letter', to: 'llm_cover_letter#create'
   resources :people, only: %i[create update destroy]
   post '/position_apply', to: 'position_apply#create'
   resources :positions, only: %i[show create update]

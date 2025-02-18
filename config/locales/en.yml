@@ -62,6 +62,7 @@ en:
   cover_letter: "Cover letter"
   created_company: "Created company"
   created_position: "Created position"
+  creating_cover_letter: "Creating cover letter"
   default: "default"
   delete: "Delete"
   delete_interviewer: "Delete interviewer"
