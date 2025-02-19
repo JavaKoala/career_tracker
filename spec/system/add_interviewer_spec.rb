@@ -16,6 +16,8 @@ RSpec.describe 'Add Interviewer', type: :system do
 
       click_on 'Add interviewer'
 
+      expect(page).to have_no_content('Existing interviewer')
+
       fill_in('Name', with: 'John Doe')
       fill_in('Email', with: 'jdoe@test.com')
 
@@ -36,6 +38,8 @@ RSpec.describe 'Add Interviewer', type: :system do
       expect(page).to have_no_content('Interviewers')
 
       click_on 'Add interviewer'
+
+      expect(page).to have_content('Existing interviewer')
 
       select(person.name, from: 'Interviewer')
 

@@ -25,20 +25,22 @@
       <%= render partial: 'layouts/form_components/form_button', locals: { form: form, button_text: t(:add_new) } %>
     <% end %>
 
-    <h1 class="mt-4 text-xl"><%= t(:existing_interviewer) %></h1>
-    <%= form_with model: @interviewer, url: interviewers_path do |form| %>
-      <div>
-        <ul class="mt-2">
-          <li>
-            <%= form.label :person_id, t(:interviewer) %>
-            <div class="dark:text-black">
-              <%= form.collection_select :person_id, @interviewer.interview.company.people, :id, :name %>
-            </div>
-          </li>
-          <%= form.hidden_field :interview_id, value: @interviewer.interview.id %>
-        </ul>
-      </div>
-      <%= render partial: 'layouts/form_components/form_button', locals: { form: form, button_text: t(:add_existing) } %>
+    <% if @interview.job_application.company.people.present? %>
+      <h1 class="mt-4 text-xl"><%= t(:existing_interviewer) %></h1>
+      <%= form_with model: @interviewer, url: interviewers_path do |form| %>
+        <div>
+          <ul class="mt-2">
+            <li>
+              <%= form.label :person_id, t(:interviewer) %>
+              <div class="dark:text-black">
+                <%= form.collection_select :person_id, @interviewer.interview.company.people, :id, :name %>
+              </div>
+            </li>
+            <%= form.hidden_field :interview_id, value: @interviewer.interview.id %>
+          </ul>
+        </div>
+        <%= render partial: 'layouts/form_components/form_button', locals: { form: form, button_text: t(:add_existing) } %>
+      <% end %>
     <% end %>
   </dialog>
 
