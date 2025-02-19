@@ -10,19 +10,24 @@ class CoverLetterLlmService
     cover_letter = llm_completions
     cover_letter_io = StringIO.new(cover_letter)
 
-    @job_application.cover_letter.attach(io: cover_letter_io, filename: 'cover_letter.txt',
+    @job_application.cover_letter.attach(io: cover_letter_io,
+                                         filename: "ai_#{@job_application.company_name}_cover_letter.txt",
                                          content_type: 'text/plain')
 
     cover_letter_io.close
   end
 
   def cover_letter_prompt
-    "Generate a cover letter for the job title of #{@job_application&.position_name}"
+    <<~PROMPT
+      You are applying for a #{@job_application&.position_name} position at #{@job_application&.company_name}.
+      The job description is as follows: #{@job_application&.position_description}.
+      Please write a cover letter that explains why you are a good fit for this position.
+    PROMPT
   end
 
   def llm_completions
     response = @client.completions(parameters: { model: Rails.application.config.openai[:model],
-                                                 prompt: cover_letter_prompt, max_tokens: 500 })
+                                                 prompt: cover_letter_prompt, max_tokens: 1000 })
     response['choices']&.first&.dig('text')
   end
 end
