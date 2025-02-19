@@ -51,14 +51,16 @@ RSpec.describe CoverLetterLlmService do
       cover_letter_llm_service = described_class.new(job_application.id)
       prompt = cover_letter_llm_service.cover_letter_prompt
 
-      expect(prompt).to eq('Generate a cover letter for the job title of Software Engineer')
+      expect(prompt).to match(
+        "^You are applying for a #{job_application.position_name} position at #{job_application.company_name}."
+      )
     end
 
     it 'returns a default prompt when the job application is not present' do
       cover_letter_llm_service = described_class.new(nil)
       prompt = cover_letter_llm_service.cover_letter_prompt
 
-      expect(prompt).to eq('Generate a cover letter for the job title of ')
+      expect(prompt).to match('You are applying for a  position at .')
     end
   end
 
