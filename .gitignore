@@ -47,3 +47,6 @@
 
 # Ignore home_calendar.yml
 /config/home_calendar.yml
+
+# Ignore openai.yml
+/config/openai.yml
