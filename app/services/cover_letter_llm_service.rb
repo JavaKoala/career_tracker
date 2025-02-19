@@ -10,7 +10,8 @@ class CoverLetterLlmService
     cover_letter = llm_completions
     cover_letter_io = StringIO.new(cover_letter)
 
-    @job_application.cover_letter.attach(io: cover_letter_io, filename: 'cover_letter.txt',
+    @job_application.cover_letter.attach(io: cover_letter_io,
+                                         filename: "ai_#{@job_application.company_name}_cover_letter.txt",
                                          content_type: 'text/plain')
 
     cover_letter_io.close
