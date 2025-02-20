@@ -66,7 +66,7 @@ RSpec.describe 'Display Company', type: :system do
 
     click_on '>'
 
-    expect(page).to have_no_content(Company.first.name)
+    expect(page).to have_no_content(Company.order(name: :asc).first.name)
   end
 
   it 'searches companies' do

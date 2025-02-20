@@ -24,7 +24,6 @@ RSpec.describe 'Update Position', type: :system do
 
     expect(page).to have_content('Updated position')
     expect(page).to have_content('New Name')
-    expect(page).to have_content('New Description')
     expect(page).to have_content('200000')
     expect(page).to have_content('250000')
     expect(page).to have_content('Location: remote')

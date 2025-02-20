@@ -17,9 +17,9 @@
                   sm:items-center
                   sm:gap-4">
         <div class="inline">
-          <%= link_to t(:sign_out),
+          <%= button_to t(:sign_out),
               session_path,
-              data: { 'turbo-method': :delete},
+              method: :delete,
               class: "rounded-md
                       px-3.5 py-1
                       bg-blue-600
