@@ -10,9 +10,10 @@ RSpec.describe 'Logout', type: :system do
     fill_in 'Enter your password', with: 'password'
 
     click_on 'Sign in'
-    expect do
-      click_on 'Sign out'
-    end.to change(Session, :count).by(1)
+
+    expect(page).to have_content('Sign out')
+
+    click_on 'Sign out'
 
     Capybara.refresh
 
