@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_02_07_194756) do
+ActiveRecord::Schema[8.0].define(version: 2025_02_22_133354) do
   create_table "action_text_rich_texts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.text "body", size: :long
@@ -123,6 +123,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_07_194756) do
     t.index ["user_id"], name: "index_job_applications_on_user_id"
   end
 
+  create_table "next_steps", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.text "description"
+    t.datetime "due"
+    t.bigint "job_application_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["job_application_id"], name: "index_next_steps_on_job_application_id"
+  end
+
   create_table "people", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.string "email_address"
@@ -168,6 +177,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_07_194756) do
   add_foreign_key "interviews", "job_applications"
   add_foreign_key "job_applications", "positions"
   add_foreign_key "job_applications", "users"
+  add_foreign_key "next_steps", "job_applications"
   add_foreign_key "people", "companies"
   add_foreign_key "positions", "companies"
   add_foreign_key "sessions", "users"

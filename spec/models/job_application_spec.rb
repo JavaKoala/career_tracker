@@ -4,6 +4,7 @@ RSpec.describe JobApplication, type: :model do
   it { is_expected.to belong_to(:position) }
   it { is_expected.to belong_to(:user) }
   it { is_expected.to have_many(:interviews).dependent(:destroy) }
+  it { is_expected.to have_many(:next_steps).dependent(:destroy) }
 
   it { is_expected.to have_one_attached(:cover_letter) }
 
