@@ -11,8 +11,8 @@
                 class: 'underline'
     %>
   </h2>
-  <p><strong><%= t(:interview_start) %>:</strong> <%= @interview.interview_start %></p>
-  <p><strong><%= t(:interview_end) %>:</strong> <%= @interview.interview_end %></p>
+  <p><strong><%= t(:interview_start) %>:</strong> <%= @interview.interview_start.strftime('%Y-%m-%d %H:%M') %></p>
+  <p><strong><%= t(:interview_end) %>:</strong> <%= @interview.interview_end.strftime('%Y-%m-%d %H:%M') %></p>
   <p><strong><%= t(:location) %>:</strong> <%= @interview.location %></p>
 </div>
 

@@ -16,8 +16,8 @@ RSpec.describe 'Display Interview', type: :system do
 
     click_on "job-application-interview-#{interview.id}"
 
-    expect(page).to have_content(interview.interview_start)
-    expect(page).to have_content(interview.interview_end)
+    expect(page).to have_content(interview.interview_start.strftime('%Y-%m-%d %H:%M'))
+    expect(page).to have_content(interview.interview_end.strftime('%Y-%m-%d %H:%M'))
     expect(page).to have_content(interview.location)
   end
 end
