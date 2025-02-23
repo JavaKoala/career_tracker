@@ -125,6 +125,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_22_133354) do
 
   create_table "next_steps", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.text "description"
+    t.boolean "done", default: false, null: false
     t.datetime "due"
     t.bigint "job_application_id", null: false
     t.datetime "created_at", null: false
