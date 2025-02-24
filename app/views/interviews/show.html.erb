@@ -24,6 +24,17 @@
   <%= render 'interview_questions/add_dialog' %>
 </div>
 
+<% unless @interview.job_application.next_steps.blank? %>
+  <div class="mt-4">
+    <%= render partial: 'next_steps/next_steps_table',
+              locals: {
+                caption: 'Next Steps',
+                next_steps: @interview.job_application.next_steps
+              }
+    %>
+  </div>
+<% end %>
+
 <% unless @interview.interviewers.blank? %>
   <div class="mt-4">
     <%= render partial: 'interviewers/interviewer_table', locals: { interviewers: @interview.interviewers } %>

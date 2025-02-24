@@ -1,0 +1,28 @@
+<table class="mt-4
+              border
+              border-gray-300
+              dark:border-gray-700
+              dark:text-white
+              w-full xl:w-2/3">
+  <caption class="text-lg">
+    <%= caption %>
+  </caption>
+  <thead>
+    <tr class="border-b-4 border-gray-300 dark:border-gray-700">
+      <th class="p-2 border border-gray-300 dark:border-gray-700"><%= t(:done) %></th>
+      <th class="p-2 border border-gray-300 dark:border-gray-700"><%= t(:description) %></th>
+      <th class="p-2 border border-gray-300 dark:border-gray-700">EDIT</th>
+      <th class="p-2 border border-gray-300 dark:border-gray-700">DELETE</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% next_steps.each do |next_step| %>
+      <tr>
+        <td class="p-3 border border-gray-300 dark:border-gray-700"><%= next_step.done %></td>
+        <td class="p-3 border border-gray-300 dark:border-gray-700"><%= next_step.description %></td>
+        <td class="p-3 border border-gray-300 dark:border-gray-700">EDIT</td>
+        <td class="p-3 border border-gray-300 dark:border-gray-700">DELETE</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
