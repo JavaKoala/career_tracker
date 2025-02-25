@@ -5,15 +5,11 @@ class NextStepsController < ApplicationController
     redirect_to root_path, alert: t(:job_application_not_found) and return if @job_application.blank?
 
     next_step = NextStep.new(next_step_params)
+    @next_step_errors = next_step.errors.full_messages.join(', ') unless next_step.save
+    @next_step = NextStep.new(job_application: @job_application)
 
-    if next_step.save
-      @next_step = NextStep.new(job_application: @job_application)
-
-      respond_to do |format|
-        format.turbo_stream
-      end
-    else
-      redirect_to job_application_path(@job_application), alert: next_step.errors.full_messages.join(', ')
+    respond_to do |format|
+      format.turbo_stream
     end
   end
 

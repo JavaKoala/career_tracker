@@ -6,6 +6,10 @@
   }
 %>
 
+<%= turbo_stream.replace 'next_steps_error_frame',
+  partial: 'next_steps/next_steps_error'
+%>
+
 <%= turbo_stream.replace 'next_steps_add_dialog_frame',
   partial: 'next_steps/add_dialog'
 %>

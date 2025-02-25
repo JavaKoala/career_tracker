@@ -1,0 +1,5 @@
+<%= turbo_frame_tag 'next_steps_error_frame' do %>
+  <% if @next_step_errors.present? %>
+    <p class="mb-2 text-red-500"><%= @next_step_errors %></p>
+  <% end %>
+<% end %>

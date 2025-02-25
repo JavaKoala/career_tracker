@@ -74,13 +74,13 @@ RSpec.describe NextStepsController, type: :request do
       it 'renders a success' do
         post next_steps_path(format: :turbo_stream), params: invalid_attributes
 
-        expect(response).to redirect_to(job_application_path(job_application))
+        expect(response).to have_http_status(:success)
       end
 
-      it 'sets a flash alert message' do
-        post next_steps_path(format: :turbo_stream), params: invalid_attributes
-
-        expect(flash[:alert]).to eq("Description can't be blank")
+      it 'does not create a new next step' do
+        expect do
+          post next_steps_path, params: invalid_attributes
+        end.not_to change(NextStep, :count)
       end
     end
   end
