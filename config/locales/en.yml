@@ -112,6 +112,7 @@ en:
   new_person: "New person"
   new_position: "New position"
   next_steps: "Next steps"
+  next_step_not_found: "Next step not found"
   notes: "Notes"
   office: "Office"
   pay_end: "Pay end"
