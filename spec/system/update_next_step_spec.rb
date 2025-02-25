@@ -26,4 +26,18 @@ RSpec.describe 'Update Next Step', type: :system do
       expect(page).to have_no_content("Description can't be blank")
     end
   end
+
+  describe 'marking the next step as done' do
+    it 'changing the done status of a next step' do
+      visit job_application_path(next_step.job_application)
+
+      find_by_id("next-step-#{next_step.id}-done").click_on
+
+      expect(next_step.reload.done).to be(false)
+
+      find_by_id("next-step-#{next_step.id}-done").click_on
+
+      expect(next_step.reload.done).to be(true)
+    end
+  end
 end
