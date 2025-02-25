@@ -7,8 +7,9 @@ class NextStepsController < ApplicationController
     next_step = NextStep.new(next_step_params)
 
     if next_step.save
+      @next_step = NextStep.new(job_application: @job_application)
+
       respond_to do |format|
-        @next_step = NextStep.new(job_application: @job_application)
         format.turbo_stream
       end
     else
