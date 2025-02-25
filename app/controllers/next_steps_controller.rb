@@ -1,6 +1,6 @@
 class NextStepsController < ApplicationController
   before_action :set_job_application, only: %i[create]
-  before_action :set_next_step, only: %i[update]
+  before_action :set_next_step, only: %i[update destroy]
 
   def create
     redirect_to root_path, alert: t(:job_application_not_found) and return if @job_application.blank?
@@ -20,6 +20,17 @@ class NextStepsController < ApplicationController
     unless @next_step.update(next_step_params.except(:job_application_id))
       @next_step_errors = @next_step.errors.full_messages.join(', ')
     end
+
+    respond_to do |format|
+      format.turbo_stream
+    end
+  end
+
+  def destroy
+    redirect_to root_path, alert: t(:next_step_not_found) and return if @next_step.blank?
+
+    @job_application = @next_step.job_application
+    @next_step.destroy
 
     respond_to do |format|
       format.turbo_stream
