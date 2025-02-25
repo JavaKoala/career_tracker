@@ -175,4 +175,49 @@ RSpec.describe NextStepsController, type: :request do
       end
     end
   end
+
+  describe 'DELETE /next_steps/:id' do
+    context 'when the next step is not found' do
+      it 'redirects to the root path' do
+        delete next_step_path(0, format: :turbo_stream)
+
+        expect(response).to redirect_to(root_path)
+      end
+
+      it 'sets a flash alert message' do
+        delete next_step_path(0, format: :turbo_stream)
+
+        expect(flash[:alert]).to eq(I18n.t(:next_step_not_found))
+      end
+    end
+
+    context 'when the next step belongs to a different user' do
+      it 'redirects to the root path' do
+        next_step = create(:next_step, job_application: job_application)
+        job_application.update(user: create(:user, email_address: 'test1@test.com'))
+
+        delete next_step_path(next_step, format: :turbo_stream)
+
+        expect(response).to redirect_to(root_path)
+      end
+    end
+
+    context 'when the next step can be deleted' do
+      it 'destroys the requested next step' do
+        next_step = create(:next_step, job_application: job_application)
+
+        expect do
+          delete next_step_path(next_step, format: :turbo_stream)
+        end.to change(NextStep, :count).by(-1)
+      end
+
+      it 'returns a success response' do
+        next_step = create(:next_step, job_application: job_application)
+
+        delete next_step_path(next_step, format: :turbo_stream)
+
+        expect(response).to have_http_status(:success)
+      end
+    end
+  end
 end
