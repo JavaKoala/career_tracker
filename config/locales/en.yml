@@ -40,6 +40,7 @@ en:
   add_interview: 'Add interview'
   add_interviewer: 'Add interviewer'
   add_new: "Add new"
+  add_next_step: "Add next step"
   add_person: "Add person"
   add_position: 'Add position'
   add_question: 'Add question'
@@ -74,6 +75,8 @@ en:
   delete_interview: "Delete interview"
   delete_question: "Delete question"
   description: "Description"
+  done: "Done"
+  due: "Due"
   edit: "Edit"
   email_address: "Email address"
   enter_email: "Enter your email address"
@@ -108,6 +111,7 @@ en:
   new_job_application: "New job application"
   new_person: "New person"
   new_position: "New position"
+  next_steps: "Next steps"
   notes: "Notes"
   office: "Office"
   pay_end: "Pay end"
