@@ -21,7 +21,23 @@
       <tbody>
         <% next_steps.each do |next_step| %>
           <tr>
-            <td class="p-3 border border-gray-300 dark:border-gray-700"><%= next_step.done %></td>
+            <td class="p-3 border border-gray-300 dark:border-gray-700 dark:invert">
+              <% if next_step.done? %>
+                <%= button_to image_tag('check2-circle.svg', alt: t(:done)),
+                              next_step_path(next_step, format: :turbo_stream),
+                              params: { next_step: { done: false } },
+                              method: :patch,
+                              form: { id: "next-step-#{next_step.id}-done" }
+                %>
+              <% else %>
+                <%= button_to image_tag('circle.svg', alt: t(:not_done)),
+                              next_step_path(next_step, format: :turbo_stream),
+                              params: { next_step: { done: true } },
+                              method: :patch,
+                              form: { id: "next-step-#{next_step.id}-done" }
+                %>
+              <% end %>
+            </td>
             <td class="p-3 border border-gray-300 dark:border-gray-700"><%= next_step.description %></td>
             <td class="p-3 border border-gray-300 dark:border-gray-700"><%= next_step.due&.strftime('%Y-%m-%d %H:%M') %></td>
             <td class="p-3 border border-gray-300 dark:border-gray-700 dark:invert">
