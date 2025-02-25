@@ -40,4 +40,24 @@ RSpec.describe 'Add Next Step', type: :system do
       end.to change(NextStep, :count).by(1)
     end
   end
+
+  describe 'Adding a Next Step Through Job Application' do
+    it 'creates a new next step' do
+      visit job_application_path(job_application)
+
+      expect(page).to have_no_content('Next Steps')
+
+      click_on 'Add next step'
+
+      fill_in('Description', with: 'Send follow-up email')
+      fill_in('Due', with: "#{Time.zone.today.strftime('%m/%d/%Y')}\t02:00PM")
+
+      expect do
+        click_on 'Add'
+
+        expect(page).to have_content('Next steps')
+        expect(page).to have_content('Send follow-up email')
+      end.to change(NextStep, :count).by(1)
+    end
+  end
 end
