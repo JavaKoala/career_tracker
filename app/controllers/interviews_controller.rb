@@ -8,6 +8,7 @@ class InterviewsController < ApplicationController
     else
       @interviewer = Interviewer.new(interview: @interview, person: Person.new)
       @interview_question = InterviewQuestion.new(interview: @interview)
+      @next_step = NextStep.new(job_application: @interview.job_application)
     end
   end
 

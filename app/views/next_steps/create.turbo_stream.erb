@@ -1,0 +1,11 @@
+<%= turbo_stream.replace 'next_steps_frame', 
+  partial: 'next_steps/next_steps_table',
+  locals: {
+    caption: t(:next_steps),
+    next_steps: @job_application.next_steps
+  }
+%>
+
+<%= turbo_stream.replace 'next_steps_add_dialog_frame',
+  partial: 'next_steps/add_dialog'
+%>

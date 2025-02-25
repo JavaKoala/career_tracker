@@ -5,6 +5,7 @@ class Interview < ApplicationRecord
 
   delegate :user, to: :job_application
   delegate :company, to: :job_application
+  delegate :next_steps, to: :job_application
 
   validates :interview_start, :interview_end, :location, presence: true
   validate :end_after_start

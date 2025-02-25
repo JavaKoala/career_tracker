@@ -1,0 +1,25 @@
+<%= turbo_frame_tag 'next_steps_add_dialog_frame' do %>
+  <div data-controller="dialog">
+    <dialog
+      data-dialog-target="dialog"
+      class="w-full
+            md:w-1/2
+            p-4
+            rounded-lg
+            shadow-xl
+            border-2
+            dark:bg-black
+            dark:text-white
+            border-blue-500">
+      <%= render partial: 'layouts/dialog_components/header', locals: { title: t(:add_next_step) } %>
+      <%= form_with model: @next_step,
+                    url: next_steps_path,
+                    format: :turbo_stream do |form| %>
+        <%= render partial: 'next_steps/next_step_form', locals: { form: form, job_application_id: @next_step.job_application_id } %>
+        <%= render partial: 'layouts/form_components/form_button', locals: { form: form, button_text: t(:add) } %>
+      <% end %>
+    </dialog>
+
+    <%= render partial: 'layouts/dialog_components/open_button', locals: { button_text: t(:add_next_step) } %>
+  </div>
+<% end %>

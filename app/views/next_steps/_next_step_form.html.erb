@@ -1,0 +1,19 @@
+<ul>
+  <%= render partial: 'layouts/form_components/text_field',
+        locals: {
+          form: form,
+          field: :description,
+          field_name: t(:description),
+          required: true
+        }
+  %>
+  <%= render partial: 'layouts/form_components/datetime_field',
+        locals: {
+          form: form,
+          field: :due,
+          field_name: t(:due),
+          required: false
+        }
+  %>
+  <%= form.hidden_field :job_application_id, value: job_application_id %>
+</ul>
