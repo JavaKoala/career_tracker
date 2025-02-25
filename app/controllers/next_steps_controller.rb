@@ -29,6 +29,7 @@ class NextStepsController < ApplicationController
   def destroy
     redirect_to root_path, alert: t(:next_step_not_found) and return if @next_step.blank?
 
+    @job_application = @next_step.job_application
     @next_step.destroy
 
     respond_to do |format|
