@@ -12,6 +12,7 @@ RSpec.describe Interview, type: :model do
   it { expect(described_class.new).to delegate_method(:user).to(:job_application) }
   it { expect(described_class.new).to delegate_method(:company).to(:job_application) }
   it { expect(described_class.new).to delegate_method(:next_steps).to(:job_application) }
+  it { expect(described_class.new).to delegate_method(:next_steps_ordered).to(:job_application) }
 
   describe '#end_after_start' do
     let(:job_application) { create(:job_application) }
