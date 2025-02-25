@@ -105,13 +105,13 @@ RSpec.describe NextStepsController, type: :request do
         create(:job_application, position: job_application.position, user: job_application.user)
       end
 
-      it 'redirects to root path' do
+      it 'does not update the job application' do
         valid_attributes[:next_step][:job_application_id] = job_application1.id
         next_step = create(:next_step, job_application: job_application)
 
         patch next_step_path(next_step, format: :turbo_stream), params: valid_attributes
 
-        expect(response).to redirect_to(root_path)
+        expect(next_step.reload.job_application_id).to eq(job_application.id)
       end
     end
 

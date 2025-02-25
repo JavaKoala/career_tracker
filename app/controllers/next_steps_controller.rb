@@ -1,5 +1,5 @@
 class NextStepsController < ApplicationController
-  before_action :set_job_application, only: %i[create update]
+  before_action :set_job_application, only: %i[create]
   before_action :set_next_step, only: %i[update]
 
   def create
@@ -17,7 +17,9 @@ class NextStepsController < ApplicationController
   def update
     redirect_to root_path, alert: t(:next_step_not_found) and return if @next_step.blank?
 
-    @next_step_errors = @next_step.errors.full_messages.join(', ') unless @next_step.update(next_step_params)
+    unless @next_step.update(next_step_params.except(:job_application_id))
+      @next_step_errors = @next_step.errors.full_messages.join(', ')
+    end
 
     respond_to do |format|
       format.turbo_stream
@@ -37,8 +39,6 @@ class NextStepsController < ApplicationController
 
   def set_next_step
     next_step = NextStep.find_by(id: params[:id])
-    return if next_step.blank? || @job_application.blank?
-
-    @next_step = next_step if next_step.job_application == @job_application
+    @next_step = next_step if next_step&.user == Current.user
   end
 end
