@@ -30,4 +30,15 @@ RSpec.describe JobApplication, type: :model do
 
     expect(job_application.applied).to eq(Date.current)
   end
+
+  describe '#next_steps_ordered' do
+    it 'orders the next steps by done and due' do
+      job_application = create(:job_application)
+      next_step1 = create(:next_step, job_application: job_application, done: false, due: 2.days.from_now)
+      next_step2 = create(:next_step, job_application: job_application, done: true, due: 1.day.from_now)
+      next_step3 = create(:next_step, job_application: job_application, done: false, due: 3.days.from_now)
+
+      expect(job_application.next_steps_ordered).to eq([next_step1, next_step3, next_step2])
+    end
+  end
 end

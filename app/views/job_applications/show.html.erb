@@ -48,7 +48,7 @@
     <% end %>
   </div>
 
-  <%= render partial: 'next_steps/component', locals: { next_steps: @job_application.next_steps } %>
+  <%= render partial: 'next_steps/component', locals: { next_steps: @job_application.next_steps_ordered } %>
 
   <div class="mt-2 p-2">
     <h3 class="text-xl"><%= link_to t(:position), position_path(@job_application.position), class: 'underline' %></h3>

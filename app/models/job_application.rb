@@ -21,4 +21,8 @@ class JobApplication < ApplicationRecord
   delegate :description, to: :company, prefix: true
 
   before_create { self.applied = Date.current }
+
+  def next_steps_ordered
+    next_steps.order(done: :asc, due: :asc)
+  end
 end

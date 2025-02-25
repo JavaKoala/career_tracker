@@ -24,7 +24,7 @@
   <%= render 'interview_questions/add_dialog' %>
 </div>
 
-<%= render partial: 'next_steps/component', locals: { next_steps: @interview.next_steps } %>
+<%= render partial: 'next_steps/component', locals: { next_steps: @interview.next_steps_ordered } %>
 
 <% unless @interview.interviewers.blank? %>
   <div class="mt-4">
