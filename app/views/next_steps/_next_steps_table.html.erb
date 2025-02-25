@@ -14,7 +14,7 @@
           <th class="p-2 border border-gray-300 dark:border-gray-700"><%= t(:done) %></th>
           <th class="p-2 border border-gray-300 dark:border-gray-700"><%= t(:description) %></th>
           <th class="p-2 border border-gray-300 dark:border-gray-700"><%= t(:due) %></th>
-          <th class="p-2 border border-gray-300 dark:border-gray-700">EDIT</th>
+          <th class="p-2 border border-gray-300 dark:border-gray-700"><%= t(:edit) %></th>
           <th class="p-2 border border-gray-300 dark:border-gray-700">DELETE</th>
         </tr>
       </thead>
@@ -24,7 +24,9 @@
             <td class="p-3 border border-gray-300 dark:border-gray-700"><%= next_step.done %></td>
             <td class="p-3 border border-gray-300 dark:border-gray-700"><%= next_step.description %></td>
             <td class="p-3 border border-gray-300 dark:border-gray-700"><%= next_step.due&.strftime('%Y-%m-%d %H:%M') %></td>
-            <td class="p-3 border border-gray-300 dark:border-gray-700">EDIT</td>
+            <td class="p-3 border border-gray-300 dark:border-gray-700 dark:invert">
+              <%= render partial: 'next_steps/update_dialog', locals: { next_step: next_step } %>
+            </td>
             <td class="p-3 border border-gray-300 dark:border-gray-700">DELETE</td>
           </tr>
         <% end %>
