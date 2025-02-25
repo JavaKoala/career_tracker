@@ -1,0 +1,11 @@
+<div class="mt-4">
+  <%= render partial: 'next_steps/next_steps_table',
+             locals: {
+               caption: t(:next_steps),
+               next_steps: next_steps
+             }
+  %>
+</div>
+
+<%= render 'next_steps/next_steps_error' %>
+<%= render 'next_steps/add_dialog' %>

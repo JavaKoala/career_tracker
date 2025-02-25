@@ -7,6 +7,7 @@ class JobApplicationsController < ApplicationController
 
   def show
     @interview = Interview.new(job_application: @job_application)
+    @next_step = NextStep.new(job_application: @job_application)
     redirect_to root_path unless @job_application && @job_application.user == Current.user
   end
 

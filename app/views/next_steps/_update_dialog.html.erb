@@ -1,0 +1,26 @@
+<div data-controller="dialog">
+  <dialog
+    data-dialog-target="dialog"
+    class="w-full
+           md:w-1/2
+           p-4
+           rounded-lg
+           shadow-xl
+           border-2
+           dark:bg-black
+           dark:text-white
+           border-blue-500">
+    <%= render partial: 'layouts/dialog_components/header', locals: { title: t(:update_next_step) } %>
+    <%= form_with model: next_step, format: :turbo_stream do |form| %>
+      <%= render partial: 'next_steps/next_step_form', locals: { form: form, job_application_id: next_step.job_application_id } %>
+      <%= render partial: 'layouts/form_components/form_button', locals: { form: form, button_text: t(:update_step) } %>
+    <% end %>
+  </dialog>
+
+  <button
+    type="button"
+    data-action="dialog#open"
+    id="next-step-<%= next_step.id %>-edit">
+    <%= image_tag("pencil-square.svg", alt: t(:update)) %>
+  </button>
+</div>
