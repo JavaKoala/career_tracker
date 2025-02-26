@@ -6,6 +6,6 @@ class User < ApplicationRecord
   normalizes :email_address, with: ->(e) { e.strip.downcase }
 
   def active_applications
-    job_applications.where(active: true)
+    job_applications.where(active: true).order(created_at: :desc)
   end
 end
