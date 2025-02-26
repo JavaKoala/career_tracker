@@ -1,8 +1,9 @@
 class JobApplicationsController < ApplicationController
+  include Pagy::Backend
   before_action :set_job_application, only: %i[show update]
 
   def index
-    @job_applications = JobApplication.where(user: Current.user)
+    @pagy, @job_applications = pagy(JobApplication.where(user: Current.user))
   end
 
   def show
