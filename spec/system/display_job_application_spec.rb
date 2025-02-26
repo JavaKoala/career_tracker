@@ -39,6 +39,31 @@ RSpec.describe 'Display Job Application', type: :system do
     expect(page).to have_content(job_application.position.name)
   end
 
+  it 'paginates job applications' do
+    company = create(:company)
+    build_list(:job_application, 30).each do |job_application|
+      job_application.position = create(:position, company: company, name: SecureRandom.uuid)
+      job_application.user = user
+      job_application.save!
+    end
+
+    visit root_path
+
+    expect(page).to have_content(user.job_applications.last.position.name)
+
+    click_on '>'
+
+    expect(page).to have_no_content(user.job_applications.last.position.name)
+
+    visit job_applications_path
+
+    expect(page).to have_content(user.job_applications.first.position.name)
+
+    click_on '>'
+
+    expect(page).to have_no_content(user.job_applications.first.position.name)
+  end
+
   it 'does not display job applications from other users' do
     user1 = create(:user, email_address: 'test@test.com')
     job_application = create(:job_application, user: user1)
