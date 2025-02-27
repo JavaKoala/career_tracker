@@ -21,7 +21,16 @@
 <% end %>
 
 <div class="mt-4">
-  <%= render 'interview_questions/add_dialog' %>
+  <%= render partial: 'layouts/dialog_components/add_dialog',
+              locals: {
+                title: t(:new_interview_question),
+                model: @interview_question,
+                path: interview_questions_path,
+                form_partial: '/interview_questions/interview_question_form',
+                add_button_text: t(:add),
+                open_button_text: t(:add_question)
+              }
+  %>
 </div>
 
 <%= render partial: 'next_steps/component', locals: { next_steps: @interview.next_steps_ordered } %>
