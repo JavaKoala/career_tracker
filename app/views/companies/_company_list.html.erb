@@ -6,7 +6,9 @@
               w-full xl:w-2/3">
   <thead>
     <tr class="border-b-4 border-gray-300 dark:border-gray-700">
-      <th class="p-2 border border-gray-300 dark:border-gray-700"><%= t(:company) %></th>
+      <th class="p-2 border border-gray-300 dark:border-gray-700">
+        <%= link_to t(:company), companies_path(name: params[:name], direction: change_direction) %>
+      </th>
     </tr>
   </thead>
   <tbody>
