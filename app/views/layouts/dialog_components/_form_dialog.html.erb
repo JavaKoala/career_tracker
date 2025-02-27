@@ -13,7 +13,7 @@
     <%= render partial: 'layouts/dialog_components/header', locals: { title: title } %>
     <%= form_with model: model, url: path do |form| %>
       <%= render partial: form_partial, locals: { form: form } %>
-      <%= render partial: 'layouts/form_components/form_button', locals: { form: form, button_text: add_button_text } %>
+      <%= render partial: 'layouts/form_components/form_button', locals: { form: form, button_text: action_button_text } %>
     <% end %>
   </dialog>
 

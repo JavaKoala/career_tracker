@@ -6,7 +6,7 @@
                model: @interview,
                path: interview_path(@interview),
                form_partial: '/interviews/interview_form',
-               add_button_text: t(:update),
+               action_button_text: t(:update),
                open_button_text: t(:update_interview)
              }
   %>
@@ -36,7 +36,7 @@
                 model: @interview_question,
                 path: interview_questions_path,
                 form_partial: '/interview_questions/interview_question_form',
-                add_button_text: t(:add),
+                action_button_text: t(:add),
                 open_button_text: t(:add_question)
               }
   %>
