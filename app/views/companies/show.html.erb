@@ -27,7 +27,16 @@
   </div>
 </div>
 
-<%= render 'positions/add_dialog' %>
+<%= render partial: 'layouts/dialog_components/form_dialog',
+           locals: {
+             title:  t(:new_position),
+             model: @position,
+             path: positions_path,
+             form_partial: 'positions/position_form',
+             action_button_text: t(:add_position),
+             open_button_text: t(:new_position)
+           }
+%>
 <%= render 'companies/position_list' %>
 
 <div class="mt-4">
