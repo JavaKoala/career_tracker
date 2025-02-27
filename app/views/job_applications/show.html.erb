@@ -37,7 +37,16 @@
   </div>
 
   <div class="mt-2">
-    <%= render 'interviews/add_dialog' %>
+    <%= render partial: 'layouts/dialog_components/add_dialog',
+               locals: {
+                 title: t(:new_interview),
+                 model: @interview,
+                 path: interviews_path,
+                 form_partial: '/interviews/interview_form',
+                 add_button_text: t(:add),
+                 open_button_text: t(:add_interview)
+               }
+    %>
     <% unless @job_application.interviews.blank? %>
       <%= render partial: 'interviews/interview_table',
             locals: {
