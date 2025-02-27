@@ -1,5 +1,14 @@
 <%= render 'layouts/flash' %>
-<%= render 'positions/update_dialog' %>
+<%= render partial: 'layouts/dialog_components/form_dialog',
+           locals: {
+             title: "#{t(:update)} #{@position.name}",
+             model: @position,
+             path: position_path(@position),
+             form_partial: 'positions/position_form',
+             action_button_text: t(:update),
+             open_button_text: t(:update_position)
+           }
+%>
 <div class="dark:text-white mt-2">
   <h2 class="text-2xl"><%= @position.name %> at <%= link_to @position.company.name, company_path(@position.company) %></h2>
   <% unless @position.already_applied?(Current.user) %>

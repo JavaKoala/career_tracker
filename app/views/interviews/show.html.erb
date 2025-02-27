@@ -1,6 +1,15 @@
 <%= render 'layouts/flash' %>
 <div class="flex justify-between">
-  <%= render 'interviews/update_dialog' %>
+  <%= render partial: 'layouts/dialog_components/form_dialog',
+             locals: {
+               title: t(:update_interview),
+               model: @interview,
+               path: interview_path(@interview),
+               form_partial: '/interviews/interview_form',
+               action_button_text: t(:update),
+               open_button_text: t(:update_interview)
+             }
+  %>
   <%= render 'interviews/delete_dialog' %>
 </div>
 <div class="dark:text-white mt-2">
@@ -21,7 +30,16 @@
 <% end %>
 
 <div class="mt-4">
-  <%= render 'interview_questions/add_dialog' %>
+  <%= render partial: 'layouts/dialog_components/form_dialog',
+              locals: {
+                title: t(:new_interview_question),
+                model: @interview_question,
+                path: interview_questions_path,
+                form_partial: '/interview_questions/interview_question_form',
+                action_button_text: t(:add),
+                open_button_text: t(:add_question)
+              }
+  %>
 </div>
 
 <%= render partial: 'next_steps/component', locals: { next_steps: @interview.next_steps_ordered } %>

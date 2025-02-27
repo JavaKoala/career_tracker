@@ -1,5 +1,14 @@
 <%= render 'layouts/flash' %>
-<%= render 'job_applications/update_dialog' %>
+<%= render partial: 'layouts/dialog_components/form_dialog',
+           locals: {
+             title: "#{t(:update)} #{@job_application.position_name}",
+             model: @job_application,
+             path: job_application_path(@job_application),
+             form_partial: 'job_applications/job_application_form',
+             action_button_text: t(:update),
+             open_button_text: t(:update_job_application)
+           }
+%>
 <div class="dark:text-white">
   <h2 class="text-2xl">Job application</h2>
   <p><strong><%= t(:source) %>:</strong> <%= @job_application.source %></p>
@@ -37,7 +46,16 @@
   </div>
 
   <div class="mt-2">
-    <%= render 'interviews/add_dialog' %>
+    <%= render partial: 'layouts/dialog_components/form_dialog',
+               locals: {
+                 title: t(:new_interview),
+                 model: @interview,
+                 path: interviews_path,
+                 form_partial: '/interviews/interview_form',
+                 action_button_text: t(:add),
+                 open_button_text: t(:add_interview)
+               }
+    %>
     <% unless @job_application.interviews.blank? %>
       <%= render partial: 'interviews/interview_table',
             locals: {
