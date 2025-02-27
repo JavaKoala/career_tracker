@@ -1,6 +1,16 @@
 <%= render 'layouts/flash' %>
 
-<%= render 'companies/update_dialog' %>
+<%= render partial: 'layouts/dialog_components/form_dialog',
+           locals: {
+             title: "#{t(:update)} #{@company.name}",
+             model: @company,
+             path: company_path(@company),
+             form_partial: 'companies/company_form',
+             add_button_text: t(:update),
+             open_button_text: t(:update_company)
+           }
+%>
+
 <div class="dark:text-white mt-2">
   <h2 class="text-2xl"><%= @company.name %></h2>
   <div class="mt-2 p-2">
