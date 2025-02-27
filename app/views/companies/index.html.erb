@@ -1,6 +1,15 @@
 <%= render 'layouts/flash' %>
 <div class="md:flex md:justify-between">
-  <%= render 'companies/add_dialog' %>
+  <%= render partial: 'layouts/dialog_components/add_dialog',
+             locals: {
+               title: t(:new_company),
+               model: @new_company,
+               path: companies_path,
+               form_partial: 'companies/company_form',
+               add_button_text: t(:add_company),
+               open_button_text: t(:new_company)
+             }
+  %>
   <%= render 'companies/company_search' %>
 </div>
 <%= render 'companies/company_list' %>
