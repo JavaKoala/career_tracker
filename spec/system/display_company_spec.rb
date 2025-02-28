@@ -67,6 +67,18 @@ RSpec.describe 'Display Company', type: :system do
     click_on '>'
 
     expect(page).to have_no_content(Company.order(name: :asc).first.name)
+
+    visit companies_path
+
+    expect(page).to have_content(Company.order(name: :asc).first.name)
+
+    click_on 'Company'
+
+    expect(page).to have_no_content(Company.order(name: :asc).first.name)
+
+    click_on 'Company'
+
+    expect(page).to have_content(Company.order(name: :asc).first.name)
   end
 
   it 'searches companies' do
