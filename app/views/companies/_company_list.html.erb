@@ -6,8 +6,19 @@
               w-full xl:w-2/3">
   <thead>
     <tr class="border-b-4 border-gray-300 dark:border-gray-700">
-      <th class="p-2 border border-gray-300 dark:border-gray-700">
+      <th class="p-2 border border-gray-300 dark:border-gray-700 flex justify-center">
         <%= link_to t(:company), companies_path(name: params[:name], direction: change_direction) %>
+        <% if sort_direction == 'asc' %>
+          <%= link_to image_tag("arrow-down.svg", alt: t(:arrow_down)),
+                      companies_path(name: params[:name], direction: change_direction),
+                      class: 'pt-1 dark:invert'
+          %>
+        <% else %>
+          <%= link_to image_tag("arrow-up.svg", alt: t(:arrow_up)),
+                      companies_path(name: params[:name], direction: change_direction),
+                      class: 'pt-1 dark:invert'
+          %>
+        <% end %>
       </th>
     </tr>
   </thead>
