@@ -87,7 +87,7 @@ RSpec.describe 'Display Company', type: :system do
 
     visit companies_path
 
-    fill_in 'name', with: 'Another'
+    fill_in 'search', with: 'Another'
 
     click_on 'Search'
 

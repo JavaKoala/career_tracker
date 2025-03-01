@@ -4,8 +4,8 @@ class CompanySearchService
   end
 
   def search
-    if @params[:name].present?
-      Company.where('name LIKE ?', "%#{@params[:name]}%").order(name: direction)
+    if @params[:search].present?
+      Company.where('name LIKE ?', "%#{@params[:search]}%").order(name: direction)
     else
       Company.order(name: direction)
     end
