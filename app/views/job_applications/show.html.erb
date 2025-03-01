@@ -45,7 +45,16 @@
     <%= render partial: 'job_applications/generate_cover_letter_button', locals: {job_application: @job_application } %>
   </div>
 
-  <div class="mt-2">
+  <% unless @job_application.interviews.blank? %>
+    <%= render partial: 'interviews/interview_table',
+          locals: {
+            caption: t(:interviews),
+            interviews: @job_application.interviews
+          }
+    %>
+  <% end %>
+
+  <div class="mt-4">
     <%= render partial: 'layouts/dialog_components/form_dialog',
                locals: {
                  title: t(:new_interview),
@@ -56,14 +65,6 @@
                  open_button_text: t(:add_interview)
                }
     %>
-    <% unless @job_application.interviews.blank? %>
-      <%= render partial: 'interviews/interview_table',
-            locals: {
-              caption: t(:interviews),
-              interviews: @job_application.interviews
-            }
-      %>
-    <% end %>
   </div>
 
   <%= render partial: 'next_steps/component', locals: { next_steps: @job_application.next_steps_ordered } %>
