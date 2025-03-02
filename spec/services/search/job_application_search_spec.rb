@@ -36,6 +36,12 @@ RSpec.describe Search::JobApplicationSearch do
       it 'returns all companies for the given user' do
         job_application_search_service = described_class.new({}, user)
 
+        expect(job_application_search_service.search.count).to eq(1)
+      end
+
+      it 'returns companies for the given user' do
+        job_application_search_service = described_class.new({}, user)
+
         expect(job_application_search_service.search.first.user).to eq(user)
       end
     end
