@@ -76,4 +76,21 @@ RSpec.describe 'Display Job Application', type: :system do
 
     expect(page).to have_no_content(job_application.position.name)
   end
+
+  it 'searches for job applications' do
+    job1 = create(:job_application, user: user)
+    company = create(:company, name: 'Another Company')
+    position = create(:position, name: 'Another Position', company: company)
+    create(:job_application, user: user, position: position)
+
+    visit job_applications_path
+
+    fill_in 'search', with: 'Another'
+
+    click_on 'Search'
+
+    expect(page).to have_content('Another Company')
+    expect(page).to have_content('Another Position')
+    expect(page).to have_no_content(job1.position.name)
+  end
 end
