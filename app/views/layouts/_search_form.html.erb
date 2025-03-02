@@ -1,7 +1,7 @@
-<div class="dark:text-white mt-2 md:mt-0">
-  <%= form_with url: companies_path, method: :get do |form| %>
-    <%= form.label :name, "#{t(:find_company)}: " %>
-    <%= form.search_field :name,
+<div class="dark:text-white">
+  <%= form_with url: path, method: :get do |form| %>
+    <%= form.label :search, "#{label}: " %>
+    <%= form.search_field :search,
                           class: 'shadow
                                   appearance-none
                                   border

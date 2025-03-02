@@ -85,6 +85,7 @@ en:
   enter_email: "Enter your email address"
   enter_password: "Enter your password"
   existing_interviewer: "Existing interviewer"
+  find_application: "Find application"
   find_company: "Find company"
   friendly_name: "Friendly name"
   generate_cover_letter_with_ai: "Generate cover letter with AI"

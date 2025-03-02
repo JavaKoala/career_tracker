@@ -10,6 +10,13 @@
                open_button_text: t(:new_company)
              }
   %>
-  <%= render 'companies/company_search' %>
+  <div class="mt-2 md:mt-0">
+    <%= render partial: 'layouts/search_form',
+               locals: {
+                 path: companies_path,
+                 label: t(:find_company),
+               }
+    %>
+  </div>
 </div>
 <%= render 'companies/company_list' %>

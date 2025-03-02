@@ -3,7 +3,7 @@ class JobApplicationsController < ApplicationController
   before_action :set_job_application, only: %i[show update]
 
   def index
-    @pagy, @job_applications = pagy(JobApplication.where(user: Current.user))
+    @pagy, @job_applications = pagy(Search::JobApplicationSearch.new(params, Current.user).search)
   end
 
   def show
