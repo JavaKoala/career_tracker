@@ -44,7 +44,7 @@ en:
   add_person: "Add person"
   add_position: 'Add position'
   add_question: 'Add question'
-  ai_temperature: "AI Temperature"
+  ai_temperature: "AI Temperature:"
   all_applications: "All applications"
   answer: "Answer"
   applied_on: 'Applied on'

@@ -4,7 +4,7 @@
     <%= render partial: 'layouts/form_components/form_button', locals: { form: form, button_text: t(:generate_cover_letter_with_ai) } %>
     <ul class="mt-1">
       <li>
-        <%= form.label :temperature, "#{t(:ai_temperature)}:" %>
+        <%= form.label :temperature, t(:ai_temperature) %>
         <div>
           <%= form.range_field :temperature, in: 0..1, step: 0.1 %>
         </div>
