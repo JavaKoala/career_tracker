@@ -42,7 +42,7 @@
         </p>
       <% end %>
     <% end %>
-    <%= render partial: 'job_applications/generate_cover_letter_button', locals: {job_application: @job_application } %>
+    <%= render partial: 'job_applications/cover_letter_form', locals: {job_application: @job_application } %>
   </div>
 
   <% unless @job_application.interviews.blank? %>
