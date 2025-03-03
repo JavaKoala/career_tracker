@@ -1,14 +1,7 @@
 <% if Rails.application.config.openai[:enabled] %>
-  <%= button_to t(:generate_cover_letter_with_ai),
-                llm_cover_letter_path,
-                params: { job_application_id: job_application.id },
-                class: 'mt-4 mb-4
-                        rounded-md
-                        px-3.5 py-1
-                        bg-blue-600
-                        hover:bg-blue-500
-                        text-white
-                        inline-block
-                        font-medium
-                        cursor-pointer' %>
+  <%= form_with url: llm_cover_letter_path, method: :post do |form| %>
+    <%= form.hidden_field :job_application_id, value: job_application.id %>
+    <%= render partial: 'layouts/form_components/form_button', locals: { form: form, button_text: t(:generate_cover_letter_with_ai) } %>
+    <%= t(:temperature) %>: <%= form.range_field :temperature, in: 0..1, step: 0.1 %>
+  <% end %>
 <% end %>

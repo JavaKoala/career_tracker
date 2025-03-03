@@ -136,6 +136,7 @@ en:
   sign_out: "Sign out"
   source: "Source"
   state: "State"
+  temperature: "Temperature"
   try_again_later: "Try again later."
   try_another_password: "Try another email address or password."
   update: "Update"
