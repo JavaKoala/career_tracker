@@ -8,7 +8,7 @@ RSpec.describe CoverLetterLlmService do
       it 'creates a cover letter' do
         client = instance_double(OpenAI::Client, completions: { 'choices' => [{ 'text' => 'sample cover letter' }] })
         allow(OpenAI::Client).to receive(:new).and_return(client)
-        cover_letter_llm_service = described_class.new(job_application.id)
+        cover_letter_llm_service = described_class.new(job_application.id, '0.5')
 
         cover_letter_llm_service.create_cover_letter
 
@@ -18,7 +18,7 @@ RSpec.describe CoverLetterLlmService do
 
     context 'when the job application is not present' do
       it 'does not create a cover letter' do
-        cover_letter_llm_service = described_class.new(0)
+        cover_letter_llm_service = described_class.new(0, '0.5')
 
         cover_letter_llm_service.create_cover_letter
 
@@ -37,7 +37,7 @@ RSpec.describe CoverLetterLlmService do
         client = instance_double(OpenAI::Client, completions: { 'choices' => [{ 'text' => 'sample cover letter' }] })
         allow(OpenAI::Client).to receive(:new).and_return(client)
 
-        cover_letter_llm_service = described_class.new(job_application.id)
+        cover_letter_llm_service = described_class.new(job_application.id, '0.5')
 
         cover_letter_llm_service.create_cover_letter
 
@@ -48,7 +48,7 @@ RSpec.describe CoverLetterLlmService do
 
   describe '#cover_letter_prompt' do
     it 'returns the cover letter prompt' do
-      cover_letter_llm_service = described_class.new(job_application.id)
+      cover_letter_llm_service = described_class.new(job_application.id, '0.5')
       prompt = cover_letter_llm_service.cover_letter_prompt
 
       expect(prompt).to match(
@@ -57,7 +57,7 @@ RSpec.describe CoverLetterLlmService do
     end
 
     it 'returns a default prompt when the job application is not present' do
-      cover_letter_llm_service = described_class.new(nil)
+      cover_letter_llm_service = described_class.new(nil, '0.5')
       prompt = cover_letter_llm_service.cover_letter_prompt
 
       expect(prompt).to match('You are applying for a  position at .')
@@ -69,7 +69,7 @@ RSpec.describe CoverLetterLlmService do
       client = instance_double(OpenAI::Client, completions: { 'choices' => [{ 'text' => 'sample cover letter' }] })
       allow(OpenAI::Client).to receive(:new).and_return(client)
 
-      cover_letter_llm_service = described_class.new(job_application.id)
+      cover_letter_llm_service = described_class.new(job_application.id, '0.5')
 
       expect(cover_letter_llm_service.llm_completions).to eq('sample cover letter')
     end
@@ -78,7 +78,7 @@ RSpec.describe CoverLetterLlmService do
       client = instance_double(OpenAI::Client, completions: {})
       allow(OpenAI::Client).to receive(:new).and_return(client)
 
-      cover_letter_llm_service = described_class.new(job_application.id)
+      cover_letter_llm_service = described_class.new(job_application.id, '0.5')
 
       expect(cover_letter_llm_service.llm_completions).to be_nil
     end

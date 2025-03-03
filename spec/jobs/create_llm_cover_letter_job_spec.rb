@@ -6,7 +6,7 @@ RSpec.describe CreateLlmCoverLetterJob do
       ActiveJob::Base.queue_adapter = :test
 
       expect do
-        described_class.perform_later(1)
+        described_class.perform_later(1, 0.5)
       end.to have_enqueued_job
     end
 
@@ -14,7 +14,7 @@ RSpec.describe CreateLlmCoverLetterJob do
       service = instance_double(CoverLetterLlmService, create_cover_letter: true)
       allow(CoverLetterLlmService).to receive(:new).and_return(service)
 
-      described_class.perform_now(1)
+      described_class.perform_now(1, 0.5)
 
       expect(service).to have_received(:create_cover_letter)
     end

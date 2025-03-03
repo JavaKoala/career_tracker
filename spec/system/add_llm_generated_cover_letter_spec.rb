@@ -16,7 +16,7 @@ RSpec.describe 'Add Llm Generated Cover Letter', type: :system do
       click_on 'Generate cover letter with AI'
 
       expect(page).to have_content('Creating cover letter')
-      expect(CreateLlmCoverLetterJob).to have_been_enqueued.with(job_application.id)
+      expect(CreateLlmCoverLetterJob).to have_been_enqueued.with(job_application.id, nil)
     end
   end
 end

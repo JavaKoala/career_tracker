@@ -1,6 +1,7 @@
 class CoverLetterLlmService
-  def initialize(job_application_id)
+  def initialize(job_application_id, temperature)
     @job_application = JobApplication.find_by(id: job_application_id)
+    @temperature = temperature.to_f
     @client = OpenAI::Client.new(uri_base: Rails.application.config.openai[:url])
   end
 
@@ -27,7 +28,10 @@ class CoverLetterLlmService
 
   def llm_completions
     response = @client.completions(parameters: { model: Rails.application.config.openai[:model],
-                                                 prompt: cover_letter_prompt, max_tokens: 1000 })
+                                                 prompt: cover_letter_prompt,
+                                                 max_tokens: Rails.application.config.openai[:max_tokens],
+                                                 temperature: @temperature })
+
     response['choices']&.first&.dig('text')
   end
 end
