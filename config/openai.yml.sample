@@ -2,6 +2,7 @@ default: &default
   enabled: <%= ENV.fetch("OPENAI_ENABLED") { true } %>
   url: <%= ENV.fetch("OPENAI_URL") { 'http://localhost:11434' } %>
   model: <%= ENV.fetch("OPENAI_MODEL") { 'llama3.2:1b' } %>
+  max_tokens: <%= ENV.fetch("OPENAI_MAX_TOKENS") { 4096 } %>
 
 development:
   <<: *default
