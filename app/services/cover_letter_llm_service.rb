@@ -8,7 +8,7 @@ class CoverLetterLlmService
   def create_cover_letter
     return if @job_application.blank? || !Rails.application.config.openai[:enabled]
 
-    cover_letter = llm_completions
+    cover_letter = llm_completions(cover_letter_prompt)
     cover_letter_io = StringIO.new(cover_letter)
 
     @job_application.cover_letter.attach(io: cover_letter_io,
@@ -26,9 +26,9 @@ class CoverLetterLlmService
     PROMPT
   end
 
-  def llm_completions
+  def llm_completions(prompt)
     response = @client.completions(parameters: { model: Rails.application.config.openai[:model],
-                                                 prompt: cover_letter_prompt,
+                                                 prompt: prompt,
                                                  max_tokens: Rails.application.config.openai[:max_tokens],
                                                  temperature: @temperature })
 
