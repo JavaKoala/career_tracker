@@ -20,6 +20,7 @@
       <tr>
         <td class="p-3 border border-gray-300 dark:border-gray-700 dark:invert min-w-10">
           <%= render partial: '/interview_questions/update_dialog', locals: { question: question } %>
+          <%= image_tag('filetype-ai.svg', alt: t(:ai_file)) if question.ai_generated? %>
         </td>
         <td class="p-3 border border-gray-300 dark:border-gray-700"><%= question.question %></td>
         <td class="p-3 border border-gray-300 dark:border-gray-700"><%= question.answer %></td>
