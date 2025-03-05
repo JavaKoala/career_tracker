@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe CoverLetterLlmService do
+RSpec.describe Ai::CoverLetter do
   let(:job_application) { create(:job_application, position: create(:position, name: 'Software Engineer')) }
 
   describe '#create_cover_letter' do
