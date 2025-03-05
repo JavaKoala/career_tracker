@@ -18,7 +18,7 @@
   <tbody>
     <% interviews.each do |interview| %>
       <tr>
-        <td class="p-3 border border-gray-300 dark:border-gray-700 dark:invert">
+        <td class="p-3 border border-gray-300 dark:border-gray-700 dark:invert min-w-10">
           <%= link_to image_tag("pencil-square.svg"),
               interview_path(interview),
               id: "job-application-interview-#{interview.id}",

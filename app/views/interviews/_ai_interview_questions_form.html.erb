@@ -1,0 +1,14 @@
+<% if Rails.application.config.openai[:enabled] %>
+  <%= form_with url: llm_interview_questions_path, method: :post do |form| %>
+    <%= form.hidden_field :interview_id, value: interview.id %>
+    <%= render partial: 'layouts/form_components/form_button', locals: { form: form, button_text: t(:generate_interview_questions_with_ai) } %>
+    <ul class="mt-1 dark:text-white">
+      <li>
+        <%= form.label :temperature, t(:ai_temperature) %>
+        <div>
+          <%= form.range_field :temperature, in: 0..1, step: 0.1 %>
+        </div>
+      </li>
+    </ul>
+  <% end %>
+<% end %>

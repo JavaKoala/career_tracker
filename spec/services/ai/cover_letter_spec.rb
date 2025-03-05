@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe CoverLetterLlmService do
+RSpec.describe Ai::CoverLetter do
   let(:job_application) { create(:job_application, position: create(:position, name: 'Software Engineer')) }
 
   describe '#create_cover_letter' do
@@ -69,18 +69,18 @@ RSpec.describe CoverLetterLlmService do
       client = instance_double(OpenAI::Client, completions: { 'choices' => [{ 'text' => 'sample cover letter' }] })
       allow(OpenAI::Client).to receive(:new).and_return(client)
 
-      cover_letter_llm_service = described_class.new(job_application.id, '0.5')
+      service = described_class.new(job_application.id, '0.5')
 
-      expect(cover_letter_llm_service.llm_completions).to eq('sample cover letter')
+      expect(service.llm_completions(service.cover_letter_prompt)).to eq('sample cover letter')
     end
 
     it 'returns nil when the completions are not empty' do
       client = instance_double(OpenAI::Client, completions: {})
       allow(OpenAI::Client).to receive(:new).and_return(client)
 
-      cover_letter_llm_service = described_class.new(job_application.id, '0.5')
+      service = described_class.new(job_application.id, '0.5')
 
-      expect(cover_letter_llm_service.llm_completions).to be_nil
+      expect(service.llm_completions(service.cover_letter_prompt)).to be_nil
     end
   end
 end

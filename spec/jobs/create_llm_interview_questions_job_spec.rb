@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe CreateLlmCoverLetterJob do
+RSpec.describe CreateLlmInterviewQuestionsJob do
   describe '.perform_later' do
     it 'enqueues an event' do
       ActiveJob::Base.queue_adapter = :test
@@ -11,12 +11,12 @@ RSpec.describe CreateLlmCoverLetterJob do
     end
 
     it 'enqueues an event in the default queue' do
-      service = instance_double(Ai::CoverLetter, create_cover_letter: true)
-      allow(Ai::CoverLetter).to receive(:new).and_return(service)
+      service = instance_double(Ai::InterviewQuestions, create_interview_questions: true)
+      allow(Ai::InterviewQuestions).to receive(:new).and_return(service)
 
       described_class.perform_now(1, 0.5)
 
-      expect(service).to have_received(:create_cover_letter)
+      expect(service).to have_received(:create_interview_questions)
     end
   end
 end

@@ -45,6 +45,7 @@ en:
   add_position: 'Add position'
   add_question: 'Add question'
   ai_temperature: "AI Temperature:"
+  ai_file: "AI file"
   all_applications: "All applications"
   answer: "Answer"
   applied_on: 'Applied on'
@@ -67,6 +68,7 @@ en:
   created_company: "Created company"
   created_position: "Created position"
   creating_cover_letter: "Creating cover letter"
+  creating_interview_questions: "Creating interview questions"
   default: "default"
   delete: "Delete"
   delete_interviewer: "Delete interviewer"
@@ -90,6 +92,7 @@ en:
   find_company: "Find company"
   friendly_name: "Friendly name"
   generate_cover_letter_with_ai: "Generate cover letter with AI"
+  generate_interview_questions_with_ai: "Generate interview questions with AI"
   hello: "Hello world"
   hybrid: "Hybrid"
   inactive: "Inactive"
