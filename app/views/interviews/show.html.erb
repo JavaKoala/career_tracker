@@ -25,6 +25,8 @@
   <p><strong><%= t(:location) %>:</strong> <%= @interview.location %></p>
 </div>
 
+<%= render partial: 'interviews/ai_interview_questions_form', locals: { interview: @interview } %>
+
 <% unless @interview.interview_questions.blank? %>
   <%= render 'interview_questions/interview_question_table' %>
 <% end %>
