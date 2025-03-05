@@ -28,6 +28,13 @@ RSpec.describe Ai::InterviewQuestions do
 
         expect(interview.reload.interview_questions.first.question).to eq('Can you tell me more?')
       end
+
+      it 'sets ai_generated to true' do
+        intervice_service = described_class.new(interview.id, '0.5')
+        intervice_service.create_interview_questions
+
+        expect(interview.reload.interview_questions.first.ai_generated).to be true
+      end
     end
 
     context 'when the interview is not present' do

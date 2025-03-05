@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_02_22_133354) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_05_162350) do
   create_table "action_text_rich_texts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.text "body", size: :long
@@ -86,6 +86,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_22_133354) do
     t.bigint "interview_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "ai_generated", default: false, null: false
     t.index ["interview_id"], name: "index_interview_questions_on_interview_id"
   end
 

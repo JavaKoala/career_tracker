@@ -12,7 +12,7 @@ module Ai
       interview_questions = extract_interview_questions(interview_questions)
 
       interview_questions.each do |question|
-        InterviewQuestion.create!(question: question, interview: @interview)
+        InterviewQuestion.create!(question: question, interview: @interview, ai_generated: true)
       end
     end
 
