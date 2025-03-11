@@ -50,3 +50,6 @@
 
 # Ignore openai.yml
 /config/openai.yml
+
+# Ignore influxdb.yml
+/config/influxdb.yml

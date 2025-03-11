@@ -16,6 +16,7 @@ RSpec.describe 'Logout', type: :system do
     click_on 'Sign out'
 
     Capybara.refresh
+    Capybara.refresh
 
     expect(page).to have_content('Sign in')
 
