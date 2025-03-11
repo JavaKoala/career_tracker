@@ -100,6 +100,7 @@ GEM
       bigdecimal
       rexml
     crass (1.0.6)
+    csv (3.3.2)
     daemons (1.4.1)
     date (3.4.1)
     debug (1.10.0)
@@ -148,6 +149,8 @@ GEM
       actionpack (>= 6.0.0)
       activesupport (>= 6.0.0)
       railties (>= 6.0.0)
+    influxdb-client (3.2.0)
+      csv
     io-console (0.8.0)
     irb (1.15.1)
       pp (>= 0.6.0)
@@ -429,6 +432,7 @@ DEPENDENCIES
   faraday (~> 2.12)
   image_processing (~> 1.2)
   importmap-rails
+  influxdb-client (~> 3.2)
   jbuilder
   mysql2 (~> 0.5)
   pagy (~> 9.3)
