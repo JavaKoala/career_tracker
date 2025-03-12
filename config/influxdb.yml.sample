@@ -1,0 +1,16 @@
+default: &default
+  enabled: <%= ENV.fetch("INFLUXDB_ENABLED") { false } %>
+  host: <%= ENV.fetch("INFLUXDB_HOST") { 'http://localhost:8086' } %>
+  token: <%= ENV.fetch("INFLUXDB_TOKEN") { 'token' } %>
+  bucket: <%= ENV.fetch("INFLUXDB_BUCKET") { 'career_tracker' } %>
+  org: <%= ENV.fetch("INFLUXDB_ORG") { 'default' } %>
+  use_ssl: <%= ENV.fetch("INFLUXDB_USE_SSL") { true } %>
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+
+production:
+  <<: *default

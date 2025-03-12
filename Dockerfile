@@ -44,6 +44,7 @@ COPY . .
 COPY config/database.yml.sample config/database.yml
 COPY config/home_calendar.yml.sample config/home_calendar.yml
 COPY config/openai.yml.sample config/openai.yml
+COPY config/influxdb.yml.sample config/influxdb.yml
 
 # Precompile bootsnap code for faster boot times
 RUN bundle exec bootsnap precompile app/ lib/

@@ -47,5 +47,8 @@ module CareerTracker
 
     # Configuration for OpenAI API
     config.openai = config_for(:openai)
+
+    # Configuration for InfluxDB
+    config.influxdb = config_for(:influxdb)
   end
 end

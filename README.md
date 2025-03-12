@@ -28,11 +28,13 @@ bundle install
 cp config/database.yml.sample config/database.yml
 cp config/home_calendar.yml.sample config/home_calendar.yml
 cp config/openai.yml.smaple config/openai.yml
+cp config/influxdb.yml.sample influxdb.yml
 ```
 
 - Update `config/database.yml` to the the local database credentials
 - Update `config/openai.yml` to the the local ollama instance or disable
 - Optionally update `config/home_calendar.yml` to enable the send to calendar feature
+- Optionally update `config/influxdb.yml` to enable sending traces to InfluxDB
 
 ```
 bin/rails db:create
