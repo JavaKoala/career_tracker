@@ -1,3 +1,4 @@
+# :nocov:
 if Rails.application.config.influxdb[:enabled]
   influxdb_client = InfluxDB2::Client.new(
     Rails.application.config.influxdb[:host],
@@ -64,3 +65,4 @@ if Rails.application.config.influxdb[:enabled]
     influxdb_write_api.write(data: hash)
   end
 end
+# :nocov:
