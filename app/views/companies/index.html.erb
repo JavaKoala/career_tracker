@@ -10,11 +10,12 @@
                open_button_text: t(:new_company)
              }
   %>
-  <div class="mt-2 md:mt-0">
+  <div class="mt-2 md:mt-0 w-full md:w-1/2">
     <%= render partial: 'layouts/search_form',
                locals: {
                  path: companies_path,
                  label: t(:find_company),
+                 width: 'w-1/2'
                }
     %>
   </div>
