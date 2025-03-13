@@ -1,12 +1,10 @@
-require:
-  - rubocop-rspec_rails
-  - rubocop-capybara
-
 plugins:
   - rubocop-rails
   - rubocop-rspec
   - rubocop-performance
   - rubocop-factory_bot
+  - rubocop-rspec_rails
+  - rubocop-capybara
 
 Style/FrozenStringLiteralComment:
   Enabled: false
@@ -28,6 +26,9 @@ RSpec/MultipleExpectations:
 Metrics/MethodLength:
   Exclude:
     - "db/migrate/*"
+
+Capybara/NegationMatcherAfterVisit:
+  Enabled: false
 
 AllCops:
     NewCops: enable
