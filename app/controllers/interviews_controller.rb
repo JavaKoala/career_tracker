@@ -1,4 +1,5 @@
 class InterviewsController < ApplicationController
+  notifications only: %i[show]
   before_action :set_job_application, only: %i[create update]
   before_action :set_interview, only: %i[show update destroy]
 

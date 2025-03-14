@@ -1,4 +1,5 @@
 class CompaniesController < ApplicationController
+  notifications only: %i[index show]
   include Pagy::Backend
   before_action :set_company, only: %i[show update]
 
