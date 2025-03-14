@@ -57,6 +57,7 @@ RSpec.describe 'Add Next Step', type: :system do
 
         expect(page).to have_content('Next steps')
         expect(page).to have_content('Send follow-up email')
+        expect(page).to have_content('Steps due today: 1')
       end.to change(NextStep, :count).by(1)
     end
   end

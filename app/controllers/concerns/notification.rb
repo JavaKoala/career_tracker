@@ -4,6 +4,7 @@ module Notification
   included do
     helper_method :next_steps_due_today?
     helper_method :next_steps_past_due?
+    helper_method :find_notifications
   end
 
   class_methods do

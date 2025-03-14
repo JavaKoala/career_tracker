@@ -31,6 +31,8 @@ RSpec.describe 'Update Next Step', type: :system do
     it 'changing the done status of a next step' do
       visit job_application_path(next_step.job_application)
 
+      expect(page).to have_content('Past due steps: 1')
+
       find_by_id("next-step-#{next_step.id}-done").click_on
 
       expect(next_step.reload.done).to be(false)
@@ -38,6 +40,8 @@ RSpec.describe 'Update Next Step', type: :system do
       find_by_id("next-step-#{next_step.id}-done").click_on
 
       expect(next_step.reload.done).to be(true)
+
+      expect(page).to have_no_content('Past due steps: 1')
     end
   end
 end
