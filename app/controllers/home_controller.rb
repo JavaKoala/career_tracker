@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
+  find_alerts
   include Pagy::Backend
 
   def index
