@@ -11,11 +11,14 @@ RSpec.describe 'Delete Next Step', type: :system do
   it 'deletes a next step' do
     visit job_application_path(next_step.job_application)
 
+    expect(page).to have_content('Past due steps: 1')
+
     click_on "next-step-#{next_step.id}-delete"
 
     expect do
       click_on 'Delete next step'
       expect(page).to have_no_content(next_step.description)
+      expect(page).to have_no_content('Past due steps: 1')
     end.to change(NextStep, :count).by(-1)
   end
 end
