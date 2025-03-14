@@ -12,7 +12,7 @@ RSpec.describe NextStep, type: :model do
 
     it 'returns next steps due today' do
       job_application = create(:job_application, user: user)
-      next_step = create(:next_step, job_application: job_application, due: Date.current, done: false)
+      next_step = create(:next_step, job_application: job_application, due: Time.zone.now, done: false)
 
       expect(described_class.due_today(user)).to eq([next_step])
     end
@@ -26,14 +26,14 @@ RSpec.describe NextStep, type: :model do
 
     it 'does not return next steps that are done' do
       job_application = create(:job_application, user: user)
-      create(:next_step, job_application: job_application, due: Date.current, done: true)
+      create(:next_step, job_application: job_application, due: Time.zone.now, done: true)
 
       expect(described_class.due_today(user)).to be_empty
     end
 
     it 'does not return next steps for inactive job applications' do
       job_application = create(:job_application, user: user, active: false)
-      create(:next_step, job_application: job_application, due: Date.current, done: false)
+      create(:next_step, job_application: job_application, due: Time.zone.now, done: false)
 
       expect(described_class.due_today(user)).to be_empty
     end
@@ -44,7 +44,7 @@ RSpec.describe NextStep, type: :model do
 
     it 'returns past due next steps' do
       job_application = create(:job_application, user: user)
-      next_step = create(:next_step, job_application: job_application, due: Date.current - 1.day, done: false)
+      next_step = create(:next_step, job_application: job_application, due: 2.days.ago, done: false)
 
       expect(described_class.past_due(user)).to eq([next_step])
     end
@@ -58,14 +58,14 @@ RSpec.describe NextStep, type: :model do
 
     it 'does not return next steps that are done' do
       job_application = create(:job_application, user: user)
-      create(:next_step, job_application: job_application, due: Date.current - 1.day, done: true)
+      create(:next_step, job_application: job_application, due: 2.days.ago, done: true)
 
       expect(described_class.past_due(user)).to be_empty
     end
 
     it 'does not return next steps for inactive job applications' do
       job_application = create(:job_application, user: user, active: false)
-      create(:next_step, job_application: job_application, due: Date.current - 1.day, done: false)
+      create(:next_step, job_application: job_application, due: 2.days.ago, done: false)
 
       expect(described_class.past_due(user)).to be_empty
     end
