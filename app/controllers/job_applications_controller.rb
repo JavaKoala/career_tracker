@@ -1,4 +1,5 @@
 class JobApplicationsController < ApplicationController
+  notifications only: %i[index show]
   include Pagy::Backend
   before_action :set_job_application, only: %i[show update]
 

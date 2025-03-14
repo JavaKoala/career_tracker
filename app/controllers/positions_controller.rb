@@ -1,4 +1,5 @@
 class PositionsController < ApplicationController
+  notifications only: %i[show]
   before_action :set_position, only: %i[show update]
 
   def show

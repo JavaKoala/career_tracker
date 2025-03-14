@@ -1,0 +1,10 @@
+<% if next_steps_past_due? %>
+  <div class="text-red-500">
+    <%= t(:past_due_steps) %>: <%= @next_steps_past_due %>
+  </div>
+<% end %>
+<% if next_steps_due_today? %>
+  <div class="text-orange-500">
+    <%= t(:steps_due_today) %>: <%= @next_steps_due_today %>
+  </div>
+<% end %>
