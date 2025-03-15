@@ -43,7 +43,7 @@ gem 'rush_job', '~> 1.3'
 gem 'faraday', '~> 2.12'
 
 # Use ruby-openai for LLM API
-gem 'ruby-openai', '~> 7.4'
+gem 'ruby-openai', '~> 8.0'
 
 # Use Pagy for pagination [https://ddnexus.github.io/pagy/]
 gem 'pagy', '~> 9.3'
