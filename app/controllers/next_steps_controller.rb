@@ -3,7 +3,9 @@ class NextStepsController < ApplicationController
   before_action :set_job_application, only: %i[create]
   before_action :set_next_step, only: %i[update destroy]
 
-  def index; end
+  def index
+    @next_steps = NextStep.ready_next_steps(Current.user)
+  end
 
   def create
     redirect_to root_path, alert: t(:job_application_not_found) and return if @job_application.blank?
