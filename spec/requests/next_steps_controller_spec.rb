@@ -25,6 +25,16 @@ RSpec.describe NextStepsController, type: :request do
     allow(Current).to receive_messages(session: session, user: job_application.user)
   end
 
+  describe 'GET /next_steps' do
+    it 'renders a successful response' do
+      create(:next_step, job_application: job_application)
+
+      get next_steps_path
+
+      expect(response).to be_successful
+    end
+  end
+
   describe 'POST /next_steps' do
     context 'when the job application is not found' do
       it 'redirects to the root path' do

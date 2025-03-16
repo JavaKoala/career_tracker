@@ -7,6 +7,31 @@ RSpec.describe NextStep, type: :model do
 
   it { expect(described_class.new).to delegate_method(:user).to(:job_application) }
 
+  describe '.ready_next_steps' do
+    let(:user) { create(:user) }
+
+    it 'returns next steps that are not done and belong to active job applications' do
+      job_application = create(:job_application, user: user, active: true)
+      next_step = create(:next_step, job_application: job_application, done: false)
+
+      expect(described_class.ready_next_steps(user)).to eq([next_step])
+    end
+
+    it 'does not return next steps that are done' do
+      job_application = create(:job_application, user: user, active: true)
+      create(:next_step, job_application: job_application, done: true)
+
+      expect(described_class.ready_next_steps(user)).to be_empty
+    end
+
+    it 'does not return next steps for inactive job applications' do
+      job_application = create(:job_application, user: user, active: false)
+      create(:next_step, job_application: job_application, done: false)
+
+      expect(described_class.ready_next_steps(user)).to be_empty
+    end
+  end
+
   describe '.due_today' do
     let(:user) { create(:user) }
 

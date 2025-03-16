@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :job_applications, only: %i[index show create update]
   post '/llm_cover_letter', to: 'llm_cover_letter#create'
   post '/llm_interview_questions', to: 'llm_interview_questions#create'
-  resources :next_steps, only: %i[create update destroy]
+  resources :next_steps, only: %i[index create update destroy]
   resources :people, only: %i[create update destroy]
   post '/position_apply', to: 'position_apply#create'
   resources :positions, only: %i[show create update]
