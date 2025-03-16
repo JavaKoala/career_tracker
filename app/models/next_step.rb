@@ -5,6 +5,12 @@ class NextStep < ApplicationRecord
 
   delegate :user, to: :job_application
 
+  scope :ready_next_steps, lambda { |user|
+    joins(job_application: :user)
+      .where('users.id = ? AND job_applications.active = ? AND done = ?', user, true, false)
+      .order(:due)
+  }
+
   scope :due_today, lambda { |user|
     joins(job_application: :user).where(
       'users.id = ? AND job_applications.active = ? AND done = ? AND due BETWEEN ? AND ?',
