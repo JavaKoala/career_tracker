@@ -22,10 +22,16 @@ RSpec.describe 'Display Next Steps', type: :system do
   end
 
   context 'when there are no next steps' do
-    it 'does not display next step button' do
+    it 'displays no next steps' do
       visit root_path
 
       expect(page).to have_no_content('Next steps')
+
+      visit next_steps_path
+
+      expect(page).to have_content('No next steps')
+
+      click_on 'Home'
     end
   end
 end

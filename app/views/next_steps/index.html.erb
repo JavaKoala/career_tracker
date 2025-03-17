@@ -1,8 +1,26 @@
 <div class="mt-4">
-  <%= render partial: 'next_steps/next_steps_table',
-             locals: {
-               caption: t(:next_steps),
-               next_steps: @next_steps
-             }
-  %>
+  <% if @next_steps.empty? %>
+    <div class="text-xl dark:text-white mb-4">
+      <%= t(:no_next_steps) %>
+    </div>
+
+    <%= link_to t(:home),
+      root_path,
+      class: "rounded-md
+              px-3.5 py-1
+              bg-green-600
+              hover:bg-green-500
+              text-white
+              inline-block
+              font-medium
+              cursor-pointer"
+    %>
+  <% else %>
+    <%= render partial: 'next_steps/next_steps_table',
+              locals: {
+                caption: t(:next_steps),
+                next_steps: @next_steps
+              }
+    %>
+  <% end %>
 </div>
