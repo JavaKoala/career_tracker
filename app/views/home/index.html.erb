@@ -1,6 +1,6 @@
 <%= render 'layouts/flash' %>
 
-<div class="flex justify-between">
+<div class="flex flex-col md:flex-row justify-between">
   <%= render 'new_job_application_form' %>
   <div>
     <% if @next_step_count.positive? %>
@@ -8,6 +8,7 @@
         next_steps_path,
         class: "rounded-md
                 px-3.5 py-1
+                mt-4 md:mt-0
                 mr-4
                 bg-blue-600
                 hover:bg-blue-500
@@ -21,6 +22,7 @@
       companies_path,
       class: "rounded-md
               px-3.5 py-1
+              mt-4 md:mt-0
               bg-green-600
               hover:bg-green-500
               text-white
