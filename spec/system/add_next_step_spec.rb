@@ -37,6 +37,7 @@ RSpec.describe 'Add Next Step', type: :system do
         expect(page).to have_content('Next steps')
         expect(page).to have_content('Send follow-up email')
         expect(page).to have_no_content("Description can't be blank")
+        expect(page).to have_no_link('App')
       end.to change(NextStep, :count).by(1)
     end
   end
