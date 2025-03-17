@@ -18,6 +18,15 @@ RSpec.describe 'Notification', type: :system do
 
     expect(page).to have_content('Past due steps: 2')
     expect(page).to have_content('Steps due today: 1')
+
+    click_on 'Past due steps: 2'
+
+    expect(page).to have_content('Next steps')
+
+    click_on 'Career Tracker'
+    click_on 'Steps due today: 1'
+
+    expect(page).to have_content('Next steps')
   end
 
   it 'does not display next due steps when there are none' do
