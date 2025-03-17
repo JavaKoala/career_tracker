@@ -19,6 +19,15 @@ RSpec.describe 'Display Next Steps', type: :system do
 
       expect(page).to have_content(next_step.description)
     end
+
+    it 'has link to job application' do
+      next_step
+      visit next_steps_path
+
+      click_on 'App'
+
+      expect(page).to have_content(job_application.position_name)
+    end
   end
 
   context 'when there are no next steps' do
