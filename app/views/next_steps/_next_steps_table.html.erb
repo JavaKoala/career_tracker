@@ -15,6 +15,7 @@
           <th class="p-2 border border-gray-300 dark:border-gray-700"><%= t(:description) %></th>
           <th class="p-2 border border-gray-300 dark:border-gray-700"><%= t(:due) %></th>
           <th class="p-2 border border-gray-300 dark:border-gray-700 text-left"><%= t(:edit) %></th>
+          <th class="p-2 border border-gray-300 dark:border-gray-700 text-left"><%= t(:app) %></th>
           <th class="p-2 border border-gray-300 dark:border-gray-700 text-left"><%= t(:delete) %></th>
         </tr>
       </thead>
@@ -42,6 +43,12 @@
             <td class="p-3 border border-gray-300 dark:border-gray-700"><%= next_step.due&.strftime('%Y-%m-%d %H:%M') %></td>
             <td class="p-3 border border-gray-300 dark:border-gray-700 dark:invert">
               <%= render partial: 'next_steps/update_dialog', locals: { next_step: next_step } %>
+            </td>
+            <td class="p-3 border border-gray-300 dark:border-gray-700 dark:invert">
+              <%= link_to image_tag('arrow-up-right-square.svg', alt: t(:app)),
+                          job_application_path(next_step.job_application),
+                          { data: { turbo_frame: '_top' } }
+              %>
             </td>
             <td class="p-3 border border-gray-300 dark:border-gray-700 dark:invert">
               <%= render partial: 'next_steps/delete_dialog', locals: { next_step: next_step } %>
