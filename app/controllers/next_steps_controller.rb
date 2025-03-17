@@ -1,10 +1,11 @@
 class NextStepsController < ApplicationController
   notifications only: %i[index]
+  include Pagy::Backend
   before_action :set_job_application, only: %i[create]
   before_action :set_next_step, only: %i[update destroy]
 
   def index
-    @next_steps = NextStep.ready_next_steps(Current.user)
+    @pagy, @next_steps = pagy(NextStep.ready_next_steps(Current.user))
   end
 
   def create
