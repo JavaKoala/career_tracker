@@ -16,7 +16,7 @@
     <%= render partial: 'layouts/dialog_components/header', locals: { title: t(:are_you_sure) } %>
     <% if current_page?(next_steps_path) %>
       <%= render partial: 'layouts/form_components/delete_button',
-                locals: { delete_path: next_step_path(next_step, format: :html), button_text: t(:delete_next_step) }
+                locals: { delete_path: next_step_path(next_step, format: :html, data: { turbo_frame: '_top' }), button_text: t(:delete_next_step) }
       %>
     <% else %>
       <%= render partial: 'layouts/form_components/delete_button',
