@@ -15,18 +15,12 @@
            border-blue-500">
     <%= render partial: 'layouts/dialog_components/header', locals: { title: t(:are_you_sure) } %>
     <% if current_page?(next_steps_path) %>
-      <%= button_to t(:delete_next_step),
-                    next_step_path(next_step, format: :html),
-                    method: :delete,
-                    data: { turbo_frame: '_top' },
-                    class: 'rounded-md
-                            px-3.5 py-1
-                            bg-red-600
-                            hover:bg-red-500
-                            text-white
-                            inline-block
-                            font-medium
-                            cursor-pointer'
+      <%= render partial: 'layouts/form_components/delete_button',
+        locals: {
+          delete_path: next_step_path(next_step, format: :html),
+          button_text: t(:delete_next_step),
+          data: { turbo_frame: '_top' }
+        }
       %>
     <% else %>
       <%= render partial: 'layouts/form_components/delete_button',

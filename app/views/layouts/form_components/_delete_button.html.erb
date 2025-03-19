@@ -1,6 +1,7 @@
 <%= button_to button_text,
               delete_path,
               method: :delete,
+              data: local_assigns[:data] || {},
               class: 'rounded-md
                       px-3.5 py-1
                       bg-red-600
