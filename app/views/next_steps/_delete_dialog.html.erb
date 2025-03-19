@@ -14,9 +14,19 @@
            dark:text-white
            border-blue-500">
     <%= render partial: 'layouts/dialog_components/header', locals: { title: t(:are_you_sure) } %>
-    <%= render partial: 'layouts/form_components/delete_button',
-               locals: { delete_path: next_step_path(next_step), button_text: t(:delete_next_step) }
-    %>
+    <% if current_page?(next_steps_path) %>
+      <%= render partial: 'layouts/form_components/delete_button',
+        locals: {
+          delete_path: next_step_path(next_step, format: :html),
+          button_text: t(:delete_next_step),
+          data: { turbo_frame: '_top' }
+        }
+      %>
+    <% else %>
+      <%= render partial: 'layouts/form_components/delete_button',
+                locals: { delete_path: next_step_path(next_step, format: :turbo_stream), button_text: t(:delete_next_step) }
+      %>
+    <% end %>
   </dialog>
 
   <button

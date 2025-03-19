@@ -57,6 +57,7 @@ class NextStepsController < ApplicationController
     find_notifications
 
     respond_to do |format|
+      format.html { redirect_to(next_steps_path) }
       format.turbo_stream
     end
   end

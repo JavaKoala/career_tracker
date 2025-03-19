@@ -26,19 +26,39 @@
           <tr>
             <td class="p-3 border border-gray-300 dark:border-gray-700 dark:invert">
               <% if next_step.done? %>
-                <%= button_to image_tag('check2-circle.svg', alt: t(:done)),
-                              next_step_path(next_step, format: :turbo_stream),
-                              params: { next_step: { done: false } },
-                              method: :patch,
-                              form: { id: "next-step-#{next_step.id}-done" }
-                %>
+                <% if current_page?(next_steps_path) %>
+                  <%= button_to image_tag('check2-circle.svg', alt: t(:done)),
+                                next_step_path(next_step, format: :html),
+                                params: { next_step: { done: false } },
+                                method: :patch,
+                                form: { id: "next-step-#{next_step.id}-done" },
+                                data: { turbo_frame: '_top' }
+                  %>
+                <% else %>
+                  <%= button_to image_tag('check2-circle.svg', alt: t(:done)),
+                                next_step_path(next_step, format: :turbo_stream),
+                                params: { next_step: { done: false } },
+                                method: :patch,
+                                form: { id: "next-step-#{next_step.id}-done" }
+                  %>
+                <% end %>
               <% else %>
-                <%= button_to image_tag('circle.svg', alt: t(:not_done)),
-                              next_step_path(next_step, format: :turbo_stream),
-                              params: { next_step: { done: true } },
-                              method: :patch,
-                              form: { id: "next-step-#{next_step.id}-done" }
-                %>
+                <% if current_page?(next_steps_path) %>
+                  <%= button_to image_tag('circle.svg', alt: t(:not_done)),
+                                next_step_path(next_step, format: :html),
+                                params: { next_step: { done: true } },
+                                method: :patch,
+                                form: { id: "next-step-#{next_step.id}-done" },
+                                data: { turbo_frame: '_top' }
+                  %>
+                <% else %>
+                  <%= button_to image_tag('circle.svg', alt: t(:not_done)),
+                                next_step_path(next_step, format: :turbo_stream),
+                                params: { next_step: { done: true } },
+                                method: :patch,
+                                form: { id: "next-step-#{next_step.id}-done" }
+                  %>
+                <% end %>
               <% end %>
             </td>
             <td class="p-3 border border-gray-300 dark:border-gray-700"><%= next_step.description %></td>
