@@ -1,7 +1,7 @@
 class JobApplicationsController < ApplicationController
   notifications only: %i[index show]
   include Pagy::Backend
-  before_action :set_job_application, only: %i[show update]
+  before_action -> { find_job_application(params[:id]) }, only: %i[show update]
 
   def index
     @pagy, @job_applications = pagy(Search::JobApplicationSearch.new(params, Current.user).search)
@@ -10,7 +10,6 @@ class JobApplicationsController < ApplicationController
   def show
     @interview = Interview.new(job_application: @job_application)
     @next_step = NextStep.new(job_application: @job_application)
-    redirect_to root_path unless @job_application && @job_application.user == Current.user
   end
 
   def create
@@ -25,9 +24,7 @@ class JobApplicationsController < ApplicationController
   end
 
   def update
-    if @job_application.blank? || @job_application.user != Current.user
-      redirect_to root_path, alert: t(:job_application_not_found)
-    elsif @job_application.update(job_application_params)
+    if @job_application.update(job_application_params)
       redirect_to job_application_path(@job_application)
     else
       redirect_to job_application_path(@job_application), alert: @job_application.errors.full_messages.join(', ')
@@ -43,9 +40,5 @@ class JobApplicationsController < ApplicationController
                       { company_attributes: %i[name friendly_name description] }
                     ]
                   }])
-  end
-
-  def set_job_application
-    @job_application = JobApplication.find_by(id: params[:id])
   end
 end
