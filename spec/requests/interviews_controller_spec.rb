@@ -106,7 +106,8 @@ RSpec.describe InterviewsController, type: :request do
     end
 
     it 'adds an error message if the interview is not found' do
-      patch '/interviews/0'
+      patch '/interviews/0',
+            params: { interview: { location: 'In-Person', job_application_id: job_application.id } }
 
       expect(flash[:alert]).to eq(I18n.t(:interview_not_found))
     end
