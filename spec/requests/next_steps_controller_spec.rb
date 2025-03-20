@@ -183,6 +183,22 @@ RSpec.describe NextStepsController, type: :request do
 
         expect(response).to have_http_status(:success)
       end
+
+      it 'renders a alert on html format' do
+        next_step = create(:next_step, job_application: job_application)
+
+        patch next_step_path(next_step), params: invalid_attributes
+
+        expect(flash[:alert]).to eq("Description can't be blank")
+      end
+
+      it 'redirects on html format' do
+        next_step = create(:next_step, job_application: job_application)
+
+        patch next_step_path(next_step), params: invalid_attributes
+
+        expect(response).to redirect_to(next_steps_path)
+      end
     end
   end
 

@@ -53,6 +53,12 @@ RSpec.describe 'Update Next Step', type: :system do
         visit next_steps_path
 
         click_on "next-step-#{next_step.id}-edit"
+        fill_in('Description', with: '    ')
+        click_on 'Update step'
+
+        expect(page).to have_content("Description can't be blank")
+
+        click_on "next-step-#{next_step.id}-edit"
         fill_in('Description', with: 'Updated step description')
         click_on 'Update step'
 

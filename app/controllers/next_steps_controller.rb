@@ -15,7 +15,7 @@ class NextStepsController < ApplicationController
     @next_step_errors = next_step.errors.full_messages.join(', ') unless next_step.save
     @next_step = NextStep.new(job_application: @job_application)
 
-    respond_to_turbo_stream
+    respond_to_format
   end
 
   def update
@@ -25,7 +25,7 @@ class NextStepsController < ApplicationController
       @next_step_errors = @next_step.errors.full_messages.join(', ')
     end
 
-    respond_to_turbo_stream
+    respond_to_format
   end
 
   def destroy
@@ -34,7 +34,7 @@ class NextStepsController < ApplicationController
     @job_application = @next_step.job_application
     @next_step.destroy
 
-    respond_to_turbo_stream
+    respond_to_format
   end
 
   private
@@ -53,12 +53,20 @@ class NextStepsController < ApplicationController
     @next_step = next_step if next_step&.user == Current.user
   end
 
-  def respond_to_turbo_stream
+  def respond_to_format
     find_notifications
 
     respond_to do |format|
-      format.html { redirect_to(next_steps_path) }
+      format.html { html_format }
       format.turbo_stream
+    end
+  end
+
+  def html_format
+    if @next_step_errors.present?
+      redirect_to next_steps_path, alert: @next_step_errors
+    else
+      redirect_to next_steps_path
     end
   end
 end
