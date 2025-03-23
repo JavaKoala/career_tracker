@@ -10,12 +10,16 @@
            }
 %>
 <div class="dark:text-white mt-2">
-  <h2 class="text-2xl"><%= @position.name %> at <%= link_to @position.company.name, company_path(@position.company) %></h2>
+  <h2 class="text-2xl">
+    <%= "#{@position.name} #{t(:at)}" %>
+    <%= link_to @position.company.name, company_path(@position.company), class: 'underline' %>
+  </h2>
   <% unless @position.already_applied?(Current.user) %>
-    <%= button_to 'Apply',
+    <%= button_to t(:apply),
                   position_apply_path,
                   params: { position: { position_id: @position.id } },
                   class: 'rounded-md
+                          mt-2
                           px-3.5 py-1
                           bg-green-600
                           hover:bg-green-500
