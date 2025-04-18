@@ -52,6 +52,7 @@ RSpec.describe Ai::InterviewQuestions do
         allow(Rails.configuration.openai).to receive(:[]).with(:enabled).and_return(false)
         allow(Rails.configuration.openai).to receive(:[]).with(:url).and_return('http://localhost:11434')
         allow(Rails.configuration.openai).to receive(:[]).with(:model).and_return('llama3.2:1b')
+        allow(Rails.configuration.openai).to receive(:[]).with(:timeout).and_return(120)
       end
 
       it 'does not create interview questions' do
