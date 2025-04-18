@@ -2,7 +2,10 @@ module Ai
   class LlmService
     def initialize(temperature)
       @temperature = temperature.to_f
-      @client = OpenAI::Client.new(uri_base: Rails.application.config.openai[:url])
+      @client = OpenAI::Client.new(
+        uri_base: Rails.application.config.openai[:url],
+        request_timeout: Rails.application.config.openai[:timeout]
+      )
     end
 
     def llm_completions(prompt)
