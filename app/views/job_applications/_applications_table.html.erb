@@ -16,8 +16,8 @@
   <tbody>
     <% applications.each do |application| %>
       <tr>
-        <td class="p-3 border border-gray-300 dark:border-gray-700"><%= link_to application.position_name, job_application_path(application) %></td>
-        <td class="p-3 border border-gray-300 dark:border-gray-700"><%= link_to application.company_name, company_path(application.company) %></td>
+        <td class="p-3 border border-gray-300 dark:border-gray-700"><%= link_to application.position_name, job_application_path(application), class: 'block' %></td>
+        <td class="p-3 border border-gray-300 dark:border-gray-700"><%= link_to application.company_name, company_path(application.company), class: 'block' %></td>
       </tr>
     <% end %>
   </tbody>
