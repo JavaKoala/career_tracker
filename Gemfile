@@ -40,7 +40,7 @@ gem 'delayed_job_active_record', '~> 4.1'
 gem 'rush_job', '~> 1.3'
 
 # Use faraday for HTTP requests
-gem 'faraday', '~> 2.12'
+gem 'faraday', '~> 2.13'
 
 # Use ruby-openai for LLM API
 gem 'ruby-openai', '~> 8.1'
@@ -70,7 +70,7 @@ group :development, :test do
   gem 'rubocop-rspec_rails', require: false
 
   # Use RSpec for testing
-  gem 'rspec-rails', '~> 7.1'
+  gem 'rspec-rails', '~> 8.0'
 end
 
 group :development do
@@ -80,8 +80,8 @@ end
 
 group :test do
   gem 'capybara', '~> 3.40'
-  gem 'selenium-webdriver', '~> 4.28'
-  gem 'shoulda-matchers', '~> 6.4'
+  gem 'selenium-webdriver', '~> 4.32'
+  gem 'shoulda-matchers', '~> 6.5'
   gem 'simplecov', require: false
   gem 'webmock'
 end
