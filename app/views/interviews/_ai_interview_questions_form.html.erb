@@ -5,7 +5,7 @@
     <ul class="mt-1 dark:text-white">
       <li>
         <%= form.label :temperature, t(:ai_temperature) %>
-        <div>
+        <div class="dark:[color-scheme:light]">
           <%= form.range_field :temperature, in: 0..1, step: 0.1 %>
         </div>
       </li>
