@@ -45,7 +45,7 @@ class InterviewsController < ApplicationController
   private
 
   def interview_params
-    params.expect(interview: %i[interview_start interview_end location job_application_id])
+    params.expect(interview: %i[interview_start interview_end location note job_application_id])
   end
 
   def set_interview
