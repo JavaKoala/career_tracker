@@ -44,6 +44,22 @@
   %>
 </div>
 
+<%= turbo_frame_tag 'interview_note_turbo_frame' do %>
+  <%= form_with model: @interview, data: { controller: 'auto-submit' } do |form| %>
+    <div class="mt-4 w-full xl:w-2/3 dark:text-white">
+      <%= form.label :note, 'Notes', class: 'text-lg' %>
+        <div class="mt-2">
+          <%= form.textarea :note,
+            rows: 8,
+            class: 'block w-full rounded-md bg-white dark:bg-black px-3 py-1.5 text-base outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-blue-600 sm:text-sm/6',
+            data: { action: 'auto-submit#submit' }
+          %>
+        </div>
+        <%= form.hidden_field :job_application_id, value: @interview.job_application.id %>
+    </div>
+  <% end %>
+<% end %>
+
 <%= render partial: 'next_steps/component', locals: { next_steps: @interview.next_steps_ordered } %>
 
 <% unless @interview.interviewers.blank? %>

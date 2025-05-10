@@ -36,4 +36,16 @@ RSpec.describe 'Update Interview', type: :system do
 
     expect(page).to have_content("Location can't be blank")
   end
+
+  it 'Updates the notes field' do
+    visit interview_path(interview)
+
+    fill_in 'Notes', with: 'Notes during the interview'
+
+    sleep(2.5) # Wait for autosave to complete
+    interview.reload
+
+    expect(interview.note).to eq('Notes during the interview')
+    expect(page).to have_content('Notes during the interview')
+  end
 end
