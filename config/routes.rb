@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   post '/position_apply', to: 'position_apply#create'
   resources :positions, only: %i[show create update]
   resource :session
+  resources :settings, only: :index
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
