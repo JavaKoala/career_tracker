@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   it { is_expected.to have_many(:sessions).dependent(:destroy) }
   it { is_expected.to have_many(:job_applications).dependent(:destroy) }
+  it { is_expected.to have_one_attached(:job_application_export) }
 
   it 'normalizes email address' do
     user = described_class.new(email_address: ' FOO@Bar.com ')
