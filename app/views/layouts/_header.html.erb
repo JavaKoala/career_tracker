@@ -18,6 +18,19 @@
                   sm:items-center
                   sm:gap-4">
         <%= render 'layouts/notifications' %>
+        <div class="my-2 sm:my-0">
+          <%= link_to t(:settings),
+              settings_path,
+              class: "rounded-md
+                      px-3.5 py-1
+                      bg-green-600
+                      hover:bg-green-500
+                      text-white
+                      inline-block
+                      font-medium
+                      cursor-pointer"
+          %>
+        </div>
         <div class="inline">
           <%= button_to t(:sign_out),
               session_path,
