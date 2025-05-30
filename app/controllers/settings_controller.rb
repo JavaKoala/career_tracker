@@ -1,5 +1,7 @@
 class SettingsController < ApplicationController
   notifications
 
-  def index; end
+  def index
+    @user = Current.user
+  end
 end
