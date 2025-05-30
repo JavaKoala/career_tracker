@@ -16,6 +16,12 @@ RSpec.describe ExportJobApplicationsController, type: :request do
       end.to have_enqueued_job(ExportJobApplicationsJob).with(user.id)
     end
 
+    it 'sets exporting_job_applications to true for the user' do
+      post export_job_applications_path
+
+      expect(user.reload.exporting_job_applications).to be true
+    end
+
     it 'redirects to the job application' do
       post export_job_applications_path
 

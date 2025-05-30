@@ -16,6 +16,8 @@ class ExportJobApplications
                                         content_type: 'text/csv')
 
     io.close
+
+    @user.update!(exporting_job_applications: false)
   end
 
   private
