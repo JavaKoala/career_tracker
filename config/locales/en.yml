@@ -111,6 +111,7 @@ en:
   interview_start: "Interview start"
   job_application_created_successfully: "Job application created successfully"
   job_application_not_found: "Job application not found"
+  job_applications_exporting: "Your job applications are being exported. Check back for the download link."
   job_description: "Job description"
   job_title: "Job title"
   location: "Location"
