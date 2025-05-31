@@ -3,6 +3,7 @@ class User < ApplicationRecord
   has_many :sessions, dependent: :destroy
   has_many :job_applications, dependent: :destroy
   has_one_attached :job_application_export
+  has_one_attached :job_application_import
 
   normalizes :email_address, with: ->(e) { e.strip.downcase }
 
