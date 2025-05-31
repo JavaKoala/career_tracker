@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :companies, only: %i[index create show update]
   resources :export_job_applications, only: :create
+  resources :import_job_applications, only: :update
   resources :interview_questions, only: %i[create update destroy]
   resources :interviewers, only: %i[create destroy]
   resources :interviews, only: %i[show create update destroy]

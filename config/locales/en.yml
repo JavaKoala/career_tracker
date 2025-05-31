@@ -101,6 +101,8 @@ en:
   hello: "Hello world"
   home: "Home"
   hybrid: "Hybrid"
+  importing_job_applications: "Importing job applications"
+  import_job_applications: "Import job applications"
   inactive: "Inactive"
   interviwer: "Interviewer"
   interviewer_not_found: "Interviewer not found"
@@ -112,6 +114,7 @@ en:
   interview_questions: "Interview questions"
   interview_question_not_found: "Interview question not found"
   interview_start: "Interview start"
+  job_applications_file: "Job applications file"
   job_application_created_successfully: "Job application created successfully"
   job_application_not_found: "Job application not found"
   job_applications_exporting: "Your job applications are being exported. Check back for the download link."
@@ -166,5 +169,6 @@ en:
   update_next_step: "Update next step"
   update_position: "Update position"
   update_step: "Update step"
+  upload_job_applications: "Upload job applications"
   zip: "Zip"
 

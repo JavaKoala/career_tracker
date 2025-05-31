@@ -34,4 +34,14 @@
       <%= t(:export_in_progress) %>
     </p>
   <% end %>
+
+  <div class="mt-12">
+    <h2 class="text-xl mb-2"><%= t(:import_job_applications) %></h2>
+    <%= form_with model: @user, url: import_job_application_path(@user) do |form| %>
+      <ul>
+        <%= render partial: 'layouts/form_components/file_field', locals: { form: form, field: :job_application_import, field_name: "#{t(:job_applications_file)}:", accept: 'text/csv'} %>
+      </ul>
+      <%= render partial: 'layouts/form_components/form_button', locals: { form: form, button_text: t(:upload_job_applications) } %>
+    <% end %>
+  </div>
 </div>
