@@ -7,7 +7,15 @@ class User < ApplicationRecord
 
   normalizes :email_address, with: ->(e) { e.strip.downcase }
 
+  validate :correct_job_application_import_mime_type
+
   def active_applications
     job_applications.where(active: true).order(created_at: :desc)
+  end
+
+  def correct_job_application_import_mime_type
+    return unless job_application_import.attached? && job_application_import.content_type != 'text/csv'
+
+    errors.add(:job_application_import, 'must be a CSV file')
   end
 end
