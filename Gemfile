@@ -51,6 +51,9 @@ gem 'pagy', '~> 9.3'
 # Use influxdb for instrumentation
 gem 'influxdb-client', '~> 3.2'
 
+# Use CSV safe for safe CSV generation
+gem 'csv-safe', '~> 3.3'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri windows], require: 'debug/prelude'

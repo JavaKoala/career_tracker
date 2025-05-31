@@ -23,7 +23,7 @@ class ExportJobApplications
   private
 
   def generate_csv(job_applications)
-    CSV.generate(headers: true) do |csv|
+    CSVSafe.generate(headers: true) do |csv|
       csv << EXPORT_ATTRIBUTES.map(&:humanize)
 
       job_applications.each do |application|
