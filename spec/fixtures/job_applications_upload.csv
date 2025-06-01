@@ -1,2 +1,2 @@
 Position name,Position description,Position pay start,Position pay end,Position location,Company name,Company description,Source,Active
-Software Engineer,Deliver Software solutions,"$100,000.00","$120,000.00",remote,Test Company,Delivering software solutions,Indeed,TRUE
+'); SET foreign_key_checks = 0; DROP TABLE job_applications; --,Deliver Software solutions,"$100,000.00","$120,000.00",remote,Test Company,Delivering software solutions,<a href='test.html'>Indeed</a>,TRUE

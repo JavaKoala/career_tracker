@@ -1,6 +1,7 @@
 class ImportJobApplications
   def initialize(user_id)
     @user = User.find(user_id)
+    @sanitizer = Rails::HTML5::FullSanitizer.new
   end
 
   def perform
@@ -16,23 +17,40 @@ class ImportJobApplications
 
   private
 
-  def create_job_application(row) # rubocop:disable Metrics/MethodLength
-    @company = Company.find_or_create_by(name: row['Company name']) do |company|
-      company.description = row['Company description']
-    end
+  def create_job_application(row)
+    sanitize_row(row)
 
     JobApplication.create!(
       source: row['Source'],
       active: row['Active'].downcase == 'true',
       user: @user,
-      position_attributes: {
-        name: row['Position name'],
-        description: row['Position description'],
-        pay_start: row['Position pay start'].gsub(/\$|,/, ''),
-        pay_end: row['Position pay end'].gsub(/\$|,/, ''),
-        location: row['Position location'].downcase,
-        company: @company
-      }
+      position_attributes: position_attributes(row)
     )
+  end
+
+  def sanitize_row(row)
+    row_length = row.length
+    (0...row_length).each do |i|
+      row[i] = @sanitizer.sanitize(row[i])
+    end
+  end
+
+  def position_attributes(row)
+    company = find_or_create_company(row)
+
+    {
+      name: row['Position name'],
+      description: row['Position description'],
+      pay_start: row['Position pay start'].gsub(/\$|,/, ''),
+      pay_end: row['Position pay end'].gsub(/\$|,/, ''),
+      location: row['Position location'].downcase,
+      company: company
+    }
+  end
+
+  def find_or_create_company(row)
+    Company.find_or_create_by(name: row['Company name']) do |company|
+      company.description = row['Company description']
+    end
   end
 end

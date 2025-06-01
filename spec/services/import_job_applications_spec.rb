@@ -23,7 +23,7 @@ RSpec.describe ImportJobApplications do
 
       expect(job_application.source).to eq('Indeed')
       expect(job_application.active).to be true
-      expect(position.name).to eq('Software Engineer')
+      expect(position.name).to eq("'); SET foreign_key_checks = 0; DROP TABLE job_applications; --")
       expect(position.description.to_plain_text).to eq('Deliver Software solutions')
       expect(position.pay_start).to eq(100_000)
       expect(position.pay_end).to eq(120_000)
