@@ -5,17 +5,25 @@ class ImportJobApplications
   end
 
   def perform
+    return if @user.import_error.present?
+
+    import_applications
+    @user.update(importing_job_applications: false)
+  rescue StandardError => e
+    Rails.logger.error("Failed to import job applications for user #{@user.id}: #{e.message}")
+    @user.update(import_error: e.message)
+    raise e
+  end
+
+  private
+
+  def import_applications
     @user.job_application_import.open do |file|
       CSVSafe.foreach(file, headers: true) do |row|
         create_job_application(row)
       end
     end
-  rescue StandardError => e
-    Rails.logger.error("Failed to import job applications for user #{@user.id}: #{e.message}")
-    raise e
   end
-
-  private
 
   def create_job_application(row)
     sanitize_row(row)

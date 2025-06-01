@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe ImportJobApplications do
-  let(:user) { create(:user) }
+  let(:user) { create(:user, importing_job_applications: true) }
   let(:file) { fixture_file_upload('spec/fixtures/job_applications_upload.csv', 'text/csv') }
   let(:service) { described_class.new(user.id) }
 
@@ -32,10 +32,53 @@ RSpec.describe ImportJobApplications do
       expect(company.description).to eq('Delivering software solutions')
     end
 
-    it 'raises an exception if a record is not imported' do
-      allow(CSVSafe).to receive(:foreach).and_raise(StandardError.new('CSV parsing error'))
+    it 'sets :importing_job_applications to false' do
+      service.perform
 
-      expect { service.perform }.to raise_error(StandardError, 'CSV parsing error')
+      expect(user.reload.importing_job_applications).to be false
+    end
+
+    context 'when there is an error' do
+      before do
+        allow(CSVSafe).to receive(:foreach).and_raise(StandardError.new('CSV parsing error'))
+      end
+
+      it { expect { service.perform }.to raise_error(StandardError, 'CSV parsing error') }
+
+      it 'keeps :importing_job_applications as true' do
+        service.perform
+      rescue StandardError
+        expect(user.reload.importing_job_applications).to be true
+      end
+
+      it 'saves the error message' do
+        service.perform
+      rescue StandardError
+        user.reload
+        expect(user.import_error).to eq('CSV parsing error')
+      end
+    end
+
+    context 'when the user has an import error' do
+      before do
+        user.update(import_error: 'Previous import error')
+      end
+
+      it 'does not perform the import' do
+        expect { service.perform }.not_to(change { user.job_applications.count })
+      end
+
+      it 'does not change :importing_job_applications' do
+        service.perform
+
+        expect(user.reload.importing_job_applications).to be true
+      end
+
+      it 'does not clear the import error' do
+        service.perform
+
+        expect(user.reload.import_error).to eq('Previous import error')
+      end
     end
   end
 end
