@@ -41,6 +41,8 @@
       <ul>
         <%= render partial: 'layouts/form_components/file_field', locals: { form: form, field: :job_application_import, field_name: "#{t(:job_applications_file)}:", accept: 'text/csv'} %>
       </ul>
+      <%= form.hidden_field :importing_job_applications, value: true %>
+      <%= form.hidden_field :import_error, value: '' %>
       <%= render partial: 'layouts/form_components/form_button', locals: { form: form, button_text: t(:upload_job_applications) } %>
     <% end %>
   </div>

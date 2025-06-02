@@ -49,9 +49,9 @@ class ImportJobApplications
     {
       name: row['Position name'],
       description: row['Position description'],
-      pay_start: row['Position pay start'].gsub(/\$|,/, ''),
-      pay_end: row['Position pay end'].gsub(/\$|,/, ''),
-      location: row['Position location'].downcase,
+      pay_start: row['Position pay start']&.gsub(/\$|,/, ''),
+      pay_end: row['Position pay end']&.gsub(/\$|,/, ''),
+      location: row['Position location']&.downcase,
       company: company
     }
   end
