@@ -20,7 +20,7 @@ module Ai
       <<~PROMPT
         You are applying for a #{@interview&.job_application&.position_name} position at #{@interview&.job_application&.company_name}.
         The job description is as follows: #{@interview&.job_application&.position_description}.
-        Please write a list of questions that you would ask about the position from the perspective of the applicant.
+        Please write a list of five questions that you would ask about the position from the perspective of the applicant.
       PROMPT
     end
 
