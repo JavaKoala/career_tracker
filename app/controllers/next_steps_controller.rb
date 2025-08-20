@@ -1,6 +1,7 @@
 class NextStepsController < ApplicationController
   notifications only: %i[index]
   include Pagy::Backend
+
   before_action -> { find_job_application(next_step_params[:job_application_id]) }, only: %i[create]
   before_action :set_next_step, only: %i[update destroy]
 

@@ -1,6 +1,7 @@
 class JobApplicationsController < ApplicationController
   notifications only: %i[index show]
   include Pagy::Backend
+
   before_action -> { find_job_application(params[:id]) }, only: %i[show update]
 
   def index
