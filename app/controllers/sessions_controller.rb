@@ -17,7 +17,6 @@ class SessionsController < ApplicationController
 
   def destroy
     terminate_session
-    clear_site_data
     redirect_to new_session_path
   end
 end
