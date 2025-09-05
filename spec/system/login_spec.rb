@@ -1,9 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe 'Login', type: :system do
-  it 'allows a user to login' do
-    user = create(:user)
+  let(:user) { create(:user) }
 
+  before do
+    user
+  end
+
+  it 'allows a user to login' do
     visit '/session/new'
 
     fill_in 'Enter your email address', with: user.email_address
@@ -19,15 +23,17 @@ RSpec.describe 'Login', type: :system do
   end
 
   it 'does not allow a user to login with incorrect password' do
-    user = create(:user)
-
     visit '/'
 
     fill_in 'Enter your email address', with: user.email_address
-    fill_in 'Enter your password', with: 'wrong'
+    fill_in 'Enter your password', with: 'dusqaf-duwbad-6Cyfpo'
 
-    click_on 'Sign in'
+    expect do
+      click_on 'Sign in'
+    end.not_to change(Session, :count)
 
-    expect(page).to have_content('Try another email address or password.')
+    expect(page).to have_content('Career Tracker')
+
+    expect(page).to have_no_content('Active applications')
   end
 end
