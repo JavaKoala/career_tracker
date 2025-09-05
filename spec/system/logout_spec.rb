@@ -11,6 +11,7 @@ RSpec.describe 'Logout', type: :system do
 
     click_on 'Sign in'
 
+    expect(page).to have_content('Career Tracker')
     expect(page).to have_content('Sign out')
 
     click_on 'Sign out'
