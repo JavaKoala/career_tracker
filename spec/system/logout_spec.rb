@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Logout', type: :system do
-  it 'logs the use out' do
+  it 'logs the user out' do
     user = create(:user, password: 'qoKryj-vitwoj-towca9')
 
     visit '/session/new'
