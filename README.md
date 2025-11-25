@@ -10,7 +10,7 @@ The purpose of this application is to track job applications from the initial ap
 
 https://dev.mysql.com/doc/refman/8.4/en/macos-installation.html
 
-### Install Ruby version 3.4.1
+### Install Ruby version 3.4.7
 
 I like rbenv ( https://github.com/rbenv/rbenv ), but rvm works too
 
@@ -55,6 +55,14 @@ Optionally run the delayed jobs in another terminal if send to calendar or the L
 
 ```
 bundle exec rake jobs:work
+```
+
+## Local CI
+
+Run the local CI with
+
+```
+bin/ci
 ```
 
 ## Docker Build and Run
