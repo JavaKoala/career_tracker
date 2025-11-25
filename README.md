@@ -57,6 +57,14 @@ Optionally run the delayed jobs in another terminal if send to calendar or the L
 bundle exec rake jobs:work
 ```
 
+## Local CI
+
+Run the local CI with
+
+```
+bin/ci
+```
+
 ## Docker Build and Run
 
 1. Build image

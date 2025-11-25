@@ -54,12 +54,16 @@ gem 'influxdb-client', '~> 3.2'
 # Use CSV safe for safe CSV generation
 gem 'csv-safe', '~> 3.3'
 
+# Explicitly add openssl, https://github.com/rails/rails/issues/55886
+gem 'openssl'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri windows], require: 'debug/prelude'
 
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
   gem 'brakeman', require: false
+  gem 'bundler-audit', require: false
 
   # Use FactoryBot for fixtures
   gem 'factory_bot_rails'
