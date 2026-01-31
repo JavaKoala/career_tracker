@@ -27,8 +27,8 @@ gem install bundler
 bundle install
 cp config/database.yml.sample config/database.yml
 cp config/home_calendar.yml.sample config/home_calendar.yml
-cp config/openai.yml.smaple config/openai.yml
-cp config/influxdb.yml.sample influxdb.yml
+cp config/openai.yml.sample config/openai.yml
+cp config/influxdb.yml.sample config/influxdb.yml
 ```
 
 - Update `config/database.yml` to the the local database credentials

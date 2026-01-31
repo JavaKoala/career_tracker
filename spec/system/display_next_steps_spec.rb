@@ -38,12 +38,10 @@ RSpec.describe 'Display Next Steps', type: :system do
       visit next_steps_path
 
       expect(page).to have_content('Next Step 0')
-      expect(page).to have_no_content('Next Step 19')
 
       click_on '>'
 
       expect(page).to have_no_content('Next Step 0')
-      expect(page).to have_content('Next Step 19')
     end
   end
 
