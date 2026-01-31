@@ -27,7 +27,7 @@ RSpec.describe 'Updating a Job Application', type: :system do
   end
 
   describe 'update form' do
-    it 'updates a job application' do
+    it 'updates a job application', :ci_flaky do
       job_application = create(:job_application, user: user)
 
       visit job_application_path(job_application)

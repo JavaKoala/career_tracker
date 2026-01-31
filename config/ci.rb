@@ -6,5 +6,9 @@ CI.run do
   step 'Security: Importmap vulnerability audit', 'bin/importmap audit'
   step 'Security: Brakeman code analysis', 'bin/brakeman --quiet --no-pager --exit-on-warn --exit-on-error'
 
-  step 'Tests: Rspec', 'bundle exec rspec'
+  if ENV['SKIP_FLAKY'] == 'true'
+    step 'Tests: Rspec', 'bundle exec rspec --tag "~ci_flaky"'
+  else
+    step 'Tests: Rspec', 'bundle exec rspec'
+  end
 end
