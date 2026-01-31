@@ -85,7 +85,7 @@ Shoulda::Matchers.configure do |config|
   end
 end
 
-if ENV['NO_SANDBOX'] == true
+if ENV['NO_SANDBOX'] == 'true'
   Capybara.register_driver :selenium_chrome_headless do |app|
     options = Selenium::WebDriver::Chrome::Options.new(
       args: %w[headless no-sandbox disable-gpu]
