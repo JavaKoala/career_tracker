@@ -40,7 +40,7 @@ gem 'delayed_job_active_record', '~> 4.1'
 gem 'rush_job', '~> 1.3'
 
 # Use faraday for HTTP requests
-gem 'faraday', '~> 2.13'
+gem 'faraday', '~> 2.14'
 
 # Use ruby-openai for LLM API
 gem 'ruby-openai', '~> 8.1'
