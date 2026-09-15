@@ -10,7 +10,7 @@ The purpose of this application is to track job applications from the initial ap
 
 https://dev.mysql.com/doc/refman/8.4/en/macos-installation.html
 
-### Install Ruby version 4.0.2
+### Install Ruby version 4.0.6
 
 I like rbenv ( https://github.com/rbenv/rbenv ), but rvm works too
 
