@@ -57,6 +57,9 @@ gem 'csv-safe', '~> 3.3'
 # Explicitly add openssl, https://github.com/rails/rails/issues/55886
 gem 'openssl'
 
+# Use activerecord_json_validator to validate json
+gem 'activerecord_json_validator', '~> 3.1'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri windows], require: 'debug/prelude'
