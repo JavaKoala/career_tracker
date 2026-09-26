@@ -1,5 +1,5 @@
 class CurriculumVitae < ApplicationRecord
-  JSON_RESUME_SCHEMA = Rails.root.join('config/schemas/jsonresume.org/schema.json')
+  JSON_RESUME_SCHEMA = Rails.root.join('config/schemas/jsonresume/schema.json')
 
   belongs_to :user
 
