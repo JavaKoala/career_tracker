@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :positions, only: %i[show create update]
   resource :session
   resources :settings, only: :index
+  resources :curriculum_vitaes, only: %i[show new create update destroy]
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
