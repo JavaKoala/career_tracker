@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :curriculum_vitae do
-    resume { '' }
+    resume { { 'basics' => { 'name' => 'John Doe' } } }
     user
   end
 end
