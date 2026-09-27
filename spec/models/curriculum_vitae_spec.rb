@@ -15,7 +15,7 @@ RSpec.describe CurriculumVitae, type: :model do
       expect(cv).to be_valid
     end
 
-    it 'is not valid when not valid when invalid format' do
+    it 'is invalid when the resume format is invalid' do
       cv.resume = 'invalid'
 
       expect(cv).not_to be_valid
