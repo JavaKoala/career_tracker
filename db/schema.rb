@@ -70,7 +70,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_20_182012) do
     t.json "resume"
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
-    t.index ["user_id"], name: "index_curriculum_vitaes_on_user_id"
+    t.index ["user_id"], name: "index_curriculum_vitaes_on_user_id", unique: true
   end
 
   create_table "delayed_jobs", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
