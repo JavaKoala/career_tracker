@@ -1,4 +1,19 @@
-<div>
-  <h1 class="font-bold text-4xl">CurriculumVitaes#new</h1>
-  <p>Find me in app/views/curriculum_vitaes/new.html.erb</p>
-</div>
+<%= render 'layouts/flash' %>
+<%= form_with model: @cv do |form| %>
+  <div>
+    <ul class="mt-2">
+      <%= form.fields_for :resume do |resume_form| %>
+        <%= resume_form.fields_for :basics do |basics| %>
+          <%= render partial: 'layouts/form_components/text_field',
+                      locals: {
+                        form: basics,
+                        field: :name,
+                        field_name: t(:name),
+                        required: true
+                      } %>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
+  <%= render partial: 'layouts/form_components/form_button', locals: { form: form, button_text: 'Create Resume' } %>
+<% end %>
