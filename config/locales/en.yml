@@ -118,6 +118,7 @@ en:
   job_applications_exporting: "Your job applications are being exported. Check back for the download link."
   job_description: "Job description"
   job_title: "Job title"
+  label: "Label"
   location: "Location"
   name: "Name"
   new_application: "New application"

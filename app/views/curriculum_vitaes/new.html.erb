@@ -11,6 +11,13 @@
                         field_name: t(:name),
                         required: true
                       } %>
+          <%= render partial: 'layouts/form_components/text_field',
+                      locals: {
+                        form: basics,
+                        field: :label,
+                        field_name: t(:label),
+                        required: false
+                      } %>
         <% end %>
       <% end %>
     </ul>
