@@ -7,7 +7,10 @@ RSpec.describe 'CurriculumVitaes', type: :request do
       curriculum_vitae: {
         resume: {
           basics: {
-            name: 'John Doe'
+            name: 'John Doe',
+            label: 'Programmer',
+            image: 'test.png',
+            email: 'john@gmail.com'
           }
         }
       }
@@ -38,6 +41,12 @@ RSpec.describe 'CurriculumVitaes', type: :request do
       post curriculum_vitaes_path, params: resume_params
 
       expect(response).to redirect_to(curriculum_vitae_path(CurriculumVitae.last))
+    end
+
+    it 'creates a new resume' do
+      expect do
+        post curriculum_vitaes_path, params: resume_params
+      end.to change(CurriculumVitae, :count)
     end
 
     it 'redirects to new resume for failure' do # rubocop:disable RSpec/ExampleLength

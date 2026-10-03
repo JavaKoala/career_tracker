@@ -25,6 +25,13 @@
                         field_name: t(:image),
                         required: false
                       } %>
+          <%= render partial: 'layouts/form_components/text_field',
+                      locals: {
+                        form: basics,
+                        field: :email,
+                        field_name: t(:email),
+                        required: false
+                      } %>
         <% end %>
       <% end %>
     </ul>
