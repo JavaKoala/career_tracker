@@ -1,7 +1,7 @@
 <%= render 'layouts/flash' %>
 <%= form_with model: @cv do |form| %>
   <div>
-    <ul class="mt-2">
+    <ul class="mt-2 lg:w-1/3">
       <%= form.fields_for :resume do |resume_form| %>
         <%= resume_form.fields_for :basics do |basics| %>
           <%= render partial: 'layouts/form_components/text_field',
@@ -16,6 +16,13 @@
                         form: basics,
                         field: :label,
                         field_name: t(:label),
+                        required: false
+                      } %>
+          <%= render partial: 'layouts/form_components/text_field',
+                      locals: {
+                        form: basics,
+                        field: :image,
+                        field_name: t(:image),
                         required: false
                       } %>
         <% end %>
