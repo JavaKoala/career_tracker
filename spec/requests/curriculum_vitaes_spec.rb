@@ -10,7 +10,17 @@ RSpec.describe 'CurriculumVitaes', type: :request do
             name: 'John Doe',
             label: 'Programmer',
             image: 'test.png',
-            email: 'john@gmail.com'
+            email: 'john@gmail.com',
+            phone: '1234567890',
+            url: 'https://test.com',
+            summary: 'Test Summary',
+            location: {
+              address: '123 Test Street',
+              postalCode: '12345',
+              city: 'San Francisco',
+              countryCode: 'US',
+              region: 'California'
+            }
           }
         }
       }

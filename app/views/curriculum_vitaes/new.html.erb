@@ -32,6 +32,64 @@
                         field_name: t(:email),
                         required: false
                       } %>
+          <%= render partial: 'layouts/form_components/text_field',
+                      locals: {
+                        form: basics,
+                        field: :phone,
+                        field_name: t(:phone),
+                        required: false
+                      } %>
+          <%= render partial: 'layouts/form_components/text_field',
+                      locals: {
+                        form: basics,
+                        field: :url,
+                        field_name: 'URL',
+                        required: false
+                      } %>
+          <%= render partial: 'layouts/form_components/textarea_field',
+                      locals: {
+                        form: basics,
+                        field: :summary,
+                        field_name: t(:summary),
+                        required: false
+                      } %>
+          <%= basics.fields_for :location do |location| %>
+            <%= render partial: 'layouts/form_components/text_field',
+                        locals: {
+                          form: location,
+                          field: :address,
+                          field_name: t(:address),
+                          required: false
+                        } %>
+            <%= render partial: 'layouts/form_components/text_field',
+                        locals: {
+                          form: location,
+                          field: :postalCode,
+                          field_name: t(:postal_code),
+                          required: false
+                        } %>
+            <%= render partial: 'layouts/form_components/text_field',
+                        locals: {
+                          form: location,
+                          field: :city,
+                          field_name: t(:city),
+                          required: false
+                        } %>
+            <%= render partial: 'layouts/form_components/text_field',
+                        locals: {
+                          form: location,
+                          field: :countryCode,
+                          field_name: t(:country_code),
+                          required: false
+                        } %>
+            <%= render partial: 'layouts/form_components/text_field',
+                        locals: {
+                          form: location,
+                          field: :region,
+                          field_name: t(:region),
+                          required: false
+                        } %>
+          <% end %>
         <% end %>
       <% end %>
     </ul>
