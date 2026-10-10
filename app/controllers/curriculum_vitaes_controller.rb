@@ -26,7 +26,7 @@ class CurriculumVitaesController < ApplicationController
 
   def cv_params
     params.expect(curriculum_vitae: { resume: { basics:
-    [:name, :label, :image, :email, :phone, :url, :summary,
-     { location: %i[address postalCode city countryCode region] }] } })
+    [:name, :label, :image, :email, :phone, :summary,
+     { location: %i[address postalCode city countryCode region] }, profiles: [%i[network username]]] } })
   end
 end

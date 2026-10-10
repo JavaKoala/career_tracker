@@ -12,7 +12,6 @@ RSpec.describe 'CurriculumVitaes', type: :request do
             image: 'test.png',
             email: 'john@gmail.com',
             phone: '1234567890',
-            url: 'https://test.com',
             summary: 'Test Summary',
             location: {
               address: '123 Test Street',
@@ -20,7 +19,13 @@ RSpec.describe 'CurriculumVitaes', type: :request do
               city: 'San Francisco',
               countryCode: 'US',
               region: 'California'
-            }
+            },
+            profiles: [
+              {
+                network: 'Twitter',
+                username: 'John'
+              }
+            ]
           }
         }
       }

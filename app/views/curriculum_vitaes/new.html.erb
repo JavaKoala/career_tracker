@@ -30,20 +30,13 @@
                         form: basics,
                         field: :email,
                         field_name: t(:email),
-                        required: false
+                        required: true
                       } %>
           <%= render partial: 'layouts/form_components/text_field',
                       locals: {
                         form: basics,
                         field: :phone,
                         field_name: t(:phone),
-                        required: false
-                      } %>
-          <%= render partial: 'layouts/form_components/text_field',
-                      locals: {
-                        form: basics,
-                        field: :url,
-                        field_name: 'URL',
                         required: false
                       } %>
           <%= render partial: 'layouts/form_components/textarea_field',
@@ -90,6 +83,18 @@
                           required: false
                         } %>
           <% end %>
+          <div data-controller="nested-json">
+            <div data-nested-json-target="container">
+            </div>
+
+            <button type="button" data-action="nested-json#add">Add Network</button>
+
+            <%= basics.fields_for :profiles do |profile| %>
+              <template data-nested-json-target="template">
+                <%= render "profile_fields", form: profile, index: "new-item" %>
+              </template>
+            <% end %>
+          </div>
         <% end %>
       <% end %>
     </ul>
