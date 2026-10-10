@@ -44,6 +44,7 @@ en:
   add_next_step: "Add next step"
   add_person: "Add person"
   add_position: 'Add position'
+  add_profile: 'Add profile'
   add_question: 'Add question'
   ai_temperature: "AI Temperature:"
   ai_file: "AI file"
@@ -69,6 +70,7 @@ en:
   country_code: "Country Code"
   county: "County"
   cover_letter: "Cover letter"
+  create_resume: "Create resume"
   created_company: "Created company"
   created_position: "Created position"
   created_resume: "Created resume"
@@ -125,6 +127,7 @@ en:
   label: "Label"
   location: "Location"
   name: "Name"
+  network: "Network"
   new_application: "New application"
   new_company: "New company"
   new_interview: "New interview"
@@ -151,9 +154,11 @@ en:
   positions: "Positions"
   position_not_found: "Position not found"
   postal_code: "Postal Code"
+  profiles: "Profiles"
   question: "Question"
   reexport_job_applications: "Re-export job applications"
   remote: "Remote"
+  remove: "Remove"
   resume: "Resume"
   search: "Search"
   settings: "Settings"
@@ -177,5 +182,7 @@ en:
   update_next_step: "Update next step"
   update_position: "Update position"
   update_step: "Update step"
+  username: "Username"
+  work_history: "Work history"
   zip: "Zip"
 

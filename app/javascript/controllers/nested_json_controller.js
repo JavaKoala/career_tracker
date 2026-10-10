@@ -11,13 +11,13 @@ export default class extends Controller {
     const uniqueId = crypto.randomUUID()
     content = content.replace(/new-item/g, uniqueId)
 
-    this.containerTarget.insertAdjacentHTML('beforeend', content)
+    this.containerTarget.insertAdjacentHTML("beforeend", content)
   }
 
   remove(event) {
     event.preventDefault()
 
-    const wrapper = event.target.closest('.nested-fields')
+    const wrapper = event.target.closest(".nested-fields")
     if (wrapper) {
       wrapper.remove()
     }

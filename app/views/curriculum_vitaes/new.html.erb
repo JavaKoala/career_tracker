@@ -84,7 +84,7 @@
                         } %>
           <% end %>
           <li data-controller="nested-json" class="ml-2 mt-2">
-            <h3 class="font-semibold">Profiles</h3>
+            <h3 class="font-semibold"><%= t(:profiles) %></h3>
             <div data-nested-json-target="container">
             </div>
 
@@ -99,7 +99,7 @@
                           inline-block
                           font-medium
                           cursor-pointer">
-                    Add Profile
+                    <%= t(:add_profile) %>
             </button>
 
             <%= basics.fields_for :profiles do |profile| %>
@@ -110,7 +110,7 @@
           </li>
         <% end %>
           <li data-controller="nested-json" class="ml-2 mt-2">
-            <h3 class="font-semibold">Work History</h3>
+            <h3 class="font-semibold"><%= t(:work_history) %></h3>
             <div data-nested-json-target="container">
             </div>
 
@@ -125,7 +125,7 @@
                           inline-block
                           font-medium
                           cursor-pointer">
-                    Add Position
+                    <%= t(:add_position) %>
             </button>
 
             <%= resume_form.fields_for :work do |work| %>
@@ -137,5 +137,5 @@
       <% end %>
     </ul>
   </div>
-  <%= render partial: 'layouts/form_components/form_button', locals: { form: form, button_text: 'Create Resume' } %>
+  <%= render partial: 'layouts/form_components/form_button', locals: { form: form, button_text: t(:create_resume) } %>
 <% end %>
