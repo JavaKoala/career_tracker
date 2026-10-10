@@ -26,7 +26,11 @@ RSpec.describe 'CurriculumVitaes', type: :request do
                 username: 'John'
               }
             ]
-          }
+          },
+          work: [{
+            name: 'Company',
+            position: 'President'
+          }]
         }
       }
     }

@@ -109,6 +109,31 @@
             <% end %>
           </li>
         <% end %>
+          <li data-controller="nested-json" class="ml-2 mt-2">
+            <h3 class="font-semibold">Work History</h3>
+            <div data-nested-json-target="container">
+            </div>
+
+            <button type="button"
+                    data-action="nested-json#add"
+                    class="rounded-md
+                          mt-2
+                          px-3.5 py-1
+                          bg-green-600
+                          hover:bg-green-500
+                          text-white
+                          inline-block
+                          font-medium
+                          cursor-pointer">
+                    Add Position
+            </button>
+
+            <%= resume_form.fields_for :work do |work| %>
+              <template data-nested-json-target="template">
+                <%= render "work_fields", form: work, index: "new-item" %>
+              </template>
+            <% end %>
+          </li>
       <% end %>
     </ul>
   </div>
