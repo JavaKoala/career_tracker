@@ -1,0 +1,141 @@
+<%= render 'layouts/flash' %>
+<%= form_with model: @cv do |form| %>
+  <div>
+    <ul class="mt-2 lg:w-1/3">
+      <%= form.fields_for :resume do |resume_form| %>
+        <%= resume_form.fields_for :basics do |basics| %>
+          <%= render partial: 'layouts/form_components/text_field',
+                      locals: {
+                        form: basics,
+                        field: :name,
+                        field_name: t(:name),
+                        required: true
+                      } %>
+          <%= render partial: 'layouts/form_components/text_field',
+                      locals: {
+                        form: basics,
+                        field: :label,
+                        field_name: t(:label),
+                        required: false
+                      } %>
+          <%= render partial: 'layouts/form_components/text_field',
+                      locals: {
+                        form: basics,
+                        field: :image,
+                        field_name: t(:image),
+                        required: false
+                      } %>
+          <%= render partial: 'layouts/form_components/text_field',
+                      locals: {
+                        form: basics,
+                        field: :email,
+                        field_name: t(:email),
+                        required: true
+                      } %>
+          <%= render partial: 'layouts/form_components/text_field',
+                      locals: {
+                        form: basics,
+                        field: :phone,
+                        field_name: t(:phone),
+                        required: false
+                      } %>
+          <%= render partial: 'layouts/form_components/textarea_field',
+                      locals: {
+                        form: basics,
+                        field: :summary,
+                        field_name: t(:summary),
+                        required: false
+                      } %>
+          <%= basics.fields_for :location do |location| %>
+            <%= render partial: 'layouts/form_components/text_field',
+                        locals: {
+                          form: location,
+                          field: :address,
+                          field_name: t(:address),
+                          required: false
+                        } %>
+            <%= render partial: 'layouts/form_components/text_field',
+                        locals: {
+                          form: location,
+                          field: :postalCode,
+                          field_name: t(:postal_code),
+                          required: false
+                        } %>
+            <%= render partial: 'layouts/form_components/text_field',
+                        locals: {
+                          form: location,
+                          field: :city,
+                          field_name: t(:city),
+                          required: false
+                        } %>
+            <%= render partial: 'layouts/form_components/text_field',
+                        locals: {
+                          form: location,
+                          field: :countryCode,
+                          field_name: t(:country_code),
+                          required: false
+                        } %>
+            <%= render partial: 'layouts/form_components/text_field',
+                        locals: {
+                          form: location,
+                          field: :region,
+                          field_name: t(:region),
+                          required: false
+                        } %>
+          <% end %>
+          <li data-controller="nested-json" class="ml-2 mt-2">
+            <h3 class="font-semibold"><%= t(:profiles) %></h3>
+            <div data-nested-json-target="container">
+            </div>
+
+            <button type="button"
+                    data-action="nested-json#add"
+                    class="rounded-md
+                          mt-2
+                          px-3.5 py-1
+                          bg-green-600
+                          hover:bg-green-500
+                          text-white
+                          inline-block
+                          font-medium
+                          cursor-pointer">
+                    <%= t(:add_profile) %>
+            </button>
+
+            <%= basics.fields_for :profiles do |profile| %>
+              <template data-nested-json-target="template">
+                <%= render "profile_fields", form: profile, index: "new-item" %>
+              </template>
+            <% end %>
+          </li>
+        <% end %>
+          <li data-controller="nested-json" class="ml-2 mt-2">
+            <h3 class="font-semibold"><%= t(:work_history) %></h3>
+            <div data-nested-json-target="container">
+            </div>
+
+            <button type="button"
+                    data-action="nested-json#add"
+                    class="rounded-md
+                          mt-2
+                          px-3.5 py-1
+                          bg-green-600
+                          hover:bg-green-500
+                          text-white
+                          inline-block
+                          font-medium
+                          cursor-pointer">
+                    <%= t(:add_position) %>
+            </button>
+
+            <%= resume_form.fields_for :work do |work| %>
+              <template data-nested-json-target="template">
+                <%= render "work_fields", form: work, index: "new-item" %>
+              </template>
+            <% end %>
+          </li>
+      <% end %>
+    </ul>
+  </div>
+  <%= render partial: 'layouts/form_components/form_button', locals: { form: form, button_text: t(:create_resume) } %>
+<% end %>
