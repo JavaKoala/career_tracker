@@ -38,17 +38,31 @@
       <% end %>
     </li>
     <li class="py-4">
-      <%= link_to t(:resume),
-          new_curriculum_vitae_path,
-          class: "rounded-md
-                  px-3.5 py-1
-                  bg-green-600
-                  hover:bg-green-500
-                  text-white
-                  inline-block
-                  font-medium
-                  cursor-pointer"
-          %>
+      <% if @user.curriculum_vitae.present? %>
+        <%= link_to t(:resume),
+            curriculum_vitae_path(@user.curriculum_vitae),
+            class: "rounded-md
+                    px-3.5 py-1
+                    bg-green-600
+                    hover:bg-green-500
+                    text-white
+                    inline-block
+                    font-medium
+                    cursor-pointer"
+            %>
+      <% else %>
+        <%= link_to t(:resume),
+            new_curriculum_vitae_path,
+            class: "rounded-md
+                    px-3.5 py-1
+                    bg-green-600
+                    hover:bg-green-500
+                    text-white
+                    inline-block
+                    font-medium
+                    cursor-pointer"
+            %>
+      <% end %>
     </li>
   </ul>
 </div>
