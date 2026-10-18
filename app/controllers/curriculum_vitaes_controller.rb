@@ -1,7 +1,9 @@
 class CurriculumVitaesController < ApplicationController
   notifications only: %i[show new]
 
-  def show; end
+  def show
+    @resume = Current.user&.curriculum_vitae&.resume
+  end
 
   def new
     @cv = CurriculumVitae.new

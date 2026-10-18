@@ -4,7 +4,7 @@ RSpec.describe 'settings/index.html.erb', type: :view do
   let(:employee) { create(:employee) }
 
   context 'when the job applications are exporting' do
-    let(:user) { instance_double(User, exporting_job_applications: true) }
+    let(:user) { instance_double(User, exporting_job_applications: true, curriculum_vitae: nil) }
 
     before do
       assign(:user, user)
