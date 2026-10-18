@@ -22,7 +22,9 @@ class CurriculumVitaesController < ApplicationController
 
   def update; end
 
-  def destroy; end
+  def destroy
+    redirect_to settings_path
+  end
 
   private
 

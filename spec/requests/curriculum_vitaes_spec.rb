@@ -87,10 +87,10 @@ RSpec.describe 'CurriculumVitaes', type: :request do
     end
   end
 
-  describe 'GET /destroy' do
-    it 'returns http success' do
-      get '/curriculum_vitaes/destroy'
-      expect(response).to have_http_status(:success)
+  describe 'DELETE /destroy' do
+    it 'redirects to settings' do
+      delete '/curriculum_vitaes/destroy'
+      expect(response).to redirect_to(settings_path)
     end
   end
 end
