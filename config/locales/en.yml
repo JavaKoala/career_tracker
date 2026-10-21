@@ -87,6 +87,7 @@ en:
   delete_interview: "Delete interview"
   delete_next_step: "Delete next step"
   delete_question: "Delete question"
+  delete_resume: "Delete resume"
   description: "Description"
   done: "Done"
   download_job_applications: "Download job applications"
