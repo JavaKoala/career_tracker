@@ -23,6 +23,8 @@ class CurriculumVitaesController < ApplicationController
   def update; end
 
   def destroy
+    Current.user.curriculum_vitae&.destroy
+
     redirect_to settings_path
   end
 
