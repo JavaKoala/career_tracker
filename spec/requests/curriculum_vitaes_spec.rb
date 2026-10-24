@@ -88,17 +88,25 @@ RSpec.describe 'CurriculumVitaes', type: :request do
   end
 
   describe 'DELETE /destroy' do
+    before do
+      create(:curriculum_vitae, user: user)
+    end
+
     it 'redirects to settings' do
       delete '/curriculum_vitaes/destroy'
       expect(response).to redirect_to(settings_path)
     end
 
     it 'destroys the users cv' do
-      create(:curriculum_vitae, user: user)
-
       expect do
         delete '/curriculum_vitaes/destroy'
       end.to change(CurriculumVitae, :count).by(-1)
+    end
+
+    it 'renders flash message' do
+      delete '/curriculum_vitaes/destroy'
+
+      expect(flash[:notice]).to eq('Deleted resume')
     end
   end
 end

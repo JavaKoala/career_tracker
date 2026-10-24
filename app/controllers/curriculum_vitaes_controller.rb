@@ -25,7 +25,7 @@ class CurriculumVitaesController < ApplicationController
   def destroy
     Current.user.curriculum_vitae&.destroy
 
-    redirect_to settings_path
+    redirect_to settings_path, notice: t(:deleted_resume)
   end
 
   private
