@@ -15,7 +15,7 @@ pipeline {
         sh """#!/bin/bash
           export HOME="/var/snap/jenkins/current"
           source /etc/profile
-          rvm use 4.0.6
+          rvm use 4.0.9
           bundle install
           cp config/database.yml.sample config/database.yml
           cp config/home_calendar.yml.sample config/home_calendar.yml
