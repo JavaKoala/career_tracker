@@ -1,6 +1,6 @@
 <%= render 'layouts/flash' %>
 <%= form_with model: @cv do |form| %>
-  <div>
+  <div class="dark:text-white">
     <ul class="mt-2 lg:w-1/3">
       <%= form.fields_for :resume do |resume_form| %>
         <%= resume_form.fields_for :basics do |basics| %>
