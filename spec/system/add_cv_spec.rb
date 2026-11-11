@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Add CV', type: :system do
+RSpec.describe 'Add CV', type: :system do # rubocop:disable RSpec/MultipleMemoizedHelpers
   let(:user) { create(:user) }
   let(:name) { Faker::Name.name }
   let(:label) { Faker::Job.title }
