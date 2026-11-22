@@ -81,6 +81,9 @@ group :development, :test do
 
   # Use RSpec for testing
   gem 'rspec-rails', '~> 8.0'
+
+  # Use Faker to fake data
+  gem 'faker', '~> 3.8'
 end
 
 group :development do
