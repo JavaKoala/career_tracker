@@ -1,13 +1,14 @@
 class CurriculumVitaesController < ApplicationController
-  notifications only: %i[show new]
+  notifications only: %i[show new edit]
+  before_action :set_resume, only: %i[show edit]
 
-  def show
-    @resume = Current.user&.curriculum_vitae&.resume
-  end
+  def show; end
 
   def new
     @cv = CurriculumVitae.new
   end
+
+  def edit; end
 
   def create
     @cv = CurriculumVitae.new(cv_params)
@@ -38,5 +39,9 @@ class CurriculumVitaesController < ApplicationController
                              }, profiles: [%i[network username]]],
                     work: [%i[name position]]
                   } })
+  end
+
+  def set_resume
+    @resume = Current.user&.curriculum_vitae&.resume
   end
 end

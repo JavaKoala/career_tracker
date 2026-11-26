@@ -55,6 +55,15 @@ RSpec.describe 'CurriculumVitaes', type: :request do
     end
   end
 
+  describe 'GET /edit/:id/edit' do
+    let(:cv) { create(:curriculum_vitae, user: user) }
+
+    it 'returns http success' do
+      get edit_curriculum_vitae_path(cv)
+      expect(response).to have_http_status(:success)
+    end
+  end
+
   describe 'POST /create' do
     it 'redirects to resume for success' do
       post curriculum_vitaes_path, params: resume_params
